@@ -4,10 +4,10 @@ Raspberry v1 camera (or clone, v1 camera was sold last 2016 by Raspberry Pi Foun
 
 So why do you may want global shutter videos?
 
-Mostly for fast moving scenes. The propeller of the mini drone rotates with 26000rpm and has a blade diameter of 34mm. The radial speed at blade tips is quite high, 0.034mm&ast;pi&ast;(26000/60)=46.3m/s(!) or 166.6km/h.
+Mostly for fast moving scenes. The propeller of the mini drone rotates with 26000rpm and has a blade diameter of 34mm. The radial speed at blade tips is quite high, 0.034m&ast;pi&ast;(26000/60)=46.3m/s(!) or 166.6km/h.
 
 
-This is the frame you get with v1 camera normal [https://en.wikipedia.org/wiki/Rolling_shutter](rolling shutter) mode, total distortion: 
+This is the frame you get with v1 camera normal [rolling shutter](https://en.wikipedia.org/wiki/Rolling_shutter) mode, total distortion: 
 ![rolling shutter demo of propeller rotating with 26000rpm](res/rs.26000rpm.jpg)
 
 This is animation of video taken with global external shutter technique (scene lit by 5000lm led with 36µs strobe pulse duration): 
