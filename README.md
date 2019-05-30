@@ -7,17 +7,17 @@ So why do you may want global shutter videos?
 Mostly for fast moving scenes. The propeller of the mini drone rotates with 26000rpm and has a blade diameter of 34mm. The radial speed at blade tips is quite high, 0.034m&ast;pi&ast;(26000/60)=46.3m/s(!) or 166.6km/h.
 
 
-This is the frame you get with v1 camera normal [rolling shutter](https://en.wikipedia.org/wiki/Rolling_shutter) mode, total distortion: 
+This is the frame you get with v1 camera normal [rolling shutter](https://en.wikipedia.org/wiki/Rolling_shutter) mode, total distortion:  
 ![rolling shutter demo of propeller rotating with 26000rpm](res/rs.26000rpm.jpg)
 
-This is animation of video taken with global external shutter technique (scene lit by 5000lm led with 36µs strobe pulse duration): 
+This is animation of video taken with global external shutter technique (scene lit by 5000lm led with 36µs strobe pulse duration):   
 ![global shutter demo of propeller rotating with 26000rpm](res/26000rpm.anim.gif)
 
 How do you get that? By powering off light after then end od the strobe pulse, and a really dark scene in that case. Only that way further accumulation of light can be avoided for the lower lines of the frame that are sent to Pi rom camera later than the very first lines.
 
 ## Setup for global external shutter
 
-This is te setup:
+This is the setup:
 ![Setup for global external shutter](res/IMG_270519_182616.jpg)
 
 You need:
@@ -64,7 +64,7 @@ If at most one strobe flash happens per frame, that is single exposure global sh
 
 ## multiple exposure
 
-In this scenarion more than one strobe flash happens  per frame captured. Tool [shots](tools/shots) allows to send multiple strobe pulses (by default five 9µs pulses 241µs apart on GPIO13):
+In this scenario more than one strobe flash happens  per frame captured. Tool [shots](tools/shots) allows to send multiple strobe pulses (by default five 9µs pulses 241µs apart on GPIO13):
 
 	$ shots
 	$
