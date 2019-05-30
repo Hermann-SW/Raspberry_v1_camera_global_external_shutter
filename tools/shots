@@ -1,0 +1,22 @@
+#!/bin/bash
+#             based on joan's code:
+# https://www.raspberrypi.org/forums/viewtopic.php?f=33&t=241151#p1473730
+#
+T=13  # trigger GPIO (Broadcom numbering), GPIO13 has hardware PWM
+O=241 # off micros
+S=9   # on micros (trigger)
+R=5   # repeats
+if [ "$4" != "" ]; then T=$4; fi
+if [ "$3" != "" ]; then O=$3; fi
+if [ "$2" != "" ]; then S=$2; fi
+if [ "$1" != "" ]; then R=$1; fi
+
+if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod; sleep 0.5; fi
+
+N=/dev/null
+
+pigs wvclr                                          # clear all wavefoms
+pigs m $T w                                         # set GPIO into OUTPUT mode
+pigs wvag $((1<<T)) 0 $S 0 $((1<<T)) $O >$N         # add pulse to waveform
+pigs wvcre   >$N                                    # wave from pulses (1st 0)
+pigs wvcha  255 0 0  255 1 $(($R%256)) $(($R/256))  # repeat trigger on/off R×

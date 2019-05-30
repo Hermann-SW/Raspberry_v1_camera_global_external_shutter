@@ -1,0 +1,17 @@
+#!/bin/bash
+T=13  # trigger GPIO (Broadcom numbering), GPIO13 has hardware PWM
+O=241 # on micros (trigger)
+R=5   # repeats
+if [ "$3" != "" ]; then T=$3; fi
+if [ "$2" != "" ]; then S=$2; fi
+if [ "$1" != "" ]; then R=$1; fi
+
+if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod; sleep 0.5; fi
+
+N=/dev/null
+
+pigs wvclr                                   # clear all wavefoms
+pigs m $T w                                  # set GPIO into OUTPUT mode
+pigs wvag $((1<<T)) 0 1  0 $((1<<T)) $O $((1<<T)) 0 3  0 $((1<<T)) $O $((1<<T)) 0 5  0 $((1<<T)) $O $((1<<T)) 0 7  0 $((1<<T)) $O $((1<<T)) 0 9  0 $((1<<T)) $O >$N   # add pulse to waveform
+pigs wvcre   >$N                             # create wave from pulses (1st 0)
+pigs wvtx 0  >$N                             # transmit wave 0

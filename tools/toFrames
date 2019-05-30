@@ -1,0 +1,5 @@
+#!/bin/bash
+V=tst.h264
+if [ "$1" != "" ]; then V=$1; fi
+rm -f frame*.jpg
+ffmpeg -i $V frame%04d.jpg -hide_banner

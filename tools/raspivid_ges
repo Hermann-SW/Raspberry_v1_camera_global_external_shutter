@@ -1,0 +1,22 @@
+#!/bin/bash
+args="-md 1 -p 10,10,960,540 -fps 1 -awb flash -o tst.h264 -t 0"
+if [ "$*" != "" ]; then args=$*; fi
+
+cmd=raspivid
+if [ "$0" = "raspividyuv_gs" ]; then cmd=raspividyuv; fi
+
+if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod; sleep 0.5; fi
+
+( pigs m 13 w; pigs w 13 1; sleep 2; pigs w 13 0 ) &
+
+$cmd $args &
+PID1=$!
+
+sleep 0.4
+pigs i2cc 0  2>/dev/null >/dev/null
+set -e
+h=`pigs i2co 0 0x36 0`
+pigs i2cwd $h  0x30 0x02  0xff       # enable frex mode
+pigs i2cwd $h  0x3b 0x06  0x10 0x1d  # frex_ctrl+mode
+
+wait $PID1
