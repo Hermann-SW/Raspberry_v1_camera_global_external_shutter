@@ -1,5 +1,7 @@
 ## Raspberry v1 camera global external shutter
 
+Associated [Raspberry forum thread](https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=241418).
+
 Raspberry v1 camera (or clone, v1 camera was sold last 2016 by Raspberry Pi Foundation) does not provide a global shutter mode. But it does provide a "global reset" feature. This repo describes how to build an external shutter for v1 camera and allow for Raspberry v1 camera global external shutter videos.
 
 So why do you may want global shutter videos?
