@@ -51,6 +51,8 @@ Tools shot/shots/5shots/raspivid*_gse require pigpio being installed:
 
 Tool toFrames requires ffmpeg being installed.
 
+Tools raspivid*_gse require camera and I2C enabled in raspi-config Interfacing options.
+
 ## single exposure
 
 If at most one strobe flash happens per frame, that is single exposure global shutter capturing. Tool [shot](tools/shot) allows you to send a single flash pulse (by default 9µs pulse duration to GPIO13, you can pass different arguments):
@@ -107,4 +109,3 @@ The frame is not perfect, just the first capture of flying bullet, not sharp bec
 The frame allowed to determine bullet speed while flying through camera view! The bullet diameter is 6mm, and I used gimp to measure diameter of bullet as 357 pixel. The distance from left side of 2nd to left side of 3rd bullet in frame was 563 pixels. Bullet speed therefore is (563/357*0.006mm)*3000 = 28.38m/s.
 
 
-Tools raspivid*_gse require camera and I2C enabled in raspi-config Interfacing options.
