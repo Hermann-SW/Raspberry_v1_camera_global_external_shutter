@@ -67,17 +67,17 @@ In this scenarion more than one strobe flash happens  per frame captured. Tool [
 	$ shots
 	$
 
-![multiple exposure frame3](res/multiple-exposure.3.png)
+![multiple exposure frame3](res/multiple-exposure.3.jpg)
 
 Same scene with different lighting, in case you have no room where you can close all doors and all window shutters. Just put a moving box above the complete setup:
-![multiple exposure frame8](res/multiple-exposure.8.part.png)
+![multiple exposure frame8](res/multiple-exposure.8.part.jpg)
 
 Different parameters example:
 
 	$ ./shots 9 9 116
 	$
 
-![multiple exposure frame6](res/multiple-exposure.6.png)
+![multiple exposure frame6](res/multiple-exposure.6.jpg)
 
 
 Tool [5shots](tools/5shots) does 5 exposures with different strobe pulse widths (1/3/5/7/9µs pulse widths):
@@ -85,13 +85,13 @@ Tool [5shots](tools/5shots) does 5 exposures with different strobe pulse widths 
 	$ ./5shots
 	$
 
-![multiple exposure frameA](res/multiple-exposure.A.png)
+![multiple exposure frameA](res/multiple-exposure.A.jpg)
 
 Same with slightly different lighting:
-![multiple exposure frameB](res/multiple-exposure.B.png)
+![multiple exposure frameB](res/multiple-exposure.B.jpg)
 
 "shots 2 9 900000" captures two 9µs strobe pulse widths, 0.9s apart. With raspivid_ges tool's "-fps 1" default setting most times the first flash happens on one tst.h264 frame captured, and the 2nd flash happens on the next frame. But after 15 attempts I was successful and captured both flashes on same frame, proving that it is possible:
-![multiple exposure frameC](res/multiple-exposure.C.png)
+![multiple exposure frameC](res/multiple-exposure.C.jpg)
 
 ## PWM exposure
 
@@ -100,7 +100,7 @@ Above captures were all radial, this one is linear. The frame captured 6mm diame
 	$ pigs hp 13 3000 25000; sleep 2; pigs hp 13 0 0
 	$
 
-![multiple exposure frame7](res/multiple-exposure.7.png)
+![multiple exposure frame7](res/multiple-exposure.7.jpg)
 
 The frame is not perfect, just the first capture of flying bullet, not sharp because lens was not adjusted well, but it is a prove that capturing (rifle) bullets in flight is possible with v1 camera!
 
