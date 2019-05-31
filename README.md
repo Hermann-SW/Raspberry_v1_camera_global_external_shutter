@@ -2,20 +2,22 @@
 
 Associated [Raspberry forum thread](https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=241418).
 
-Raspberry v1 camera (or clone, v1 camera was sold last 2016 by Raspberry Pi Foundation) does not provide a global shutter mode. But it does provide a "global reset" feature. This repo describes how to build an external shutter for v1 camera and allow for Raspberry v1 camera global external shutter videos.
+Raspberry v1 camera (or clone, v1 camera was sold last 2016 by Raspberry Pi Foundation) does not provide a global shutter mode. But it does provide a "global reset" feature/[FREX mode](https://cdn.sparkfun.com/datasheets/Dev/RaspberryPi/ov5647_full.pdf#page=43) (whole frame pixels start integration at the same time, rather than integrating row by row). 
+
+This repo describes how to build an external shutter for v1 camera and allow for Raspberry v1 camera global external shutter videos.
 
 So why do you may want global shutter videos?
 
-Mostly for fast moving scenes. The propeller of the mini drone rotates with 26000rpm and has a blade diameter of 34mm. The radial speed at blade tips is quite high, 0.034m&ast;pi&ast;(26000/60)=46.3m/s(!) or 166.6km/h.
+Mostly for fast moving scenes. The propeller of mini drone rotates with 26000rpm and has a blade diameter of 34mm. The radial speed at blade tips is quite high, 0.034m&ast;pi&ast;(26000/60)=46.3m/s(!) or 166.6km/h.
 
 
-This is the frame you get with v1 camera normal [rolling shutter](https://en.wikipedia.org/wiki/Rolling_shutter) mode, total distortion:  
+This is a frame you get with v1 camera normal [rolling shutter](https://en.wikipedia.org/wiki/Rolling_shutter) mode, total distortion:  
 ![rolling shutter demo of propeller rotating with 26000rpm](res/rs.26000rpm.jpg)
 
-This is animation of video taken with global external shutter technique (scene lit by 5000lm led with 36µs strobe pulse duration):   
+This is animation of video taken with global external shutter technique (scene lit by 5000lm led with 36µs strobe pulse duration; 1 second from 25fps video, converted into an animated .gif playing at 5fps, allowing to really see each single global shutter frame, as well as to see that the other propellers+motors are heavily shaken by the front propeller wind):   
 ![global shutter demo of propeller rotating with 26000rpm](res/26000rpm.anim.gif)
 
-How do you get that? By powering off light after then end od the strobe pulse, and a really dark scene in that case. Only that way further accumulation of light can be avoided for the lower lines of the frame that are sent to Pi rom camera later than the very first lines.
+How do you get that? By powering off light quickly after the end of the strobe pulse, and a really dark scene. Only that way further accumulation of light can be avoided for the lower lines of the frame that are sent to Pi from camera later than the very first lines.
 
 ## Setup for global external shutter
 
