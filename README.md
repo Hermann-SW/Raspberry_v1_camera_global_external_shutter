@@ -8,7 +8,7 @@ Associated [Raspberry forum thread](https://www.raspberrypi.org/forums/viewtopic
 * [Requirements](#requirements)
 * [Single exposure](#single-exposure)
 * [Multiple exposure](#multiple-exposure)
-* [PWM exposure](#pwm-exposure)
+  * [PWM exposure](#pwm-exposure)
 
 ## Introduction
 
@@ -109,7 +109,7 @@ Same scene with slightly different lighting (you can see 5 blades with reflectiv
 "shots 2 9 900000" captures two 9µs strobe pulse widths, 0.9s apart. With raspivid_ges tool's "-fps 1" default setting most times the first flash happens on one tst.h264 frame captured, and the 2nd flash happens on the next frame. But after 15 attempts I was successful and captured both flashes on same frame, proving that it is possible:
 ![multiple exposure frameC](res/multiple-exposure.C.jpg)
 
-## PWM exposure
+### PWM exposure
 
 Above captures were all radial, this one is linear. The frame captured 6mm diameter airsoft pistol bullet in flight. A fixed length pigpio waveform (as in shots) would need synchronization between triggering shot and triggering waveform (accoustic, laser light barrier or 665/1007fps high framerate video detection).  The simpler approach taken here is to use 3kHz PWM signal on GPIO13 with duty cycle 2.5% (8.33µs). Each 1fps frame gets 3000 flashes. This cannot be done inside moving box because all you would get is a white frame. This command generates 6000 strobe pulses in order to not confuse raspivid AWB:
 
