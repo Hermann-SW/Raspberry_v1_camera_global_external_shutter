@@ -8,6 +8,7 @@ Associated [Raspberry forum thread](https://www.raspberrypi.org/forums/viewtopic
 * [Requirements](#requirements)
 * [Single exposure](#single-exposure)
 * [Multiple exposure](#multiple-exposure)
+  * [shots tool](#shots-tool)
   * [PWM exposure](#pwm-exposure)
 
 ## Introduction
@@ -78,7 +79,11 @@ Single exposure global shutter capturing is when at most one strobe flash happen
 
 ## Multiple exposure
 
-In this scenario more than one strobe flash happens  per frame captured. Tool [shots](tools/shots) allows to send multiple strobe pulses (by default five 9µs pulses 241µs apart on GPIO13):
+In this scenario more than one strobe flash happens  per frame captured. 
+
+#### shots tool
+
+Tool [shots](tools/shots) allows to send multiple strobe pulses (by default five 9µs pulses 241µs apart on GPIO13):
 
 	$ shots
 	$
