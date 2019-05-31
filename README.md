@@ -47,10 +47,10 @@ The 0-24V IRF520 mosfets are used in series to control 38V/1.5A from 50W led dri
 ## Tools
 
 * [raspivid_ges](tools/raspivid_ges) (if starting with default parameters, captures 2MP tst.h264 video at 1fps global external shutter mode)
-* [raspividyuv_ges](tools/raspividyuz_ges) (global external shutter for raspividyuv)
+* [raspividyuv_ges](tools/raspividyuv_ges) (global external shutter for raspividyuv)
 * [shot](tools/shot) (single exposure)
 * [shots](tools/shots) (multiple exposure)
-* [5shot](tools/5shot) (sample for different strobe pulse length multiple exposure)
+* [5shots](tools/5shots) (sample for different strobe pulse length multiple exposure)
 * [toFrames](tools/toFrames) (converts .h264 video (tst.h264 by default) to multiple frames (frame0000.jpg, frame0001.jpg, ...)
 
 ## Requirements
