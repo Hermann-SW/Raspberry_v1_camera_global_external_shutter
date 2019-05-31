@@ -46,8 +46,8 @@ The 0-24V IRF520 mosfets are used in series to control 38V/1.5A from 50W led dri
 
 ## Tools
 
-* [raspivid_gse](tools/raspivid_gse) (starting with default parameters captures tst.h264 video at 1fps global external shutter mode)
-* [raspividyuv_gse](tools/raspividyuz_gse) (global external shutter for raspividyuv)
+* [raspivid_ges](tools/raspivid_ges) (if starting with default parameters, captures 2MP tst.h264 video at 1fps global external shutter mode)
+* [raspividyuv_ges](tools/raspividyuz_ges) (global external shutter for raspividyuv)
 * [shot](tools/shot) (single exposure)
 * [shots](tools/shots) (multiple exposure)
 * [5shot](tools/5shot) (sample for different strobe pulse length multiple exposure)
@@ -60,12 +60,12 @@ Software PWM frequencies are too restricted (http://abyz.me.uk/rpi/pigpio/pigs.h
 
 raspivid&ast;_ges/shot/shots tools do work on any pin.
 
-Tools shot/shots/5shots/raspivid&ast;_gse require pigpio being installed:
+Tools shot/shots/5shots/raspivid&ast;_ges require pigpio being installed:
 [pigpio library](http://abyz.me.uk/rpi/pigpio/download.html)
 
 Tool toFrames requires ffmpeg being installed.
 
-Tools raspivid&ast;_gse require camera and I2C enabled in raspi-config Interfacing options.
+Tools raspivid&ast;_ges require camera and I2C enabled in raspi-config Interfacing options.
 
 ## Single exposure
 
