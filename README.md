@@ -2,9 +2,19 @@
 
 Associated [Raspberry forum thread](https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=241418).
 
+* [Introduction](#introduction)
+* [Setup for global external shutter](#setup-for-global-external-shutter)
+* [Tools](#tools)
+* [Requirements](#requirements)
+* [Single exposure](#single-exposure)
+* [Multiple exposure](#multiple-exposure)
+* [PWM exposure](#pwm-exposure)
+
+## Introduction
+
 Raspberry v1 camera (or clone, v1 camera was sold last 2016 by Raspberry Pi Foundation) does not provide a global shutter mode. But it does provide a "global reset" feature/[FREX mode](https://cdn.sparkfun.com/datasheets/Dev/RaspberryPi/ov5647_full.pdf#page=43) (whole frame pixels start integration at the same time, rather than integrating row by row). 
 
-This repo describes how to build an external shutter for v1 camera and allow for Raspberry v1 camera global external shutter videos.
+This repo describes how to build an external shutter for v1 camera and provides tools allowing for taking Raspberry v1 camera global external shutter videos.
 
 So why do you may want global shutter videos?
 
@@ -30,25 +40,25 @@ You need:
 * plastic COB reflector (3$)
 * IRF520 mosfets (2×1$)
 * v1 camera (clone 6$)
-* mini drone propeller (1$)
+* spare drone motor+propeller (4$)
 
-The 0-24V IRF520s mosfets are used in series to control 38V/1.5A from 50W led driver to 5000lm led. Pi GPIO13 is connected with both mosfets SIG pins. Power the propeller from an independent power source, I use a constant voltage power supply because that allows to easily change propeller voltage and by that propeller rpm.
+The 0-24V IRF520 mosfets are used in series to control 38V/1.5A from 50W led driver to 5000lm led. Pi GPIO13 is connected with both mosfet SIG pins. Power the propeller from an independent power source, I use a constant voltage power supply because that allows to easily change propeller voltage and by that propeller rpm.
 
 ## Tools
 
-* [raspivid_gse](tools/raspivid_gse) (starting with default parameters captures enless tst.h264 video at 1fps global external shutter mode)
-* [raspividyuz_gse](tools/raspividyuz_gse) (global external shutter for raspividyuv)
-* [shot](tools/shot) (single shot exposure)
-* [shots](tools/shots) (multiple shots exposure)
+* [raspivid_gse](tools/raspivid_gse) (starting with default parameters captures tst.h264 video at 1fps global external shutter mode)
+* [raspividyuv_gse](tools/raspividyuz_gse) (global external shutter for raspividyuv)
+* [shot](tools/shot) (single exposure)
+* [shots](tools/shots) (multiple exposure)
 * [5shot](tools/5shot) (sample for different strobe pulse length multiple exposure)
-* [toFrames](tools/toFrames) (converts .h264 vide (tst.h264 by default) to multiple frames (frame0000.jps, frame0001.jps, ...)
+* [toFrames](tools/toFrames) (converts .h264 video (tst.h264 by default) to multiple frames (frame0000.jpg, frame0001.jpg, ...)
 
 ## Requirements
 
 Hardware PWM is available on GPIO18 and GPIO13 only.
 Software PWM frequencies are too restricted (http://abyz.me.uk/rpi/pigpio/pigs.html#PFS).
 
-raspivid&ast;_ges and shot/shots tools do work on any pin.
+raspivid&ast;_ges/shot/shots tools do work on any pin.
 
 Tools shot/shots/5shots/raspivid&ast;_gse require pigpio being installed:
 [pigpio library](http://abyz.me.uk/rpi/pigpio/download.html)
@@ -57,16 +67,16 @@ Tool toFrames requires ffmpeg being installed.
 
 Tools raspivid&ast;_gse require camera and I2C enabled in raspi-config Interfacing options.
 
-## single exposure
+## Single exposure
 
-If at most one strobe flash happens per frame, that is single exposure global shutter capturing. Tool [shot](tools/shot) allows you to send a single flash pulse (by default 9µs pulse duration to GPIO13, you can pass different arguments):
+Single exposure global shutter capturing is when at most one strobe flash happens per frame. Tool [shot](tools/shot) allows you to send a single flash pulse (by default 9µs pulse duration to GPIO13, you can pass different arguments):
 
 	$ shot 9 13
 	$
 
 ![single exposure frame](res/single-exposure.1.png)
 
-## multiple exposure
+## Multiple exposure
 
 In this scenario more than one strobe flash happens  per frame captured. Tool [shots](tools/shots) allows to send multiple strobe pulses (by default five 9µs pulses 241µs apart on GPIO13):
 
@@ -93,7 +103,7 @@ Tool [5shots](tools/5shots) does 5 exposures with different strobe pulse widths 
 
 ![multiple exposure frameA](res/multiple-exposure.A.jpg)
 
-Same with slightly different lighting:
+Same scene with slightly different lighting (you can see 5 blades with reflective tape at bottom):
 ![multiple exposure frameB](res/multiple-exposure.B.jpg)
 
 "shots 2 9 900000" captures two 9µs strobe pulse widths, 0.9s apart. With raspivid_ges tool's "-fps 1" default setting most times the first flash happens on one tst.h264 frame captured, and the 2nd flash happens on the next frame. But after 15 attempts I was successful and captured both flashes on same frame, proving that it is possible:
@@ -101,13 +111,13 @@ Same with slightly different lighting:
 
 ## PWM exposure
 
-Above captures were all radial, this one is linear. The frame captured 6mm diameter airsoft pistol bullet in flight. A fixed length pigpio waveform (as in shots) would need synchronization between triggering shot and triggering waveform (accoustic, laser light barrier or 665/1007fps high framerate video detection).  The simpler approach taken here is to use 3kHz PWM signal on GPIO13 with duty cycle 2.5% (8.33µs). Each 1fps frame gets 3000 flashes. This cannot be done inside moving box because all you would get is a white frame.
+Above captures were all radial, this one is linear. The frame captured 6mm diameter airsoft pistol bullet in flight. A fixed length pigpio waveform (as in shots) would need synchronization between triggering shot and triggering waveform (accoustic, laser light barrier or 665/1007fps high framerate video detection).  The simpler approach taken here is to use 3kHz PWM signal on GPIO13 with duty cycle 2.5% (8.33µs). Each 1fps frame gets 3000 flashes. This cannot be done inside moving box because all you would get is a white frame. This command generates 6000 strobe pulses in order to not confuse raspivid AWB:
 
 	$ pigs hp 13 3000 25000; sleep 2; pigs hp 13 0 0
 	$
 
 ![multiple exposure frame7](res/multiple-exposure.7.jpg)
 
-The frame is not perfect, just the first capture of flying bullet, not sharp because lens was not adjusted well, but it is a prove that capturing (rifle) bullets in flight is possible with v1 camera!
+The frame is not perfect, just the first capture of flying bullet, not sharp because lens was not adjusted well, but it is proof that capturing (rifle) bullets in flight is possible with v1 camera!
 
 The frame allowed to determine bullet speed while flying through camera view! The bullet diameter is 6mm, and I used gimp to measure diameter of bullet as 357 pixel. The distance from left side of 2nd to left side of 3rd bullet in frame was 563 pixels. Bullet speed therefore is (563/357&ast;0.006m)&ast;3000 = 28.38m/s.
