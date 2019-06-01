@@ -37,6 +37,7 @@ This is the setup:
 
 You need:
 * very bright 50W 5000lm led (2$)
+* 40x40x20mm aluminum heatsink (2$)
 * 50W led driver (7$)
 * plastic COB reflector (3$)
 * IRF520 mosfets (2×1$)
