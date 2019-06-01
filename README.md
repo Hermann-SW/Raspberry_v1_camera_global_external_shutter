@@ -63,9 +63,9 @@ In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. He
 Hardware PWM is available on GPIO18 and GPIO13 only.
 Software PWM frequencies are too restricted (http://abyz.me.uk/rpi/pigpio/pigs.html#PFS).
 
-raspivid(yuv)?_ges/shot/shots/5shots tools do work on any pin.
+raspivid(yuv)?_ges|shot|shots|5shots tools do work on any pin.
 
-Tools raspivid(yuv)?_ges/shot/shots/5shots require pigpio being installed:
+Tools raspivid(yuv)?_ges|shot|shots|5shots require pigpio being installed:
 [pigpio library](http://abyz.me.uk/rpi/pigpio/download.html)
 
 Tool toFrames requires ffmpeg being installed.
@@ -99,7 +99,7 @@ Same scene with different lighting, in case you have no room where you can close
 
 Different parameters example:
 
-	$ ./shots 9 9 116
+	$ shots 9 9 116
 	$
 
 ![multiple exposure frame6](res/multiple-exposure.6.jpg)
@@ -107,7 +107,7 @@ Different parameters example:
 
 Tool [5shots](tools/5shots) does 5 exposures with different strobe pulse widths (1/3/5/7/9µs pulse widths):
 
-	$ ./5shots
+	$ 5shots
 	$
 
 ![multiple exposure frameA](res/multiple-exposure.A.jpg)
