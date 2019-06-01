@@ -45,6 +45,9 @@ You need:
 
 The 0-24V IRF520 mosfets are used in series to control 38V/1.5A from 50W led driver to 5000lm led. Pi GPIO13 is connected with both mosfet SIG pins. Power the propeller from an independent power source, I use a constant voltage power supply because that allows to easily change propeller voltage and by that propeller rpm.
 
+In above photo the 5000lm led sits on top of passive cooler. Here is another option for light direction vertically down, passive cooler on top of 5000lm led on top of plexiglas above scene:
+![5000lm led on reflector](res/IMG_290319_182453.quarter.part.jpg)
+
 ## Tools
 
 * [raspivid_ges](tools/raspivid_ges) (if starting with default parameters, captures 2MP tst.h264 video at 1fps global external shutter mode)
@@ -126,3 +129,6 @@ Above captures were all radial, this one is linear. The frame captured 6mm diame
 The frame is not perfect, just the first capture of flying bullet, not sharp because lens was not adjusted well, but it is proof that capturing (rifle) bullets in flight is possible with v1 camera!
 
 The frame allowed to determine bullet speed while flying through camera view! The bullet diameter is 6mm, and I used gimp to measure diameter of bullet as 357 pixel. The distance from left side of 2nd to left side of 3rd bullet in frame was 563 pixels. Bullet speed therefore is (563/357&ast;0.006m)&ast;3000 = 28.38m/s.
+
+Just for completeness, this is the 0.5 Joule 13$ airsoft pistol used, and a 6mm diameter 0.12g pellet:  
+![airsoft pistol with bullet](res/airsoft.pistol.jpg)
