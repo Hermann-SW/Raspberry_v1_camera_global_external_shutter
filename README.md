@@ -35,7 +35,7 @@ How do you get that? By powering off light quickly after the end of the strobe p
 This is the setup:
 ![Setup for global external shutter](res/IMG_270519_182616.jpg)
 
-You need:
+You need (aliexpress.com free shipping prices):
 * very bright 50W 5000lm led (2$)
 * 40x40x20mm aluminum heatsink (2$)
 * 50W led driver (7$)
@@ -56,14 +56,14 @@ In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. He
 * [shot](tools/shot) (single exposure)
 * [shots](tools/shots) (multiple exposure)
 * [5shots](tools/5shots) (sample for different strobe pulse length multiple exposure)
-* [toFrames](tools/toFrames) (converts .h264 video (tst.h264 by default) to multiple frames (frame0000.jpg, frame0001.jpg, ...)
+* [toFrames](tools/toFrames) (converts .h264 video (tst.h264 by default) to multiple frames (frame0000.jpg, frame0001.jpg, ...))
 
 ## Requirements
 
 Hardware PWM is available on GPIO18 and GPIO13 only.
 Software PWM frequencies are too restricted (http://abyz.me.uk/rpi/pigpio/pigs.html#PFS).
 
-raspivid&ast;_ges/shot/shots tools do work on any pin.
+raspivid&ast;_ges/shot/shots/5shots tools do work on any pin.
 
 Tools shot/shots/5shots/raspivid&ast;_ges require pigpio being installed:
 [pigpio library](http://abyz.me.uk/rpi/pigpio/download.html)
