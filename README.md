@@ -45,7 +45,7 @@ You need:
 
 The 0-24V IRF520 mosfets are used in series to control 38V/1.5A from 50W led driver to 5000lm led. Pi GPIO13 is connected with both mosfet SIG pins. Power the propeller from an independent power source, I use a constant voltage power supply because that allows to easily change propeller voltage and by that propeller rpm.
 
-In above photo the 5000lm led sits on top of passive cooler. Here is another option for light direction vertically down, passive cooler on top of 5000lm led on top of plexiglas above scene:
+In above photo reflector sits on 5000lm led sits on top of passive cooler. Here is another option for light direction vertically down, passive cooler on top of 5000lm led on top of reflector on top of plexiglas above scene:
 ![5000lm led on reflector](res/IMG_290319_182453.quarter.part.jpg)
 
 ## Tools
