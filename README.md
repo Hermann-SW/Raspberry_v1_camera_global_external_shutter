@@ -19,7 +19,7 @@ This repo describes how to build an external shutter for v1 camera and provides 
 
 So why do you may want global shutter videos?
 
-Mostly for fast moving scenes. The propeller of mini drone rotates with 26000rpm and has a blade diameter of 34mm. The radial speed at blade tips is quite high, 0.034m&ast;pi&ast;(26000/60)=46.3m/s(!) or 166.6km/h.
+Mostly for fast moving scenes. The propeller of mini drone rotates with 26000rpm and has a blade diameter of 34mm. The radial speed at blade tips is quite high, 0.034m×pi×(26000/60)=46.3m/s(!) or 166.6km/h.
 
 
 This is a frame you get with v1 camera normal [rolling shutter](https://en.wikipedia.org/wiki/Rolling_shutter) mode, total distortion:  
@@ -63,14 +63,14 @@ In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. He
 Hardware PWM is available on GPIO18 and GPIO13 only.
 Software PWM frequencies are too restricted (http://abyz.me.uk/rpi/pigpio/pigs.html#PFS).
 
-raspivid&ast;_ges/shot/shots/5shots tools do work on any pin.
+raspivid(yuv)?_ges/shot/shots/5shots tools do work on any pin.
 
-Tools shot/shots/5shots/raspivid&ast;_ges require pigpio being installed:
+Tools raspivid(yuv)?_ges/shot/shots/5shots require pigpio being installed:
 [pigpio library](http://abyz.me.uk/rpi/pigpio/download.html)
 
 Tool toFrames requires ffmpeg being installed.
 
-Tools raspivid&ast;_ges require camera and I2C enabled in raspi-config Interfacing options.
+Tools raspivid(yuv)?_ges require camera and I2C enabled in raspi-config Interfacing options.
 
 ## Single exposure
 
@@ -129,7 +129,7 @@ Above captures were all radial, this one is linear. The frame captured 6mm diame
 
 The frame is not perfect, just the first capture of flying bullet, not sharp because lens was not adjusted well, but it is proof that capturing (rifle) bullets in flight is possible with v1 camera!
 
-The frame allowed to determine bullet speed while flying through camera view! The bullet diameter is 6mm, and I used gimp to measure diameter of bullet as 357 pixel. The distance from left side of 2nd to left side of 3rd bullet in frame was 563 pixels. Bullet speed therefore is (563/357&ast;0.006m)&ast;3000Hz = 28.38m/s.
+The frame allowed to determine bullet speed while flying through camera view! The bullet diameter is 6mm, and I used gimp to measure diameter of bullet as 357 pixel. The distance from left side of 2nd to left side of 3rd bullet in frame was 563 pixels. Bullet speed therefore is (563/357×0.006m)×3000Hz = 28.38m/s.
 
 Just for completeness, this is the 0.5 Joule 13$ airsoft pistol used, and a 6mm diameter 0.12g pellet:  
 ![airsoft pistol with bullet](res/airsoft.pistol.jpg)
