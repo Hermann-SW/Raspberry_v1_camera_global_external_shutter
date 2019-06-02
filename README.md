@@ -85,7 +85,7 @@ If you want one terminal only (text mode/X11 or ssh session), you can start rasp
 
 So a session for capturing a single "shot" tool frame example is this:
 
-	$ ssh yourpi
+	$ ssh pi@yourpi
 	...
 	$ raspivid_ges &
 	$ PID=$!
