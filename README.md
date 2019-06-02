@@ -108,7 +108,8 @@ Single exposure global shutter capturing is when at most one strobe flash happen
 
 ## Multiple exposure
 
-In this scenario more than one strobe flash happens  per frame captured. 
+In this scenario more than one strobe flash happens per frame captured. Since by that exposures can be far more frequent than any high framerate video capturing can do (maximally 750fps/10007fps for v1/v2 camera), this will be called "x eps videoframe" (exposures per second).  
+
 
 #### shots tool
 
@@ -117,6 +118,7 @@ Tool [shots](tools/shots) allows to send multiple strobe pulses (by default five
 	$ shots
 	$
 
+This is a "4000 eps frame" (1000000/(9+241)):
 ![multiple exposure frame3](res/multiple-exposure.3.jpg)
 
 Same scene with different lighting, in case you have no room where you can close all doors and all window shutters. Just put a moving box above the complete setup:
@@ -127,6 +129,7 @@ Different parameters example:
 	$ shots 9 9 116
 	$
 
+This is a "8000 eps frame" (1000000/(9+116)):
 ![multiple exposure frame6](res/multiple-exposure.6.jpg)
 
 
@@ -145,11 +148,12 @@ Same scene with slightly different lighting (you can see 5 blades with reflectiv
 
 #### PWM exposure
 
-Above captures were all radial, this one is linear. The frame captured 6mm diameter airsoft pistol bullet in flight. A fixed length pigpio waveform (as in shots) would need synchronization between triggering shot and triggering waveform (accoustic, laser light barrier or 665/1007fps high framerate video detection).  The simpler approach taken here is to use 3kHz PWM signal on GPIO13 with duty cycle 2.5% (8.33µs). Each 1fps frame gets 3000 flashes. This cannot be done inside moving box because all you would get is a white frame. This command generates 6000 strobe pulses in order to not confuse raspivid AWB:
+Above captures were all radial, this one is linear. The frame captured 6mm diameter airsoft pistol bullet in flight. A fixed length pigpio waveform (as in shots) would need synchronization between triggering shot and triggering waveform (accoustic, laser light barrier or 665/1007fps high framerate video detection).  The simpler approach taken here is to use 3kHz PWM signal on GPIO13 with duty cycle 2.5% (8.33µs). Each 1fps frame gets 3000 flashes. This cannot be done inside moving box because all you would get is a white frame. Tool pwm_ges called without arguments uses exactly those settings as defaults. The command generates 6000 strobe pulses in order to not confuse raspivid AWB:
 
-	$ pigs hp 13 3000 25000; sleep 2; pigs hp 13 0 0
+	$ pwm_ges
 	$
 
+This is a "3000 eps frame":
 ![multiple exposure frame7](res/multiple-exposure.7.jpg)
 
 The frame is not perfect, just the first capture of flying bullet, not sharp because lens was not adjusted well, but it is proof that capturing (rifle) bullets in flight is possible with v1 camera!
@@ -158,3 +162,7 @@ The frame allowed to determine bullet speed while flying through camera view! Th
 
 Just for completeness, this is the 0.5 Joule 13$ airsoft pistol used, and a 6mm diameter 0.12g pellet:  
 ![airsoft pistol with bullet](res/airsoft.pistol.jpg)
+
+
+Todos:
+Next step is to use air gun for higher muzzle speed, and finally a real rifle. A 375m/s bullet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).
