@@ -70,17 +70,11 @@ In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. He
 
 ## Requirements
 
-Hardware PWM is available on GPIO18 and GPIO13 only.
-Software PWM frequencies are too restricted (http://abyz.me.uk/rpi/pigpio/pigs.html#PFS).
+pigpio library can be found here: [http://abyz.me.uk/rpi/pigpio/download.html](http://abyz.me.uk/rpi/pigpio/download.html).
 
-raspivid(yuv)?_ges|shot|shots|5shots tools do work on any pin.
+Hardware PWM is available on GPIO(12|18) and GPIO(13|19) only (pigpio [software PWM frequencies](http://abyz.me.uk/rpi/pigpio/pigs.html#PFS) are too restricted). 
 
-Tools raspivid(yuv)?_ges|shot|shots|5shots require pigpio being installed:
-[pigpio library](http://abyz.me.uk/rpi/pigpio/download.html)
-
-Tool toFrames requires ffmpeg being installed.
-
-Tools raspivid(yuv)?_ges require camera and I2C enabled in raspi-config Interfacing options.
+![ges requirements](res/ges_requirements.jpg)
 
 ## Single exposure
 
