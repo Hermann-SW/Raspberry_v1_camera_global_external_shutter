@@ -1,0 +1,13 @@
+#!/bin/bash
+T=13    # trigger GPIO (Broadcom numbering), GPIO13 has hardware PWM
+t=2     # duration [s]
+D=25000 # 10000×"duty %"
+F=3000  # frequency [Hz]
+if [ "$4" != "" ]; then T=$4; fi
+if [ "$3" != "" ]; then t=$3; fi
+if [ "$2" != "" ]; then D=$2; fi
+if [ "$1" != "" ]; then F=$1; fi
+
+if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod; sleep 0.5; fi
+
+pigs hp $T $F $D; sleep $t; pigs hp $T 0 0
