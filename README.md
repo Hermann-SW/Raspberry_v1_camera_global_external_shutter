@@ -76,6 +76,25 @@ Hardware PWM is available on GPIO(12|18) and GPIO(13|19) only (pigpio [software 
 
 ![ges requirements](res/ges_requirements.jpg)
 
+## Capturing
+
+Just calling "raspivid_ges" starts raspivid with default parameters (mode 1 capture at 1fps, 960x540 preview window, flash AWB, output to tst.h264, in background, endless runtime), triggers 2s continuous strobe just before starting raspivid for getting correct settings by AWB, injects I2C commands to bring v1 camera into global external shutter mode and waits for raspivid to end. With default parameter endless runtime you can simply end raspivid_ges by pressing CTRL-C. In case you provide different set of parameters and do some "-t ..." setting, raspivid_ges ends after raspivid completed.
+
+If you want one terminal only (text mode/X11 or ssh session), you can start raspivid_ges in background as well, otherwise you can execute the tools shot/shots/5shots/pwm_ges from a second terminal. You can repeat executing those tools while raspivid_ges is running. In case HDMI monitor is connected, you can directly see the effects on calling such a tool (with a <1s delay) on HDMI monitor preview. One property of global external shutter technique is, that you can look at the rotating propeller directly without HDMI monitor, and see the same global shutter effects directly with just your eyes.
+
+So a session for capturing a single "shot" tool frame example is this:
+[code]$ ssh yourpi
+...
+$ raspivid_ges &
+$ PID=$!
+$ shot
+$ kill -9 $PID
+$ toFrames 
+$ logout
+$ rm -f frame????.jpg; scp pi@yourpi:frame????.jpg .; eog frame????.jpg[/code]
+
+You will step through the extracted frames from captured tst.h264 with eog tool to find the one frame with the captured flash.
+
 ## Single exposure
 
 Single exposure global shutter capturing is when at most one strobe flash happens per frame. Tool [shot](tools/shot) allows you to send a single flash pulse (by default 9µs pulse duration to GPIO13, you can pass different arguments):
