@@ -1,4 +1,7 @@
 #!/bin/bash
+T=13 # strobe GPIO 
+t=2  # initial strobe pulse length [s]
+
 args="-md 1 -p 10,10,960,540 -fps 1 -awb flash -o tst.h264 -t 0"
 if [ "$*" != "" ]; then args=$*; fi
 
@@ -7,7 +10,7 @@ if [ "$0" = "raspividyuv_gs" ]; then cmd=raspividyuv; fi
 
 if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod; sleep 0.5; fi
 
-( pigs m 13 w; pigs w 13 1; sleep 2; pigs w 13 0 ) &
+( pigs m $T w; pigs w $T 1; sleep $t; pigs w $T 0 ) &
 
 $cmd $args &
 PID1=$!
