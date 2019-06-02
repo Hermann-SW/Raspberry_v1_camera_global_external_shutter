@@ -84,17 +84,18 @@ Just calling "raspivid_ges" starts raspivid with default parameters (mode 1 capt
 If you want one terminal only (text mode/X11 or ssh session), you can start raspivid_ges in background as well, otherwise you can execute the tools shot/shots/5shots/pwm_ges from a second terminal. You can repeat executing those tools while raspivid_ges is running. In case HDMI monitor is connected, you can directly see the effects on calling such a tool (with a <1s delay) on HDMI monitor preview. One property of global external shutter technique is, that you can look at the rotating propeller directly without HDMI monitor, and see the same global shutter effects directly with just your eyes.
 
 So a session for capturing a single "shot" tool frame example is this:
-[code]$ ssh yourpi
-...
-$ raspivid_ges &
-$ PID=$!
-$ shot
-$ kill -9 $PID
-$ toFrames 
-$ logout
-$ rm -f frame????.jpg; scp pi@yourpi:frame????.jpg .; eog frame????.jpg[/code]
 
-You will step through the extracted frames from captured tst.h264 with eog tool to find the one frame with the captured flash.
+	$ ssh yourpi
+	...
+	$ raspivid_ges &
+	$ PID=$!
+	$ shot
+	$ kill -9 $PID
+	$ toFrames 
+	$ logout
+	$ rm -f frame????.jpg; scp pi@yourpi:frame????.jpg .; eog frame????.jpg
+
+You will step through the extracted 2MP frames from captured tst.h264 with eog tool to find the one frame with the captured flash.
 
 ## Single exposure
 
