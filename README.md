@@ -6,6 +6,7 @@ Associated [Raspberry forum thread](https://www.raspberrypi.org/forums/viewtopic
 * [Setup for global external shutter](#setup-for-global-external-shutter)
 * [Tools](#tools)
 * [Requirements](#requirements)
+* [Capturing](#capturing)
 * [Single exposure](#single-exposure)
 * [Multiple exposure](#multiple-exposure)
   * [shots tool](#shots-tool)
