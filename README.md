@@ -30,6 +30,12 @@ This is animation of video taken with global external shutter technique (scene l
 
 How do you get that? By powering off light quickly after the end of the strobe pulse, and a really dark scene. Only that way further accumulation of light can be avoided for the lower lines of the frame that are sent to Pi from camera later than the very first lines.
 
+These methods for total darkness work:
+- close room door and window shutter completely
+- cover complete setup (2nd "shots tool" section example) with moving box
+- cover only camera, bright light and eg. propeller with moving box 
+
+
 ## Setup for global external shutter
 
 This is the setup:
