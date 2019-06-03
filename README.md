@@ -183,7 +183,7 @@ Next step is to use air gun for higher muzzle speed, and finally a real rifle. A
 
 ## Hardware camera sync pulses
 
-Tool shots is not synced with camera frames. shots tool might split its strobe pulses onto more than one frame because of the missing synchronization with camera.
+Tool [shots](tools/shots) is not synced with camera frames. shots tool might split its strobe pulses onto more than one frame because of the missing synchronization with camera.
 
 In thread "Hardware camera sync pulses"  
 [https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=190314](https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=190314)  
