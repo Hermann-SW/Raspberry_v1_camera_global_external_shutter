@@ -14,20 +14,18 @@
 
 #include <pigpio.h>
 
-int wave_id;
+int wave_id, secs=4, gpio=13, gpioHWsync=18;
 
 void alert(int gpio, int level, uint32_t tick)
 {
    if (level!=0)  return;
 
-   gpioSetAlertFunc(18, NULL);
+   gpioSetAlertFunc(gpioHWsync, NULL);
    gpioWaveTxSend(wave_id, PI_WAVE_MODE_ONE_SHOT);
 }
 
 int main(int argc, char *argv[])
 {
-   int secs=4, gpio=13, gpioHWsync=18;
-
    gpioPulse_t pulse[5]={
      {0,1<<gpio,2},      {1<<gpio,0,9},
      {0,1<<gpio,925000}, {1<<gpio,0,9},
