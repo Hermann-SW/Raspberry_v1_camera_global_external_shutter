@@ -10,7 +10,6 @@
    The two flashes will show up on a single frame with raspivid_ges "-fps 1".
 */
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 
 #include <pigpio.h>
@@ -48,7 +47,7 @@ int main(int argc, char *argv[])
    if (wave_id < 0)
    {
       fprintf(stderr, "wave create failed\n");
-      exit(1);
+      return 1;
    }
 
    gpioSetAlertFunc(gpioHWsync, alert);
