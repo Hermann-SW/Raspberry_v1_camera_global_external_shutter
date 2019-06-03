@@ -78,7 +78,16 @@ pigpio library can be found here: [http://abyz.me.uk/rpi/pigpio/download.html](h
 
 Hardware PWM is available on GPIO(12|18) and GPIO(13|19) only (pigpio [software PWM frequencies](http://abyz.me.uk/rpi/pigpio/pigs.html#PFS) are too restricted). 
 
-![ges requirements](res/ges_requirements.jpg)
+|               |HW PWM|any GPIO| |pigpio|ffmpeg| |I2C|camera|
+|--------------:|:----:|:------:|-|:----:|:----:|-|:-:|:----:|
+|   raspivid_ges|      |   ×    | |   ×  |      | | × |   ×  |
+|raspividyuv_ges|      |   ×    | |   ×  |      | | × |   ×  |
+|           shot|      |   ×    | |   ×  |      | |   |      |
+|          shots|      |   ×    | |   ×  |      | |   |      |
+|         5shots|      |   ×    | |   ×  |      | |   |      |
+|        pwm_ges|  ×   |        | |   ×  |      | |   |      |
+|     gpio_alert|      |   ×    | |   ×  |      | |   |      |
+|       toFrames|      |        | |      |   ×  | |   |      |
 
 ## Capturing
 
