@@ -176,9 +176,8 @@ Next step is to use air gun for higher muzzle speed, and finally a real rifle. A
 
 Tool shots is not synced with camera frames. shots tool might split its strobe pulses onto more than one frame because of the missing synchronization with camera.
 
-In thread "Hardware camera sync pulses"
-[https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=190314](https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=190314)
-
+In thread "Hardware camera sync pulses"  
+[https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=190314](https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=190314)  
 it was stated that as of the 22nd July 2017 firmware, there is support for repurposing the camera LED GPIO to change state on frame start and frame end interrupts.
 
 As described in one of my postings in that thread I was able to make the hardware camera sync pulses appear on GPIO18.
