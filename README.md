@@ -11,6 +11,7 @@ Associated [Raspberry forum thread](https://www.raspberrypi.org/forums/viewtopic
 * [Multiple exposure](#multiple-exposure)
   * [shots tool](#shots-tool)
   * [PWM exposure](#pwm-exposure)
+* [Hardware camera sync pulses](#hardware-camera-sync-pulses)
 
 ## Introduction
 
@@ -66,6 +67,8 @@ In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. He
 * [shots](tools/shots) (multiple exposure)
 * [5shots](tools/5shots) (sample for different strobe pulse length multiple exposure)  
 * [pwm_ges](tools/pwm_ges) (pwm exposure)
+*
+* [gpio_alert.c](res/gpio_alert.c) (camera synced multiple exposure sample)
 *
 * [toFrames](tools/toFrames) (converts .h264 video (tst.h264 by default) to multiple frames (frame0000.jpg, frame0001.jpg, ...))
 
@@ -166,3 +169,36 @@ Just for completeness, this is the 0.5 Joule 13$ airsoft pistol used, and a 6mm 
 
 Todos:
 Next step is to use air gun for higher muzzle speed, and finally a real rifle. A 375m/s bullet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).
+
+
+
+## Hardware camera sync pulses
+
+Tool shots is not synced with camera frames. shots tool might split its strobe pulses onto more than one frame because of the missing synchronization with camera.
+
+In thread "Hardware camera sync pulses"
+[https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=190314](https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=190314)
+
+it was stated that as of the 22nd July 2017 firmware, there is support for repurposing the camera LED GPIO to change state on frame start and frame end interrupts.
+
+As described in one of my postings in that thread I was able to make the hardware camera sync pulses appear on GPIO18.
+
+New tool [gpio_alert.c](res/gpio_alert.c) is camera synced multiple exposure sample. You compile it with 
+
+	$ gcc -O6 -o gpio_alert gpio_alert.c -lpigpio -lrt -lpthread
+	$
+
+The tool uses GPIO13 for triggering two 9µs strobe pulses, 925000µs apart, synced with camera. Therefore both strobe pulses will always appear on a single frame captured with "-fps 1". I tested with pulses 950000µs apart, and there strobe pulses are split onto two frames in a strange way.
+
+raspivid_ges starts pigpiod. For running gpio_alert, the daemon needs to be killed first after having started raspivid_ges:
+
+   $ sudo killall pigpiod
+   $ sudo ./gpio_alert
+   $
+
+This is one sample frame capture that way:
+![HW camera synced multiple exposure](res/two.HWsync.1.jpg)
+
+This is another sample frame capture that way, which looks different because of small changes in propeller speed:
+![HW camera synced multiple exposure](res/two.HWsync.3.jpg)
+
