@@ -68,7 +68,7 @@ In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. He
 * [5shots](tools/5shots) (sample for different strobe pulse length multiple exposure)  
 * [pwm_ges](tools/pwm_ges) (pwm exposure)
 *
-* [gpio_alert.c](res/gpio_alert.c) (camera synced multiple exposure sample)
+* [gpio_alert.c](tools/gpio_alert.c) (camera synced multiple exposure sample)
 *
 * [toFrames](tools/toFrames) (converts .h264 video (tst.h264 by default) to multiple frames (frame0000.jpg, frame0001.jpg, ...))
 
