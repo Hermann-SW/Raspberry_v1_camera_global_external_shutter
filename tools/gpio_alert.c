@@ -4,10 +4,11 @@
    
    After start of raspivid_ges:
    $ sudo killall pigpiod
-   $ sudo ./gpio_alert
+   $ sudo ./gpio_alert N
    $
    will sync to frame end and do two 9µs strobe pulses, 925000µs apart.
    The two flashes will show up on a single frame with raspivid_ges "-fps 1".
+   There will be N consecutive camera synced double exposure frames.
 */
 #include <stdio.h>
 #include <stdlib.h>
