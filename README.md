@@ -191,7 +191,7 @@ it was stated that as of the 22nd July 2017 firmware, there is support for repur
 
 As described in one of my postings in that thread I was able to make the hardware camera sync pulses appear on GPIO18.
 
-New tool [gpio_alert.c](res/gpio_alert.c) is camera synced multiple exposure sample. You compile it with 
+New tool [gpio_alert.c](tools/gpio_alert.c) is camera synced multiple exposure sample. You compile it with 
 
 	$ gcc -O6 -o gpio_alert gpio_alert.c -lpigpio -lrt -lpthread
 	$
