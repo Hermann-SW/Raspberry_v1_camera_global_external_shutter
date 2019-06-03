@@ -191,9 +191,9 @@ The tool uses GPIO13 for triggering two 9µs strobe pulses, 925000µs apart, syn
 
 raspivid_ges starts pigpiod. For running gpio_alert, the daemon needs to be killed first after having started raspivid_ges:
 
-   $ sudo killall pigpiod
-   $ sudo ./gpio_alert
-   $
+	$ sudo killall pigpiod
+	$ sudo ./gpio_alert
+	$
 
 This is one sample frame capture that way:
 ![HW camera synced multiple exposure](res/two.HWsync.1.jpg)
