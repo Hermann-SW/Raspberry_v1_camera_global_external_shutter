@@ -196,13 +196,18 @@ New tool [gpio_alert.c](tools/gpio_alert.c) is camera synced multiple exposure s
 	$ gcc -O6 -o gpio_alert gpio_alert.c -lpigpio -lrt -lpthread
 	$
 
-The tool uses GPIO13 for triggering two 9µs strobe pulses, 925000µs apart, synced with camera. Therefore both strobe pulses will always appear on a single frame captured with "-fps 1". I tested with pulses 950000µs apart, and there strobe pulses are split onto two frames in a strange way.
+The tool uses GPIO13 for triggering two 9µs strobe pulses, 925000µs apart, synced with camera. Therefore both strobe pulses will always appear on a single frame captured with "-fps 1". I tested with pulses 950000µs apart, and there strobe pulses are split onto two frames in a strange way:  
+[1st strange frame](res/two.HWsync.0a.jpg)  
+[2nd strange frame](res/two.HWsync.0b.jpg)
+
 
 raspivid_ges starts pigpiod. For running gpio_alert, the daemon needs to be killed first after having started raspivid_ges:
 
 	$ sudo killall pigpiod
-	$ sudo ./gpio_alert
+	$ sudo ./gpio_alert 10
 	$
+
+The argument that has to be passed is the number of frames with camera synced double exposure.
 
 This is one sample frame capture that way:
 ![HW camera synced multiple exposure](res/two.HWsync.1.jpg)

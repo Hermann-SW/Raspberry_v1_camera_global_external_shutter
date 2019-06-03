@@ -10,31 +10,40 @@
    The two flashes will show up on a single frame with raspivid_ges "-fps 1".
 */
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <assert.h>
 
 #include <pigpio.h>
 
-int wave_id, secs=4, gpio=13, gpioHWsync=18;
+#define gpioStrobe 13
+#define gpioHWsync 18
+
+int wave_id, N=1;
+
+gpioPulse_t pulse[5]={
+   {0,1<<gpioStrobe,2},      {1<<gpioStrobe,0,9},
+   {0,1<<gpioStrobe,925000}, {1<<gpioStrobe,0,9},
+   {0,1<<gpioStrobe,0}
+};
 
 void alert(int gpio, int level, uint32_t tick)
 {
    if (level!=0)  return;
 
-   gpioSetAlertFunc(gpioHWsync, NULL);
+   if (--N == 0)  gpioSetAlertFunc(gpioHWsync, NULL);
+
    gpioWaveTxSend(wave_id, PI_WAVE_MODE_ONE_SHOT);
 }
 
 int main(int argc, char *argv[])
 {
-   gpioPulse_t pulse[5]={
-     {0,1<<gpio,2},      {1<<gpio,0,9},
-     {0,1<<gpio,925000}, {1<<gpio,0,9},
-     {0,1<<gpio,0}
-   };
+   assert(argc > 1);
+   assert(0 < (N = atoi(argv[1])));
+       
+   assert(gpioInitialise()>=0);
 
-   if (gpioInitialise()<0) return 1;
-
-   gpioSetMode(gpio, PI_OUTPUT);
+   gpioSetMode(gpioStrobe, PI_OUTPUT);
 
    gpioWaveAddNew();
 
@@ -42,15 +51,11 @@ int main(int argc, char *argv[])
 
    wave_id = gpioWaveCreate();
 
-   if (wave_id < 0)
-   {
-      fprintf(stderr, "wave create failed\n");
-      return 1;
-   }
+   assert((wave_id >= 0) | !"wave create failed\n");
 
    gpioSetAlertFunc(gpioHWsync, alert);
 
-   sleep(secs);
+   sleep(3+N);
 
    gpioTerminate();
 }
