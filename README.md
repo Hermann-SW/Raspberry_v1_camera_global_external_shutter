@@ -109,6 +109,9 @@ So a session for capturing a single "shot" tool frame example is this:
 
 You will step through the extracted 2MP frames from captured tst.h264 with eog tool to find the one frame with the captured flash.
 
+The smaller the distance from led to object, the more lumens from same 5000lm led. In case you can place the object you want to light directly above the led, it is better to not use the reflector at all. The Raspberry v1 camera captures from below led level slightly upwards. This increases brightness of captured frames over using the reflector:
+![setup w/o reflector](res/setup.wo.reflector.png)
+
 ## Single exposure
 
 Single exposure global shutter capturing is when at most one strobe flash happens per frame. Tool [shot](tools/shot) allows you to send a single flash pulse (by default 9µs pulse duration to GPIO13, you can pass different arguments):
