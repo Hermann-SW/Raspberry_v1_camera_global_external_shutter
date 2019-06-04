@@ -57,6 +57,9 @@ The 0-24V IRF520 mosfets are used in series to control 38V/1.5A from 50W led dri
 In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. Here is another option for light direction vertically down, aluminum heatsink on top of 5000lm led on top of reflector on top of plexiglas above scene:
 ![5000lm led on reflector](res/IMG_290319_182453.quarter.part.jpg)
 
+The smaller the distance from led to object, the more lumens from same 5000lm led. In case you can place the object you want to light directly above the led, it is better to not use the reflector at all. The Raspberry v1 camera captures from below led level slightly upwards. This increases brightness of captured frames over using the reflector:
+![setup w/o reflector](res/setup.wo.reflector.png)
+
 ## Tools
 
 * [raspivid_ges](tools/raspivid_ges) (if starting with default parameters, captures 2MP tst.h264 video at 1fps global external shutter mode)
@@ -108,9 +111,6 @@ So a session for capturing a single "shot" tool frame example is this:
 	$ rm -f frame????.jpg; scp pi@yourpi:frame????.jpg .; eog frame????.jpg
 
 You will step through the extracted 2MP frames from captured tst.h264 with eog tool to find the one frame with the captured flash.
-
-The smaller the distance from led to object, the more lumens from same 5000lm led. In case you can place the object you want to light directly above the led, it is better to not use the reflector at all. The Raspberry v1 camera captures from below led level slightly upwards. This increases brightness of captured frames over using the reflector:
-![setup w/o reflector](res/setup.wo.reflector.png)
 
 ## Single exposure
 
