@@ -178,6 +178,15 @@ The frame allowed to determine bullet speed while flying through camera view! Th
 Just for completeness, this is the 0.5 Joule 13$ airsoft pistol used, and a 6mm diameter 0.12g pellet:  
 ![airsoft pistol with bullet](res/airsoft.pistol.jpg)
 
+With lens sharp, background dark (doing raspivid_ges with framerate 30fps instead of 1fps results in only 100 strobe pulses lighting background for 3kHz PWM),
+
+	$ raspivid_ges -md 1 -p 10,10,960,540 -fps 30 -awb flash -o tst.h264 -pts tst.pts -t 0
+
+muzzle speed is roughly
+
+	(236px / 117px) * 6mm * 3000Hz = 36.3m/s
+
+![airsoft pistol with flying_bullet](res/me3946.jpg)
 
 Todos:
 Next step is to use air gun for higher muzzle speed, and finally a real rifle. A 375m/s bullet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).
