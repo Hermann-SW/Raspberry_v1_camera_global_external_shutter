@@ -182,7 +182,7 @@ With lens sharp, background dark (doing raspivid_ges with framerate 30fps instea
 
 	$ raspivid_ges -md 1 -p 10,10,960,540 -fps 30 -awb flash -o tst.h264 -pts tst.pts -t 0
 
-muzzle speed is roughly
+and without reflector (for shooting just above the 5000lm led in order to increase lumens) muzzle speed is roughly
 
 	(236px / 117px) * 6mm * 3000Hz = 36.3m/s
 
