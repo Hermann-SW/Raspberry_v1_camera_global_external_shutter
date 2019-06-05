@@ -186,7 +186,7 @@ muzzle speed is roughly
 
 	(236px / 117px) * 6mm * 3000Hz = 36.3m/s
 
-![airsoft pistol with flying_bullet](res/frame3946.jpg)
+![airsoft pistol with flying_bullet](res/6mm.frame3946.jpg)
 
 Todos:
 Next step is to use air gun for higher muzzle speed, and finally a real rifle. A 375m/s bullet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).
