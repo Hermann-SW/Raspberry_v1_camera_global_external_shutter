@@ -60,6 +60,8 @@ In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. He
 The smaller the distance from led to object, the more lumens from same 5000lm led. In case you can place the object you want to light directly above the led, it is better to not use the reflector at all. The Raspberry v1 camera captures from below led level slightly upwards. This increases brightness of captured frames over using the reflector:
 ![setup w/o reflector](res/setup.wo.reflector.png)
 
+See airshot pistol shot just above 5000lm led without reflector for another example: [PWM exposure](#pwm-exposure)
+
 ## Tools
 
 * [raspivid_ges](tools/raspivid_ges) (if starting with default parameters, captures 2MP tst.h264 video at 1fps global external shutter mode)
