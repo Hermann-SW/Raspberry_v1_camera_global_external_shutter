@@ -62,7 +62,7 @@ The smaller the distance from led to object, the more lumens from same 5000lm le
 
 See airshot pistol shot just above 5000lm led without reflector for another example: [PWM exposure](#pwm-exposure)
 
-The captures doen for airsoft pistol showed captured bullets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led lighting from top resolved this issue, see [PWM exposure](#pwm-exposure) for airgun shut captured with that setup:  
+The captures done for airsoft pistol showed captured bullets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led lighting from top resolved this issue, see [PWM exposure](#pwm-exposure) for airgun shot captured with that setup:  
 ![setup w/ two leds](res/IMG_060619_182038.jpg)
 
 ## Tools
