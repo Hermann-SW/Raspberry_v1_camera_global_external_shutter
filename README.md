@@ -190,19 +190,19 @@ and without reflector (for shooting just above the 5000lm led at bottom, in orde
 
 ![airsoft pistol with flying_bullet](res/6mm.frame3946.jpg)
 
-This is first shot of airgun from friend captured with raspiraw_ges:
-![airgun pellet double capture](res/airsoft.1a.jpg)
+This is first shot of airgun from friend captured with raspiraw_ges:  
+![airgun pellet double capture](res/airgun.1a.jpg)
 
 Taken with pwm_ges tool default parameters (8.33µs strobe pulses with 3kHz PWM) and raspivid_ges at framerate 30fps as before. 5mm bullet length is 121px, and distance between heads of both pellets captured is 881px. So muzzle speed is roughly
 
 	(881px / 121px) × 5mm × 3000Hz = 109.2m/s (393km/h)
 
-The recoil of 1-handed shot was surprisingly small (animated .gif created from frames scaled down 3×, 30fps captured frames played at 1fps):
-![airgun pellet frames](res/airsoft.1st.anim.gif)
+The recoil of 1-handed shot was surprisingly small (animated .gif created from frames scaled down 3×, 30fps captured frames played at 1fps):  
+![airgun pellet frames](res/airgun.1st.anim.gif)
 
 
 Todos:
-Next step is to use air gun for higher muzzle speed, and finally a real rifle. A 375m/s bullet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).
+Next step is to use ~air gun for higher muzzle speed, and finally~ a real rifle. A 375m/s bullet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).
 
 
 
