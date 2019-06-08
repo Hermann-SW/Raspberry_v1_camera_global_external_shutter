@@ -54,13 +54,16 @@ You need (aliexpress.com free shipping prices):
 
 The 0-24V IRF520 mosfets are used in series to control 38V/1.5A from 50W led driver to 5000lm led. Pi GPIO13 is connected with both mosfet SIG pins. Power the propeller from an independent power source, I use a constant voltage power supply because that allows to easily change propeller voltage and by that propeller rpm.
 
-In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. Here is another option for light direction vertically down, aluminum heatsink on top of 5000lm led on top of reflector on top of plexiglas above scene:
+In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. Here is another option for light direction vertically down, aluminum heatsink on top of 5000lm led on top of reflector on top of plexiglas above scene:  
 ![5000lm led on reflector](res/IMG_290319_182453.quarter.part.jpg)
 
-The smaller the distance from led to object, the more lumens from same 5000lm led. In case you can place the object you want to light directly above the led, it is better to not use the reflector at all. The Raspberry v1 camera captures from below led level slightly upwards. This increases brightness of captured frames over using the reflector:
+The smaller the distance from led to object, the more lumens from same 5000lm led. In case you can place the object you want to light directly above the led, it is better to not use the reflector at all. The Raspberry v1 camera captures from below led level slightly upwards. This increases brightness of captured frames over using the reflector:  
 ![setup w/o reflector](res/setup.wo.reflector.png)
 
 See airshot pistol shot just above 5000lm led without reflector for another example: [PWM exposure](#pwm-exposure)
+
+The captures doen for airsoft pistol showed captured bullets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led lighting from top resolved this issue, see [PWM exposure](#pwm-exposure) for airgun shut captured with that setup:  
+![setup w/ two leds](res/IMG_060619_182038.jpg)
 
 ## Tools
 
