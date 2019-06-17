@@ -204,6 +204,24 @@ The recoil of 1-handed shot was surprisingly small (animated .gif created from f
 ![airgun pellet frames](res/airgun.1st.anim.gif)
 
 
+Increasing PWM frequency from 3kHz to 9kHz will get a brighter background with unchanged settings. Since 30fps is maximal framerate for 1920x1080 frames, this frame got captured at 90fps at the price of resolution (now 640x480). This frame impressivly shows that lens distortion plays a role, because the real pellet trajectory is straight:  
+![airgun pellet frames](res/pointed.pellet.frame0360.jpg)
+
+
+This small script was useful in automating what needs to be done for starting capture, get 2s AWB (in pwm_ges), and then start 2s PWM exposure until finally gracefully stop everything. In dark room starting the script allowed to move hand to (clamped on desk airgun) trigger during first 2s bright AWB phase, and then trigger shot during 2s PWM exposure phase:
+
+	$ cat doit90
+	#!/bin/bash
+	
+	./raspivid_ges -md 7 -p 10,10,640,480 -fps 90 -w 640 -h 480 -awb flash -o tst.h264 -t 6000 &
+	PID1=$!
+	
+	sleep 3 && ./pwm_ges 9000 75000
+	
+	wait $PID1
+	$
+
+
 Todos:
 Next step is to use ~air gun for higher muzzle speed, and finally~ a real rifle. A 375m/s bullet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).
 
