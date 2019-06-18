@@ -60,10 +60,13 @@ In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. He
 The smaller the distance from led to object, the more lumens from same 5000lm led. In case you can place the object you want to light directly above the led, it is better to not use the reflector at all. The Raspberry v1 camera captures from below led level slightly upwards. This increases brightness of captured frames over using the reflector:  
 ![setup w/o reflector](res/setup.wo.reflector.png)
 
-See airshot pistol shot just above 5000lm led without reflector for another example: [PWM exposure](#pwm-exposure)
+See [airshot pistol shot just above 5000lm led without reflector](#user-content-bottom_led) for another example.
 
-The captures done for airsoft pistol showed captured bullets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led lighting from top resolved this issue, see [PWM exposure](#pwm-exposure) for airgun shot captured with that setup:  
+The captures done for airsoft pistol showed captured bullets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led (both connected in parallel) lighting from top resolved this issue, see for [airgun shot](#user-content-bottom_plus_top_led) captured with that setup:  
 ![setup w/ two leds](res/IMG_060619_182038.jpg)
+
+This is complete setup with airgun clamped to desk. Some cables are now passed below living room desk in order to not show up in camera view. See [9000eps](#user-content-9000eps) airgun pellet capture done with this setup:
+![setup w/ clamped airgun](res/IMG_160619_103844.jpg)
 
 ## Tools
 
@@ -183,7 +186,7 @@ The frame allowed to determine bullet speed while flying through camera view! Th
 Just for completeness, this is the 0.5 Joule 13$ airsoft pistol used, and a 6mm diameter 0.12g pellet:  
 ![airsoft pistol with bullet](res/airsoft.pistol.jpg)
 
-With lens sharp, background dark (doing raspivid_ges with framerate 30fps instead of 1fps results in only 100 strobe pulses lighting background for 3kHz PWM),
+<a name="bottom_led"></a>With lens sharp, background dark (doing raspivid_ges with framerate 30fps instead of 1fps results in only 100 strobe pulses lighting background for 3kHz PWM),
 
 	$ raspivid_ges -md 1 -p 10,10,960,540 -fps 30 -awb flash -o tst.h264 -pts tst.pts -t 0
 
@@ -193,7 +196,7 @@ and without reflector (for shooting just above the 5000lm led at bottom, in orde
 
 ![airsoft pistol with flying_bullet](res/6mm.frame3946.jpg)
 
-This is first shot of airgun from friend captured with raspiraw_ges:  
+<a name="bottom_plus_top_led"></a>This is first shot of airgun from friend captured with raspiraw_ges:  
 ![airgun pellet double capture](res/airgun.1a.jpg)
 
 Taken with pwm_ges tool default parameters (8.33µs strobe pulses with 3kHz PWM) and raspivid_ges at framerate 30fps as before. 5mm bullet length is 121px, and distance between heads of both pellets captured is 881px. So muzzle speed is roughly
@@ -204,7 +207,7 @@ The recoil of 1-handed shot was surprisingly small (animated .gif created from f
 ![airgun pellet frames](res/airgun.1st.anim.gif)
 
 
-Increasing PWM frequency from 3kHz to 9kHz will get a brighter background with unchanged settings. Since 30fps is maximal framerate for 1920x1080 frames, this frame got captured at 90fps at the price of resolution (now 640x480). This frame impressivly shows that lens distortion plays a role, because the real pellet trajectory is straight. Pointed pellet was shot through paper clamped at airgun muzzle, reduced speed of pellet is 96.9m/s:  
+<a name="9000eps"></a>Increasing PWM frequency from 3kHz to 9kHz will get a brighter background with unchanged settings. Since 30fps is maximal framerate for 1920x1080 frames, this frame got captured at 90fps at the price of resolution (now 640x480). This frame impressivly shows that lens distortion plays a role, because the real pellet trajectory is straight. Pointed pellet was shot through paper clamped at airgun muzzle, reduced speed of pellet is 96.9m/s:  
 ![airgun pellet frames](res/pointed.pellet.frame0360.jpg)
 
 
