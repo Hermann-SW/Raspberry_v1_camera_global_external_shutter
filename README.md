@@ -62,7 +62,7 @@ The smaller the distance from led to object, the more lumens from same 5000lm le
 
 See [airshot pistol shot just above 5000lm led without reflector](#user-content-bottom_led) for another example.
 
-The captures done for airsoft pistol showed captured bullets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led (both connected in parallel) lighting from top resolved this issue, see for [airgun shot](#user-content-bottom_plus_top_led) captured with that setup:  
+The captures done for airsoft pistol showed captured pellets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led (both connected in parallel) lighting from top resolved this issue, see for [airgun shot](#user-content-bottom_plus_top_led) captured with that setup:  
 ![setup w/ two leds](res/IMG_060619_182038.jpg)
 
 This is complete setup with airgun clamped to desk. Some cables are now passed below living room desk in order to not show up in camera view. See [9000eps](#user-content-9000eps) airgun pellet capture done with this setup:
@@ -171,7 +171,7 @@ Same scene with slightly different lighting (you can see 5 blades with reflectiv
 
 #### PWM exposure
 
-Above captures were all radial, this one is linear. The frame captured 6mm diameter airsoft pistol bullet in flight. A fixed length pigpio waveform (as in shots) would need synchronization between triggering shot and triggering waveform (accoustic, laser light barrier or 665/1007fps high framerate video detection).  The simpler approach taken here is to use 3kHz PWM signal on GPIO13 with duty cycle 2.5% (8.33µs). Each 1fps frame gets 3000 flashes. This cannot be done inside moving box because all you would get is a white frame. Tool pwm_ges called without arguments uses exactly those settings as defaults. The command generates 6000 strobe pulses in order to not confuse raspivid AWB:
+Above captures were all radial, this one is linear. The frame captured 6mm diameter airsoft pistol pellet in flight. A fixed length pigpio waveform (as in shots) would need synchronization between triggering shot and triggering waveform (accoustic, laser light barrier or 665/1007fps high framerate video detection).  The simpler approach taken here is to use 3kHz PWM signal on GPIO13 with duty cycle 2.5% (8.33µs). Each 1fps frame gets 3000 flashes. This cannot be done inside moving box because all you would get is a white frame. Tool pwm_ges called without arguments uses exactly those settings as defaults. The command generates 6000 strobe pulses in order to not confuse raspivid AWB:
 
 	$ pwm_ges
 	$
@@ -179,12 +179,12 @@ Above captures were all radial, this one is linear. The frame captured 6mm diame
 This is a "3000 eps frame":
 ![multiple exposure frame7](res/multiple-exposure.7.jpg)
 
-The frame is not perfect, just the first capture of flying bullet, not sharp because lens was not adjusted well, but it is proof that capturing (rifle) bullets in flight is possible with v1 camera!
+The frame is not perfect, just the first capture of flying pellet, not sharp because lens was not adjusted well, but it is proof that capturing (rifle) pellets in flight is possible with v1 camera!
 
-The frame allowed to determine bullet speed while flying through camera view! The bullet diameter is 6mm, and I used gimp to measure diameter of bullet as 357 pixel. The distance from left side of 2nd to left side of 3rd bullet in frame was 563 pixels. Bullet speed therefore is (563px / 357px) × 6mm × 3000Hz = 28.38m/s.
+The frame allowed to determine pellet speed while flying through camera view! The pellet diameter is 6mm, and I used gimp to measure diameter of pellet as 357 pixel. The distance from left side of 2nd to left side of 3rd pellet in frame was 563 pixels. Pellet speed therefore is (563px / 357px) × 6mm × 3000Hz = 28.38m/s.
 
 Just for completeness, this is the 0.5 Joule 13$ airsoft pistol used, and a 6mm diameter 0.12g pellet:  
-![airsoft pistol with bullet](res/airsoft.pistol.jpg)
+![airsoft pistol with pellet](res/airsoft.pistol.jpg)
 
 <a name="bottom_led"></a>With lens sharp, background dark (doing raspivid_ges with framerate 30fps instead of 1fps results in only 100 strobe pulses lighting background for 3kHz PWM),
 
@@ -194,12 +194,12 @@ and without reflector (for shooting just above the 5000lm led at bottom, in orde
 
 	(236px / 117px) × 6mm × 3000Hz = 36.3m/s
 
-![airsoft pistol with flying_bullet](res/6mm.frame3946.jpg)
+![airsoft pistol with flying_pellet](res/6mm.frame3946.jpg)
 
 <a name="bottom_plus_top_led"></a>This is first shot of airgun from friend captured with raspiraw_ges:  
 ![airgun pellet double capture](res/airgun.1a.jpg)
 
-Taken with pwm_ges tool default parameters (8.33µs strobe pulses with 3kHz PWM) and raspivid_ges at framerate 30fps as before. 5mm bullet length is 121px, and distance between heads of both pellets captured is 881px. So muzzle speed is roughly
+Taken with pwm_ges tool default parameters (8.33µs strobe pulses with 3kHz PWM) and raspivid_ges at framerate 30fps as before. 5mm pellet length is 121px, and distance between heads of both pellets captured is 881px. So muzzle speed is roughly
 
 	(881px / 121px) × 5mm × 3000Hz = 109.2m/s (393km/h)
 
@@ -226,7 +226,7 @@ This small script was useful in automating what needs to be done for starting ca
 
 
 Todos:
-Next step is to use ~air gun for higher muzzle speed, and finally~ a real rifle. A 375m/s bullet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).
+Next step is to use ~air gun for higher muzzle speed, and finally~ a real rifle. A 375m/s pellet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).
 
 
 
