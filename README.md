@@ -166,7 +166,7 @@ Tool [5shots](tools/5shots) does 5 exposures with different strobe pulse widths 
 Same scene with slightly different lighting (you can see 5 blades with reflective tape at bottom):
 ![multiple exposure frameB](res/multiple-exposure.B.jpg)
 
-"shots 2 9 900000" captures two 9µs strobe pulse widths, 0.9s apart. With raspivid_ges tool's "-fps 1" default setting most times the first flash happens on one tst.h264 frame captured, and the 2nd flash happens on the next frame. But after 15 attempts I was successful and captured both flashes on same frame, proving that it is possible:
+"shots 2 9 900000" captures two 9µs strobe pulse widths, 0.9s apart. With raspivid_ges tool's "-fps 1" default setting most times the first flash happens on one tst.h264 frame captured, and the 2nd flash happens on the next frame. But after 15 attempts I was successful and captured both flashes on same frame, proving that it is possible. See section [Hardware camera sync pulses](#hardware-camera-sync-pulses) on how to get both flashes captured on a single frame guaranteed: 
 ![multiple exposure frameC](res/multiple-exposure.C.jpg)
 
 #### PWM exposure
