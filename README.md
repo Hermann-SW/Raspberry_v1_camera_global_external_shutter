@@ -78,6 +78,7 @@ This is complete setup with airgun clamped to desk. Some cables are now passed b
 * [shots](tools/shots) (multiple exposure)
 * [5shots](tools/5shots) (sample for different strobe pulse length multiple exposure)  
 * [pwm_ges](tools/pwm_ges) (pwm exposure)
+* [doit90](tools/doit90) (script for capturing pellets)
 *
 * [gpio_alert.c](tools/gpio_alert.c) (camera synced multiple exposure sample)
 *
@@ -211,18 +212,7 @@ The recoil of 1-handed shot was surprisingly small (animated .gif created from f
 ![airgun pellet frames](res/pointed.pellet.frame0360.jpg)
 
 
-This small script was useful in automating what needs to be done for starting capture, get 2s AWB (in pwm_ges), and then start 2s PWM exposure until finally gracefully stop everything. In dark room starting the script allowed to move hand to (clamped on desk airgun) trigger during first 2s bright AWB phase, and then trigger shot during 2s PWM exposure phase:
-
-	$ cat doit90
-	#!/bin/bash
-	
-	./raspivid_ges -md 7 -p 10,10,640,480 -fps 90 -w 640 -h 480 -awb flash -o tst.h264 -t 6000 &
-	PID1=$!
-	
-	sleep 3 && ./pwm_ges 9000 75000
-	
-	wait $PID1
-	$
+Small script [doit90](tools/doit90) was useful in automating what needs to be done for starting capture, get 2s AWB (in pwm_ges), and then start 2s PWM exposure until finally gracefully stop everything. In dark room starting the script allowed to move hand to (clamped on desk airgun) trigger during first 2s bright AWB phase, and then trigger shot during 2s PWM exposure phase.
 
 
 <a name="9000epsundistorted"></a>The previous frame impressively shows that lens distortion plays a role. I used modified [OpenCV callibrate.py](https://github.com/opencv/opencv/blob/master/samples/python/calibrate.py) with 10 chessboard samples taken with the camera. The undistorted frame shows all pellet exposures on straight line:  

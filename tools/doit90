@@ -1,0 +1,8 @@
+#!/bin/bash
+
+./raspivid_ges -md 7 -p 10,10,640,480 -fps 90 -w 640 -h 480 -awb flash -o tst.h264 -t 6000 &
+PID1=$!
+
+sleep 3 && ./pwm_ges 9000 75000
+
+wait $PID1
