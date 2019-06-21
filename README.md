@@ -207,7 +207,7 @@ The recoil of 1-handed shot was surprisingly small (animated .gif created from f
 ![airgun pellet frames](res/airgun.1st.anim.gif)
 
 
-<a name="9000eps"></a>Increasing PWM frequency from 3kHz to 9kHz will get a brighter background with unchanged settings. Since 30fps is maximal framerate for 1920x1080 frames, this frame got captured at 90fps at the price of resolution (now 640x480). This frame impressivly shows that lens distortion plays a role, because the real pellet trajectory is straight. Pointed pellet was shot through paper clamped at airgun muzzle, reduced speed of pellet is 96.9m/s:  
+<a name="9000eps"></a>Increasing PWM frequency from 3kHz to 9kHz will get a brighter background with unchanged settings. Since 30fps is maximal framerate for 1920x1080 frames, this frame got captured at 90fps at the price of resolution (now 640x480). Pointed pellet was shot through paper clamped at airgun muzzle, reduced speed of pellet is 96.9m/s:  
 ![airgun pellet frames](res/pointed.pellet.frame0360.jpg)
 
 
@@ -223,6 +223,10 @@ This small script was useful in automating what needs to be done for starting ca
 	
 	wait $PID1
 	$
+
+
+<a name="9000epsundistorted"></a>The previous frame impressively shows that lens distortion plays a role. I used modified [OpenCV callibrate.py](https://github.com/opencv/opencv/blob/master/samples/python/calibrate.py) with 10 chessboard samples taken with the camera. The undistorted frame shows all pellet exposures on straight line:  
+![airgun pellet frames_undistorted](res/pointed.pellet.frame0360_undistorted.jpg)
 
 
 Todos:
