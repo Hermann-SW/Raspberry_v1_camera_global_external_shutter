@@ -220,7 +220,8 @@ Small script [doit90](tools/doit90) was useful in automating what needs to be do
 
 
 Todos:
-Next step is to use ~air gun for higher muzzle speed, and finally~ a real rifle. A 375m/s pellet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).
+Next step is to use ~air gun for higher muzzle speed, and finally~ a real rifle. A 375m/s pellet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).  
+After that, maybe capturing [.50 bmg](https://en.wikipedia.org/wiki/.50_BMG) with 900m/s(!) might be a challenge. A former colleague of me did shoot .50 bmg ...
 
 
 
