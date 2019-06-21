@@ -78,7 +78,7 @@ This is complete setup with airgun clamped to desk. Some cables are now passed b
 * [shots](tools/shots) (multiple exposure)
 * [5shots](tools/5shots) (sample for different strobe pulse length multiple exposure)  
 * [pwm_ges](tools/pwm_ges) (pwm exposure)
-* [doit90](tools/doit90) (script for capturing pellets)
+* [doit90](tools/doit90) (script for [capturing pellets](#user-content-9000eps))
 *
 * [gpio_alert.c](tools/gpio_alert.c) (camera synced multiple exposure sample)
 *
