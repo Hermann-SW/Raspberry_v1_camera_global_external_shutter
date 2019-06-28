@@ -520,6 +520,11 @@ static esp_err_t cmd_handler(httpd_req_t *req){
             detection_enabled = val;
         }
     }
+    else if(!strcmp(variable, "flash")) {
+#define LED_BUILTIN 4
+        pinMode(LED_BUILTIN, OUTPUT);
+        digitalWrite(LED_BUILTIN, atoi(value));
+    }
     else {
         res = -1;
     }
