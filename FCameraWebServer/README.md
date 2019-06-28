@@ -13,6 +13,13 @@
 
 This is a sub project of [Raspberry v1 camera global external shutter](../README.md). ESP32-CAM ov2640 image sensor is a predecessor of v1 camera ov5647 sensor. From the 38 pins inside ov2640 image sensor unfortunately pins B2 (FREX) and A2 are connected. Because of that global external shutter with ov2640 sensor has some limitations compared to v1 camera. See section [Requirements](#requirements) for needed soldering for ESP32-CAM module.
 
+In order to use FCameraWebServer as 2nd Arduino IDE ESP32->Camera example only one symbolic link needs to be created:
+
+    cd ~/.arduino15/packages/esp32/hardware/esp32/1.0.2/libraries/ESP32/examples/Camera
+    ln -s ~/Raspberry_v1_camera_global_external_shutter/FCameraWebServer
+
+This allows to use github sub project FCameraWebServer in Arduino IDE as if it was installed with arduino-esp32 examples.
+
 ## Setup for global external shutter
 
 tbd
