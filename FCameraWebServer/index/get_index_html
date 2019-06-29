@@ -1,5 +1,4 @@
 #!/bin/bash
 gcc d.c -o d
 ./d > index.html.gz
-gunzip index.html.gz
-cp index.html index.html.orig
+gunzip -f index.html.gz

@@ -1,6 +1,6 @@
 #!/bin/bash
 gcc c.c -o c
-gzip index.html
+gzip -c index.html > index.html.gz
 tgt=camera_index.h
 ./c index.html.gz > $tgt
 echo -ne "\n\n" >> $tgt
