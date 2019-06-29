@@ -541,6 +541,42 @@
                                 <label class="slider" for="flash"></label>
                             </div>
                         </div>
+                        <div class="input-group" id="ges-group">
+                            <label for="ges">Global external shutter</label>
+                            <select id="ges" class="default-action">
+                                <option value="0" selected="selected">None</option>
+                                <option value="1">shot</option>
+                                <option value="2">shots</option>
+                                <option value="3">5shots</option>
+                            </select>
+                        </div>
+                        <div class="input-group" id="ges_gpio-group">
+                            <label for="ges_gpio">GPIO 4/13</label>
+                            <div class="switch">
+                                <input id="ges_gpio" type="checkbox" class="default-action">
+                                <label class="slider" for="ges_gpio"></label>
+                            </div>
+                        </div>
+                        <div class="input-group" id="ges_offset-group">
+                            <label for="ges_offset">Offset [µs]</label>
+                            <div class="number"></div>
+                            <input id="ges_offset" type="number" class="default-action">
+                        </div>
+                        <div class="input-group" id="ges_repeat-group">
+                            <label for="ges_repeat">Repeat</label>
+                            <div class="number"></div>
+                            <input id="ges_repeat" type="number" class="default-action">
+                        </div>
+                        <div class="input-group" id="ges_on-group">
+                            <label for="ges_on">On [µs]</label>
+                            <div class="number"></div>
+                            <input id="ges_on" type="number" class="default-action">
+                        </div>
+                        <div class="input-group" id="ges_off-group">
+                            <label for="ges_off">Off [µs]</label>
+                            <div class="number"></div>
+                            <input id="ges_off" type="number" class="default-action">
+                        </div>
                         <section id="buttons">
                             <button id="get-still">Get Still</button>
                             <button id="toggle-stream">Start Stream</button>
@@ -607,6 +643,32 @@ document.addEventListener('DOMContentLoaded', function (event) {
         value ? show(wb) : hide(wb)
       } else if(el.id === "face_recognize"){
         value ? enable(enrollButton) : disable(enrollButton)
+      } else if(el.id === "ges"){
+        if (value == 0) {
+          hide(ges_gpio)
+          hide(ges_offset)
+          hide(ges_repeat)
+          hide(ges_on)
+          hide(ges_off)
+        } else if (value == 1) {
+          show(ges_gpio)
+          show(ges_offset)
+          hide(ges_repeat)
+          show(ges_on)
+          hide(ges_off)
+        } else if (value == 2) {
+          show(ges_gpio)
+          show(ges_offset)
+          show(ges_repeat)
+          show(ges_on)
+          show(ges_off)
+        } else if (value == 3) {
+          show(ges_gpio)
+          show(ges_offset)
+          hide(ges_repeat)
+          show(ges_on)
+          show(ges_off)
+        }
       }
     }
   }
@@ -780,6 +842,43 @@ document.addEventListener('DOMContentLoaded', function (event) {
       disable(enrollButton)
     }
   }
+
+  // Global external shutter
+  const ges = document.getElementById('ges')
+  const ges_gpio = document.getElementById('ges_gpio-group')
+  const ges_offset = document.getElementById('ges_offset-group')
+  const ges_repeat = document.getElementById('ges_repeat-group')
+  const ges_on = document.getElementById('ges_on-group')
+  const ges_off = document.getElementById('ges_off-group')
+  ges.onchange = () => {
+    updateConfig(ges)
+    if (ges.value == 0) {
+      hide(ges_gpio)
+      hide(ges_offset)
+      hide(ges_repeat)
+      hide(ges_on)
+      hide(ges_off)
+    } else if (ges.value == 1) {
+      show(ges_gpio)
+      show(ges_offset)
+      hide(ges_repeat)
+      show(ges_on)
+      hide(ges_off)
+    } else if (ges.value == 2) {
+      show(ges_gpio)
+      show(ges_offset)
+      show(ges_repeat)
+      show(ges_on)
+      show(ges_off)
+    } else if (ges.value == 3) {
+      show(ges_gpio)
+      show(ges_offset)
+      hide(ges_repeat)
+      show(ges_on)
+      show(ges_off)
+    }
+  }
+
 })
 
         </script>

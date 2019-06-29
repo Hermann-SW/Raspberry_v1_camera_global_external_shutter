@@ -63,6 +63,14 @@ static int8_t recognition_enabled = 0;
 static int8_t is_enrolling = 0;
 static face_id_list id_list = {0};
 
+static int8_t flash_enabled = 0;
+static int8_t ges = 0;
+static int8_t ges_gpio = 1;
+static uint8_t ges_repeat = 5;
+static uint32_t ges_offset = 100;
+static uint32_t ges_on = 9;
+static uint32_t ges_off = 241;
+
 static ra_filter_t * ra_filter_init(ra_filter_t * filter, size_t sample_size){
     memset(filter, 0, sizeof(ra_filter_t));
 
@@ -523,7 +531,25 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     else if(!strcmp(variable, "flash")) {
 #define LED_BUILTIN 4
         pinMode(LED_BUILTIN, OUTPUT);
-        digitalWrite(LED_BUILTIN, atoi(value));
+        digitalWrite(LED_BUILTIN, flash_enabled = atoi(value));
+    }
+    else if(!strcmp(variable, "ges")) {
+        ges = atoi(value);
+    }
+    else if(!strcmp(variable, "ges_gpio")) {
+        ges_gpio = atoi(value);
+    }
+    else if(!strcmp(variable, "ges_repeat")) {
+        ges_repeat = atoi(value);
+    }
+    else if(!strcmp(variable, "ges_offset")) {
+        ges_offset = atoi(value);
+    }
+    else if(!strcmp(variable, "ges_on")) {
+        ges_on = atoi(value);
+    }
+    else if(!strcmp(variable, "ges_off")) {
+        ges_off = atoi(value);
     }
     else {
         res = -1;
@@ -571,7 +597,14 @@ static esp_err_t status_handler(httpd_req_t *req){
     p+=sprintf(p, "\"colorbar\":%u,", s->status.colorbar);
     p+=sprintf(p, "\"face_detect\":%u,", detection_enabled);
     p+=sprintf(p, "\"face_enroll\":%u,", is_enrolling);
-    p+=sprintf(p, "\"face_recognize\":%u", recognition_enabled);
+    p+=sprintf(p, "\"face_recognize\":%u,", recognition_enabled);
+    p+=sprintf(p, "\"flash\":%u,", flash_enabled);
+    p+=sprintf(p, "\"ges\":%u,", ges);
+    p+=sprintf(p, "\"ges_gpio\":%u,", ges_gpio);
+    p+=sprintf(p, "\"ges_repeat\":%u,", ges_repeat);
+    p+=sprintf(p, "\"ges_offset\":%u,", ges_offset);
+    p+=sprintf(p, "\"ges_on\":%u,", ges_on);
+    p+=sprintf(p, "\"ges_off\":%u", ges_off);
     *p++ = '}';
     *p++ = 0;
     httpd_resp_set_type(req, "application/json");
