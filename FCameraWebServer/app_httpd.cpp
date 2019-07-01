@@ -71,6 +71,19 @@ static uint32_t ges_offset = 100;
 static uint32_t ges_on = 9;
 static uint32_t ges_off = 241;
 
+#include "esp32-hal-rmt.h"
+
+#define assert(expr) if (!(expr)) {                   \
+  Serial.println(#expr);        \
+  Serial.println(__FILE__); Serial.println(__LINE__); \
+  for(;;) {}                                          \
+}
+
+#define TX_NOT_RX true
+
+static rmt_obj_t* rmt_send[2] = {NULL,NULL};
+
+
 static ra_filter_t * ra_filter_init(ra_filter_t * filter, size_t sample_size){
     memset(filter, 0, sizeof(ra_filter_t));
 
@@ -538,6 +551,25 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     }
     else if(!strcmp(variable, "ges_gpio")) {
         ges_gpio = atoi(value);
+    }
+    else if(!strcmp(variable, "ges_doit")) {
+{
+    rmt_data_t data[]={
+        { 2, 0, 32767, 1 },
+        { 2, 0,     0, 0 }
+    };
+
+    data[0].duration1 = ges_on;
+
+    if (!rmt_send[ges_gpio]) {
+        assert((rmt_send[ges_gpio] = rmtInit(ges_gpio?13:4, TX_NOT_RX, RMT_MEM_64)) != NULL)
+
+        assert(1000 == rmtSetTick(rmt_send[ges_gpio], 1000)) // 1µs resolution
+    }
+
+    assert(rmtWrite(rmt_send[ges_gpio], data, sizeof(data)/sizeof(data[0])))
+    // assert(4==5);
+}
     }
     else if(!strcmp(variable, "ges_repeat")) {
         ges_repeat = atoi(value);

@@ -556,9 +556,10 @@
                                 <input id="ges_gpio" type="checkbox" class="default-action">
                                 <label class="slider" for="ges_gpio"></label>
                             </div>
+                            <button id="ges_doit">doit</button>
                         </div>
                         <div class="input-group" id="ges_offset-group">
-                            <label for="ges_offset">Offset [µs]</label>
+                            <label for="ges_offset">Offset [ms]</label>
                             <div class="number"></div>
                             <input id="ges_offset" type="number" class="default-action">
                         </div>
@@ -679,6 +680,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       case 'checkbox':
         value = el.checked ? 1 : 0
         break
+      case 'number':
       case 'range':
       case 'select-one':
         value = el.value
@@ -850,6 +852,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   const ges_repeat = document.getElementById('ges_repeat-group')
   const ges_on = document.getElementById('ges_on-group')
   const ges_off = document.getElementById('ges_off-group')
+  const flash = document.getElementById('flash-group')
   ges.onchange = () => {
     updateConfig(ges)
     if (ges.value == 0) {
@@ -864,19 +867,39 @@ document.addEventListener('DOMContentLoaded', function (event) {
       hide(ges_repeat)
       show(ges_on)
       hide(ges_off)
+      hide(flash)
     } else if (ges.value == 2) {
       show(ges_gpio)
       show(ges_offset)
       show(ges_repeat)
       show(ges_on)
       show(ges_off)
+      hide(flash)
     } else if (ges.value == 3) {
       show(ges_gpio)
       show(ges_offset)
       hide(ges_repeat)
       show(ges_on)
       show(ges_off)
+      hide(flash)
     }
+  }
+
+  const doitButton = document.getElementById('ges_doit')
+  const ges_offset_value = document.getElementById('ges_offset')
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function doit(ms) {
+    updateConfig(doitButton)
+    await sleep(ms)
+    stopStream();
+  }
+
+  doitButton.onclick = () => {
+    doit(ges_offset_value.value)
   }
 
 })

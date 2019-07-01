@@ -26,10 +26,22 @@ tbd
 
 ## Tools
 
-* [FCameraWebServer](FCameraWebServer) (ESP32 Arduino sketch providing new feature)
+* [FCameraWebServer.ino](FCameraWebServer.ino) (ESP32-CAM Arduino sketch providing new "Flash" and "Global external shutter" features)
 
-* [get_index_html](index/get_index_html) (extracts index.html into index directory for modifications)
-* [put_index_html](index/put_index_html) (creates new camera_index.h from modified index directory index.html)
+* [index/get_index_html](index/get_index_html) (extracts camera_index.h into index/index.html for modifications)
+* [index/put_index_html](index/put_index_html) (creates new camera_index.h from modified index/index.html)
+
+Howto compile FCameraWebServer for ESP32-CAM module:
+* load "Examples->ESP32->CAMERA->FCameraWebServer" into Arduino IDE
+* in [FCameraWebServer.ino](FCameraWebServer.ino)
+  * comment out CAMERA_MODEL_WROVER_KIT #define
+  * uncomment CAMERA_MODEL_WROVER_KIT #define
+  * populate ssid and password variables
+* select "ESP32 Dev Module" under Tools->Board
+* select "Huge App [3MB ..." under Tools->Partition Scheme
+* compile
+
+It is invaluable to have git history on extrated index/index.html, therefore its versions got pushed to github (and will be pushed from now on) although being redundant. Normal workflow now is "do changes to index/index.html, then do put_index_html to get those changes into camera_index.h". Normally tool get_index_html does not need to be called anymore.
 
 Executing get_index_html tool in index folder, and then put_index_html tool should be an identity transform on camera_index.h (because index.html was not changed). Unfortunately the gunzip followed by gzip does change few bytes in first line:
 
@@ -40,7 +52,7 @@ Executing get_index_html tool in index folder, and then put_index_html tool shou
       0x68, 0x74, 0x6D, 0x6C, 0x00, 0xE5, 0x5D, 0xEB, 0x92, 0xD3, 0xC6, 0x12, 0xFE, 
     ...
 
-If such change is not wanted, "git checkout -- camera_index.h" does "undo" that.
+If this is the only change in camera_index.h and not wanted, "git checkout -- camera_index.h" does "undo" that.
 
 ## Requirements
 
