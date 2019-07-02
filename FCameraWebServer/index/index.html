@@ -558,6 +558,13 @@
                             </div>
                             <button id="ges_doit">doit</button>
                         </div>
+                        <div class="input-group" id="ges_vsync-group">
+                            <label for="ges_vsync">Wait for next VSYNC</label>
+                            <div class="switch">
+                                <input id="ges_vsync" type="checkbox" class="default-action">
+                                <label class="slider" for="ges_vsync"></label>
+                            </div>
+                        </div>
                         <div class="input-group" id="ges_offset-group">
                             <label for="ges_offset">Offset [ms]</label>
                             <div class="number"></div>
@@ -647,24 +654,28 @@ document.addEventListener('DOMContentLoaded', function (event) {
       } else if(el.id === "ges"){
         if (value == 0) {
           hide(ges_gpio)
+          hide(ges_vsync)
           hide(ges_offset)
           hide(ges_repeat)
           hide(ges_on)
           hide(ges_off)
         } else if (value == 1) {
           show(ges_gpio)
+          show(ges_vsync)
           show(ges_offset)
           hide(ges_repeat)
           show(ges_on)
           hide(ges_off)
         } else if (value == 2) {
           show(ges_gpio)
+          show(ges_vsync)
           show(ges_offset)
           show(ges_repeat)
           show(ges_on)
           show(ges_off)
         } else if (value == 3) {
           show(ges_gpio)
+          show(ges_vsync)
           show(ges_offset)
           hide(ges_repeat)
           show(ges_on)
@@ -848,6 +859,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   // Global external shutter
   const ges = document.getElementById('ges')
   const ges_gpio = document.getElementById('ges_gpio-group')
+  const ges_vsync = document.getElementById('ges_vsync-group')
   const ges_offset = document.getElementById('ges_offset-group')
   const ges_repeat = document.getElementById('ges_repeat-group')
   const ges_on = document.getElementById('ges_on-group')
@@ -857,12 +869,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
     updateConfig(ges)
     if (ges.value == 0) {
       hide(ges_gpio)
+      hide(ges_vsync)
       hide(ges_offset)
       hide(ges_repeat)
       hide(ges_on)
       hide(ges_off)
     } else if (ges.value == 1) {
       show(ges_gpio)
+      show(ges_vsync)
       show(ges_offset)
       hide(ges_repeat)
       show(ges_on)
@@ -870,6 +884,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       hide(flash)
     } else if (ges.value == 2) {
       show(ges_gpio)
+      show(ges_vsync)
       show(ges_offset)
       show(ges_repeat)
       show(ges_on)
@@ -877,6 +892,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
       hide(flash)
     } else if (ges.value == 3) {
       show(ges_gpio)
+      show(ges_vsync)
       show(ges_offset)
       hide(ges_repeat)
       show(ges_on)
@@ -887,12 +903,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   const doitButton = document.getElementById('ges_doit')
   const ges_offset_value = document.getElementById('ges_offset')
+  const ges_vsync_value = document.getElementById('ges_vsync')
 
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   async function doit(ms) {
+    updateConfig(ges_vsync_value)
     updateConfig(doitButton)
     await sleep(ms)
     stopStream();

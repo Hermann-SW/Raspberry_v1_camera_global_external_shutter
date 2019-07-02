@@ -65,6 +65,7 @@ static face_id_list id_list = {0};
 
 static int8_t flash_enabled = 0;
 static int8_t ges = 0;
+static int8_t ges_vsync = 0;
 static int8_t ges_gpio = 1;
 static uint8_t ges_repeat = 5;
 static uint32_t ges_offset = 100;
@@ -583,6 +584,19 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     else if(!strcmp(variable, "ges_off")) {
         ges_off = atoi(value);
     }
+    else if(!strcmp(variable, "ges_vsync")) {
+#define VSYNC_GPIO_NUM 25
+        if (ges_vsync = atoi(value)) {
+            int cnt = 0;
+            while (digitalRead(VSYNC_GPIO_NUM) != 0) {
+                ++cnt;
+            }
+            while (digitalRead(VSYNC_GPIO_NUM) == 0) {
+                ++cnt;
+            }
+            Serial.printf("Waited for VSYNC: '%d'\n", cnt);
+        }
+    }
     else {
         res = -1;
     }
@@ -634,6 +648,7 @@ static esp_err_t status_handler(httpd_req_t *req){
     p+=sprintf(p, "\"ges\":%u,", ges);
     p+=sprintf(p, "\"ges_gpio\":%u,", ges_gpio);
     p+=sprintf(p, "\"ges_repeat\":%u,", ges_repeat);
+    p+=sprintf(p, "\"ges_vsync\":%u,", ges_vsync);
     p+=sprintf(p, "\"ges_offset\":%u,", ges_offset);
     p+=sprintf(p, "\"ges_on\":%u,", ges_on);
     p+=sprintf(p, "\"ges_off\":%u", ges_off);
