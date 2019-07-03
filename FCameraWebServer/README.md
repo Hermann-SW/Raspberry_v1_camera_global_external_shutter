@@ -41,7 +41,7 @@ Howto compile FCameraWebServer for ESP32-CAM module:
 * select "Huge App [3MB ..." under Tools->Partition Scheme
 * compile
 
-It is invaluable to have git history on extrated index/index.html, therefore its versions got pushed to github (and will be pushed from now on) although being redundant. Normal workflow now is "do changes to index/index.html, then do put_index_html to get those changes into camera_index.h". Normally tool get_index_html does not need to be called anymore.
+It is invaluable to have git history on extrated [index/index.html](index/index.html), therefore its versions got pushed to github (and will be pushed from now on) although being redundant. Normal workflow now is "do changes to index/index.html, then do put_index_html to get those changes into camera_index.h". Normally tool get_index_html does not need to be called anymore.
 
 Executing get_index_html tool in index folder, and then put_index_html tool should be an identity transform on camera_index.h (because index.html was not changed). Unfortunately the gunzip followed by gzip does change few bytes in first line:
 
