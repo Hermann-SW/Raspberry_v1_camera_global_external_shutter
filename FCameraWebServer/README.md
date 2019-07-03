@@ -35,7 +35,7 @@ Howto compile FCameraWebServer for ESP32-CAM module:
 * load "Examples->ESP32->CAMERA->FCameraWebServer" into Arduino IDE
 * in [FCameraWebServer.ino](FCameraWebServer.ino)
   * comment out CAMERA_MODEL_WROVER_KIT #define
-  * uncomment CAMERA_MODEL_WROVER_KIT #define
+  * uncomment CAMERA_MODEL_AI_THINKER #define
   * populate ssid and password variables
 * select "ESP32 Dev Module" under Tools->Board
 * select "Huge App [3MB ..." under Tools->Partition Scheme
