@@ -18,6 +18,8 @@
 const char* ssid = "*********";
 const char* password = "*********";
 
+const int pin_vsync = VSYNC_GPIO_NUM;
+
 void startCameraServer();
 
 void setup() {
