@@ -586,14 +586,9 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     }
     else if(!strcmp(variable, "ges_vsync")) {
         if (ges_vsync = atoi(value)) {
+            const int pin_vsync = 25;
             volatile int cnt = 0;
             while (digitalRead(pin_vsync) != 0) { // skip current frame
-                ++cnt;
-            }
-            while (digitalRead(pin_vsync) == 0) { // skip vsync
-                ++cnt;
-            }
-            while (digitalRead(pin_vsync) != 0) { // skip next frame
                 ++cnt;
             }
             while (digitalRead(pin_vsync) == 0) { // skip vsync
