@@ -555,12 +555,49 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     }
     else if(!strcmp(variable, "ges_doit")) {
 {
-    rmt_data_t data[]={
+    int len;
+    rmt_data_t *data, data5[]={
+        { 2, 0, 32767, 1 },
+        { 2, 0, 32767, 1 },
+        { 2, 0, 32767, 1 },
+        { 2, 0, 32767, 1 },
         { 2, 0, 32767, 1 },
         { 2, 0,     0, 0 }
     };
 
-    data[0].duration1 = ges_on;
+    switch (ges) {
+      case 1: data5[0].duration1 = ges_on;
+              data5[1].duration1 = 0;
+              data5[1].level1 = 0;
+              data = data5;
+              len = 2;
+              break;
+      case 2: data = (rmt_data_t*)malloc((1+ges_repeat)*sizeof(rmt_data_t));
+              data[ges_repeat].duration1 = 0;
+              data[ges_repeat].level1 = 0;
+              data[0].duration0 = 2;
+              data[0].level0 = 0;
+              for(int i=1; i<=ges_repeat; ++i) {
+                data[i-1].duration1 = ges_on;
+                data[i-1].level1 = 1;
+                data[i].duration0 = ges_off;
+                data[i].level0 = 0;
+              }
+              len = ges_repeat+1;
+              break;
+      case 3: data5[0].duration1 = 2*ges_on/10;
+              data5[1].duration0 = ges_off;
+              data5[1].duration1 = 4*ges_on/10;
+              data5[2].duration0 = ges_off;
+              data5[2].duration1 = 6*ges_on/10;
+              data5[3].duration0 = ges_off;
+              data5[3].duration1 = 8*ges_on/10;
+              data5[4].duration0 = ges_off;
+              data5[4].duration1 = ges_on;
+              data = data5;
+              len = 6;
+              break;
+    }
 
     if (!rmt_send[ges_gpio]) {
         assert((rmt_send[ges_gpio] = rmtInit(ges_gpio?13:4, TX_NOT_RX, RMT_MEM_64)) != NULL)
@@ -568,7 +605,12 @@ static esp_err_t cmd_handler(httpd_req_t *req){
         assert(1000 == rmtSetTick(rmt_send[ges_gpio], 1000)) // 1µs resolution
     }
 
-    assert(rmtWrite(rmt_send[ges_gpio], data, sizeof(data)/sizeof(data[0])))
+    assert(rmtWrite(rmt_send[ges_gpio], data, len))
+
+    if (ges==2) {
+        free(data);
+        data = NULL;
+    }
     // assert(4==5);
 }
     }
