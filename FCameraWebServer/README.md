@@ -16,7 +16,7 @@ Associated [esp32.com forum thread](https://www.esp32.com/viewtopic.php?f=19&t=1
 
 ## Introduction
 
-This is a sub project of [Raspberry v1 camera global external shutter](..). ESP32-CAM ov2640 image sensor is a predecessor of v1 camera ov5647 sensor. From the 38 pins inside ov2640 image sensor unfortunately pin B2 (FREX) is not exposed via flat ribbon connector cable. Surprisingly even without access to that sensor pin global external shutter frames can be captured. It is still not 100% clear how, but it works. See section [Differences to Raspberry v1 camera](#differences-to-raspberry-v1-camera) on interesting features of global external shutter capturing that only ov2640 sensor has.
+This is a sub project of [Raspberry v1 camera global external shutter](../../..). ESP32-CAM ov2640 image sensor is a predecessor of v1 camera ov5647 sensor. From the 38 pins inside ov2640 image sensor unfortunately pin B2 (FREX) is not exposed via flat ribbon connector cable. Surprisingly even without access to that sensor pin global external shutter frames can be captured. It is still not 100% clear how, but it works. See section [Differences to Raspberry v1 camera](#differences-to-raspberry-v1-camera) on interesting features of global external shutter capturing that only ov2640 sensor has.
 
 In order to use FCameraWebServer as 2nd Arduino IDE ESP32->Camera example only one symbolic link needs to be created:
 
