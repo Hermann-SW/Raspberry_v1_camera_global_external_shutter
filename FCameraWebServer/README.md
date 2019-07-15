@@ -83,7 +83,7 @@ tbd
 This was menu settings for first time capture of "shot" option:  
 ![shot_menu](res/ov2640.global_shutter_done_menu.png)
 
-Because the internal flash on GPIO4 was used to light the dark scene, and 50µs is not that long, the frame looks a little dark:  
+Because the internal flash on GPIO4 was used to light the dark scene, and 50µs is not that long, the frame looks a little dark. Mini drone propeller was rotating fast when capturing this frame:  
 ![shots_ov2640](res/ov2640.global_shutter_done.png)
 
 ## Multiple exposure
