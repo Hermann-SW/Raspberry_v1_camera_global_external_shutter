@@ -2,7 +2,7 @@
 
 Associated [Raspberry forum thread](https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=241418).
 
-This is the parent project of [ESP32-CAM ov2640 sensor global (external) shutter](#tree/master/FCameraWebServer).
+This is the parent project of [ESP32-CAM ov2640 sensor global (external) shutter](tree/master/FCameraWebServer).
 
 * [Introduction](#introduction)
 * [Setup for global external shutter](#setup-for-global-external-shutter)
