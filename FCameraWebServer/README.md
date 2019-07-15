@@ -1,17 +1,22 @@
-## ESP32-CAM ov2640 sensor global external shutter
+## ESP32-CAM ov2640 sensor global (external) shutter
+
+Associated [esp32.com forum thread](https://www.esp32.com/viewtopic.php?f=19&t=11126).
 
 * [Introduction](#introduction)
-* [Setup for global external shutter](#setup-for-global-external-shutter)
+* [Setup for global (external) shutter](#setup-for-global-external-shutter)
 * [Tools](#tools)
 * [Requirements](#requirements)
 * [Capturing](#capturing)
 * [Single exposure](#single-exposure)
 * [Multiple exposure](#multiple-exposure)
   * [shots tool](#shots-tool)
+* [Differences to Raspberry v1 camera](#differences-to-raspberry-v1-camera)
+  * [Capturing global shutter frames at daylight](#capturing-global-shutter-frames-at-daylight)
+  * [Mixed rolling and global shutter frames](#mixed-rolling-and-global-shutter-frames)
 
 ## Introduction
 
-This is a sub project of [Raspberry v1 camera global external shutter](../README.md). ESP32-CAM ov2640 image sensor is a predecessor of v1 camera ov5647 sensor. From the 38 pins inside ov2640 image sensor unfortunately pins B2 (FREX) and A2 are connected. Because of that global external shutter with ov2640 sensor has some limitations compared to v1 camera. See section [Requirements](#requirements) for needed soldering for ESP32-CAM module.
+This is a sub project of [Raspberry v1 camera global external shutter](..). ESP32-CAM ov2640 image sensor is a predecessor of v1 camera ov5647 sensor. From the 38 pins inside ov2640 image sensor unfortunately pin B2 (FREX) is not exposed via flat ribbon connector cable. Surprisingly even without access to that sensor pin global external shutter frames can be captured. It is still not 100% clear how, but it works. See section [Differences to Raspberry v1 camera](#differences-to-raspberry-v1-camera) on interesting features of global external shutter capturing that only ov2640 sensor has.
 
 In order to use FCameraWebServer as 2nd Arduino IDE ESP32->Camera example only one symbolic link needs to be created:
 
@@ -20,7 +25,9 @@ In order to use FCameraWebServer as 2nd Arduino IDE ESP32->Camera example only o
 
 This allows to use github sub project FCameraWebServer in Arduino IDE as if it was installed with arduino-esp32 examples.
 
-## Setup for global external shutter
+## Setup for global (external) shutter
+
+See section [Capturing global shutter frames at daylight](#capturing-global-shutter-frames-at-daylight) on why an external shutter is not necessarily needed(!) for ov2640 sensor.
 
 tbd
 
@@ -56,15 +63,13 @@ If this is the only change in camera_index.h and not wanted, "git checkout -- ca
 
 ## Requirements
 
-For the global external shutter features, a cable has to be soldered carefully to pin10 of the ov2640 flat ribbon cable connector on ESP32-CAM module (the pins are 0.5mm spaced, I used a [Raspberry v1 camera preview on HDMI monitor as magnifying glass](https://www.esp32.com/viewtopic.php?f=19&t=11126&p=45445#p45445) for soldering, and superglued the cable plastic to ESP32-CAM module for stress relief):
-![soldeing pin10](res/ov2640.pins.10.jpg)
-<br/>
-<br/>
 No requirements for "Flash" toggle. This new feature is unrelated to global external shutter work:  
 ![flash toggle](res/Flash.menu.png)
 
 It allows to capture with ESP32-CAM flash off or on:  
 ![flash toggle_shadow](res/Flash.menu.shadow.png)
+
+Be careful and turn it not on for too long, otherwise the builtin flash might suffer.
 
 
 ## Capturing
@@ -73,10 +78,33 @@ tbd
 
 ## Single exposure
 
-tbd
+This was menu settings for first time capture of "shot" option:  
+![shot_menu](res/ov2640.global_shutter_done_menu.png)
+
+Because the internal flash on GPIO4 was used to light the dark scene, and 50µs is not that long, the frame looks a little dark:  
+![shots_ov2640](res/ov2640.global_shutter_done.png)
 
 ## Multiple exposure
 
 #### shots tool
+
+This was menu settings for first time capture of "shots" option after being implemented:  
+![shots_menu](res/ov2640.global_shutter_done.shots_menu.png)
+
+Because the internal flash on GPIO4 was used to light the dark scene, and 50µs is not that long, the frame looks a little dark:  
+![shots_ov2640](res/ov2640.global_shutter_done.shots.png)
+
+## Differences to Raspberry v1 camera
+
+#### Capturing global shutter frames at daylight
+
+Unlike Raspberry v1 camera that needs dark scene for taking global external shutter frames, ov2640 can capture global shutter frames at daylight as well (no external shutter cardboard box needed). Not fully understood yet:  
+![daylight_shots_ov2640](res/ov2640.global_shutter_done.shots.no_box.png)
+
+#### Mixed rolling and global shutter frames
+
+I have no explanation and thought this would not be possible. But ov2640 can capture frames with region showing rolling shutter effect and region showing global shutter effect! The horizontal lines are rolling shutter effect from fast rotating mini drone propeller, but below that you can see region with global shutter effect capturing parts of the fast rotating propeller as if it stood still. Not fully understood yet:  
+![mixed_mode_shots_ov2640](res/ov2640.global_shutter_done.shots.no_box.rs.hit2.png)
+
 
 tbd
