@@ -15,7 +15,7 @@ This is a sub project of [Raspberry v1 camera global external shutter](../../..)
 * [Differences to Raspberry v1 camera](#differences-to-raspberry-v1-camera)
   * [Capturing global shutter frames at daylight](#capturing-global-shutter-frames-at-daylight)
   * [Mixed mode rolling+global shutter frames](#mixed-mode-rollingglobal-shutter-frames)
-* [Todos+ideas](#todosideas)
+* [TODOs+ideas](#todosideas)
 
 ## Introduction
 
@@ -110,7 +110,7 @@ I have no explanation and thought this would not be possible. But ov2640 can cap
 ![mixed_mode_shots_ov2640](res/ov2640.global_shutter_done.shots.no_box.rs.hit2.png)
 
 
-## Todos+ideas
+## TODOs+ideas
 
 * fully understand how+why (implicit) global shutter capturing for ov2640 works without being triggered explicitely
 * Raspberry v1 camrea ov5647 is sussessor of ov2640; does it have an implicit global shutter mode as well?
