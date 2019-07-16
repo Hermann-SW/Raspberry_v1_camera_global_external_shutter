@@ -113,7 +113,7 @@ I have no explanation and thought this would not be possible. But ov2640 can cap
 ## TODOs+ideas
 
 * fully understand how+why (implicit) global shutter capturing for ov2640 works without being triggered explicitely
-* Raspberry v1 camrea ov5647 is sussessor of ov2640; does it have an implicit global shutter mode as well?
+* Raspberry v1 camera ov5647 is successor of ov2640; does it have an implicit global shutter mode as well?
 * Raspberry v2 camera Sony imx219 sensor is different; does it allow for implicit global shutter capturing as well?
 
 
