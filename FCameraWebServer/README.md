@@ -14,7 +14,7 @@ This is a sub project of [Raspberry v1 camera global external shutter](../../..)
   * [shots tool](#shots-tool)
 * [Differences to Raspberry v1 camera](#differences-to-raspberry-v1-camera)
   * [Capturing global shutter frames at daylight](#capturing-global-shutter-frames-at-daylight)
-  * [Mixed mode_rolling+global shutter frames](#mixed-mode-rollingglobal-shutter-frames)
+  * [Mixed mode rolling+global shutter frames](#mixed-mode-rollingglobal-shutter-frames)
 
 ## Introduction
 
