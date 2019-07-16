@@ -117,5 +117,5 @@ I have no explanation and thought this would not be possible. But ov2640 can cap
 * Raspberry v2 camera Sony imx219 sensor is different; does it allow for implicit global shutter capturing as well?
 
 
-Positive answer to second question might allow to capture in flight bullets as in below 9000eps (Exposures Per Second) frame with Raspberry v1 camera at daylight ...
-[airgun pellet frames](../res/pointed.pellet.frame0360.jpg)
+Positive answer to second question might allow to capture in flight bullets as in below 9000eps (Exposures Per Second) frame with Raspberry v1 camera at daylight ...  
+![airgun pellet frames](../res/pointed.pellet.frame0360.jpg)
