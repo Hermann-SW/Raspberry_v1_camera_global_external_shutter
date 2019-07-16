@@ -14,7 +14,7 @@ This is a sub project of [Raspberry v1 camera global external shutter](../../..)
   * [shots tool](#shots-tool)
 * [Differences to Raspberry v1 camera](#differences-to-raspberry-v1-camera)
   * [Capturing global shutter frames at daylight](#capturing-global-shutter-frames-at-daylight)
-  * [Mixed rolling and global shutter frames](#mixed-rolling-and-global-shutter-frames)
+  * [Mixed mode_rolling+global shutter frames](#mixed-mode-rollingglobal-shutter-frames)
 
 ## Introduction
 
@@ -103,7 +103,7 @@ Because the internal flash on GPIO4 was used to light the dark scene, and 50µs 
 Unlike Raspberry v1 camera that needs dark scene for taking global external shutter frames, ov2640 can capture global shutter frames at daylight as well (no external shutter cardboard box needed). Not fully understood yet:  
 ![daylight_shots_ov2640](res/ov2640.global_shutter_done.shots.no_box.png)
 
-#### Mixed rolling and global shutter frames
+#### Mixed mode rolling+global shutter frames
 
 I have no explanation and thought this would not be possible. But ov2640 can capture frames with region showing rolling shutter effect and region showing global shutter effect! The horizontal lines are rolling shutter effect from fast rotating mini drone propeller, but below that you can see region with global shutter effect capturing parts of the fast rotating propeller as if it stood still. Not fully understood yet:  
 ![mixed_mode_shots_ov2640](res/ov2640.global_shutter_done.shots.no_box.rs.hit2.png)
