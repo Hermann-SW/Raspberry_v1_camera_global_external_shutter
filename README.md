@@ -210,7 +210,7 @@ The recoil of 1-handed shot was surprisingly small (animated .gif created from f
 ![airgun pellet frames](res/airgun.1st.anim.gif)
 
 
-<a name="9000eps"></a>Increasing PWM frequency from 3kHz to 9kHz will get a brighter background with unchanged settings. Since 30fps is maximal framerate for 1920x1080 frames, this frame got captured at 90fps at the price of resolution (now 640x480). Pointed pellet was shot through paper clamped at airgun muzzle, reduced speed of pellet is 96.9m/s:  
+<a name="9000eps"></a>Increasing PWM frequency from 3kHz to 9kHz will get a brighter background with unchanged settings. Since 30fps is maximal framerate for 1920x1080 frames, this frame got captured at 90fps at the price of resolution (now 640x480). Pointed pellet was shot through paper clamped at airgun muzzle, reduced speed of pellet is 96.9m/s, with 96.9m/s / 9000Hz = 1.077cm between exposures:  
 ![airgun pellet frames](res/pointed.pellet.frame0360.jpg)
 
 
