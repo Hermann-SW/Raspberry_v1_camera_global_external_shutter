@@ -109,7 +109,7 @@ Unlike Raspberry v1 camera that needs dark scene for taking global external shut
 I have no explanation and thought this would not be possible. But ov2640 can capture frames with region showing rolling shutter effect and region showing global shutter effect! The horizontal lines are rolling shutter effect from fast rotating mini drone propeller, but below that you can see region with global shutter effect capturing parts of the fast rotating propeller as if it stood still. Not fully understood yet:  
 ![mixed_mode_shots_ov2640](res/ov2640.global_shutter_done.shots.no_box.rs.hit2.png)
 
-In another posting of associated thread this fully mixed rolling+global shutter frame was shown. The offset of 170ms, while capturing the last frame took only 153ms, ensures that the flashes happend during capturing the 2nd last frame. So maybe some overlay effect is responsible for this mixed global+rolling shutter frames:  
+In another posting of associated thread this fully mixed rolling+global shutter frame was shown. The offset of 170ms, while capturing the last frame took only 153ms, ensures that the flashes happend during capturing the 2nd last frame. So maybe some overlay effect is responsible for these mixed global+rolling shutter frames:  
 ![mixed_mode_shots_ov2640_full](res/ov2640.global_shutter_done.shots.open_box.3.png)
 
 ## TODOs+ideas
