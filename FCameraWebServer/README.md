@@ -12,6 +12,7 @@ This is a sub project of [Raspberry v1 camera global external shutter](../../..)
 * [Single exposure](#single-exposure)
 * [Multiple exposure](#multiple-exposure)
   * [shots tool](#shots-tool)
+  * [5shots tool](#5shots-tool)
 * [Differences to Raspberry v1 camera](#differences-to-raspberry-v1-camera)
   * [Capturing global shutter frames at daylight](#capturing-global-shutter-frames-at-daylight)
   * [Mixed mode rolling+global shutter frames](#mixed-mode-rollingglobal-shutter-frames)
@@ -96,6 +97,15 @@ This was menu settings for first time capture of "shots" option after being impl
 
 Because the internal flash on GPIO4 was used to light the dark scene, and 50µs is not that long, the frame looks a little dark:  
 ![shots_ov2640](res/ov2640.global_shutter_done.shots.png)
+
+#### 5shots tool
+
+This was menu settings for below capture of "5shots" option:  
+![5shots_menu](res/ov2640.global_shutter_done.5shots_menu.png)
+
+This frame shows 5 flashes 650µs apart, of length 20%/40%/60%/80%/100% of 100µs.  
+This shows that fast rotating propeller does turn counter clockwise:  
+![5shots_ov2640](res/ov2640.global_shutter_done.5shots.png)
 
 ## Differences to Raspberry v1 camera
 
