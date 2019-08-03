@@ -64,10 +64,10 @@ The smaller the distance from led to object, the more lumens from same 5000lm le
 
 See [airshot pistol shot just above 5000lm led without reflector](#user-content-bottom_led) for another example.
 
-<a name="setup2leds"></a>The captures done for airsoft pistol showed captured pellets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led (both connected in parallel) lighting from top resolved this issue, see for [airgun shot](#user-content-bottom_plus_top_led) captured with that setup:  
+The captures done for airsoft pistol showed captured pellets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led (both connected in parallel) lighting from top resolved this issue, see for [airgun shot](#user-content-bottom_plus_top_led) captured with that setup:  
 ![setup w/ two leds](res/IMG_060619_182038.jpg)
 
-This is complete setup with airgun clamped to desk. Some cables are now passed below living room desk in order to not show up in camera view. See [9000eps](#user-content-9000eps) airgun pellet capture done with this setup:
+<a name="setup2leds"></a>This is complete setup with airgun clamped to desk. Some cables are now passed below living room desk in order to not show up in camera view. See [9000eps](#user-content-9000eps) airgun pellet capture done with this setup:
 ![setup w/ clamped airgun](res/IMG_160619_103844.jpg)
 
 ## Tools
