@@ -39,6 +39,13 @@ These methods for total darkness work:
 - cover complete setup (2nd "shots tool" section example) with moving box
 - cover only camera, bright light and eg. propeller with moving box 
 
+There are commercially available highspeed flashes like the [Vela One](http://www.vela.io/vela-one-high-speed-flash). Compared to the 5000lm diy highspeed flash described in next section (that has proven to be able to capture with 4µs flash duration), the Vela One has advantages and disadvantages:
+- (+) allows for flash durations down to 0.5µs (diy will not provide enough light for that duration)
+- (+) provides 1 million lumens compared to 5000lm
+- (-) costly (940£) compared to 20$ for diy
+- (-) low maximal continuous strobe frequency (50Hz) comaped to 9KHz of diy (90KHz possible)
+
+The first point can be mitigated a bit for diy flashlight. What really counts is lux, not lumens. For given lumen, lux is inversely quadratric proportional to distance (reducing distance by factor x increases lux by factor x²). The airsoft pellet trajectories just above 5000lm led (without COB reflector) shown below provided an immense increase of lux hitting the flying pellet.
 
 ## Setup for global external shutter
 
