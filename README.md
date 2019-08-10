@@ -43,7 +43,7 @@ These methods for total darkness work:
 - (+) allows for flash durations down to 0.5µs (diy will not provide enough light for that duration)
 - (+) provides 1 million lumens compared to 5000lm
 - (-) costly (940£) compared to 20$ for diy
-- (-) low maximal continuous strobe frequency (50Hz) comaped to 9KHz of diy (90KHz possible)
+- (-) low maximal continuous strobe frequency (50Hz) comaped to 9KHz of diy shown (90KHz possible)
 
 The first point can be mitigated a bit for diy highspeed flash. What really counts is lux, not lumens. For given lumen, lux is inversely quadratric proportional to distance (reducing distance by factor x increases lux by factor x²). The airsoft pellet trajectories just above [5000lm led (without COB reflector) shown below](#user-content-9000eps) provided an immense increase of lux hitting the flying pellet.
 
