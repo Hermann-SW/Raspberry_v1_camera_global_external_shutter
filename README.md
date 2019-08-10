@@ -45,7 +45,7 @@ There are commercially available highspeed flashes like the [Vela One](http://ww
 - (-) costly (940£) compared to 20$ for diy
 - (-) low maximal continuous strobe frequency (50Hz) comaped to 9KHz of diy (90KHz possible)
 
-The first point can be mitigated a bit for diy flashlight. What really counts is lux, not lumens. For given lumen, lux is inversely quadratric proportional to distance (reducing distance by factor x increases lux by factor x²). The airsoft pellet trajectories just above 5000lm led (without COB reflector) shown below provided an immense increase of lux hitting the flying pellet.
+The first point can be mitigated a bit for diy highspeed flash. What really counts is lux, not lumens. For given lumen, lux is inversely quadratric proportional to distance (reducing distance by factor x increases lux by factor x²). The airsoft pellet trajectories just above [5000lm led (without COB reflector) shown below](#user-content-9000eps) provided an immense increase of lux hitting the flying pellet.
 
 ## Setup for global external shutter
 
