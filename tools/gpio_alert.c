@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
    wave_id = gpioWaveCreate();
 
-   assert((wave_id >= 0) | !"wave create failed\n");
+   assert((wave_id >= 0) || !"wave create failed\n");
 
    gpioSetAlertFunc(gpioHWsync, alert);
 
