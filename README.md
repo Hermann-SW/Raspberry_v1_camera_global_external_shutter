@@ -234,6 +234,26 @@ After that, maybe capturing [.50 bmg](https://en.wikipedia.org/wiki/.50_BMG) wit
 
 
 
+#### kFPS videos from kEPS multiple exposure frames
+
+Now that we can create thousands of eps multiple exposure frames (kEPS), creating kFPS framerate videos from those frames seemed interesting. General purpose tools for that seem to be difficult to create at least (a frame with same view without the moving object would be helpful).
+
+Fastest framerates for raspivid (640x480) videos are 90fps for v1 camera and 200fps for v2 camera. Fastest framerates for raspiraw videos are 665fps for v1 camera (640x64) and 1007fps for v2 camera (640x75). Creating kFPS framerate videos from kEPS multiple exposure frames is the only way for Raspberry v1 camera (not possible with v2 camera) to create this kind of super high framerate videos. And these vidoes can be of quite big frame size like the 2MP airsoft pistol multiple exposure frame.
+
+[6mm.frame3946.jpg.sh](res/6mm.frame3946.jpg.sh) is a simple tool based on netpbm image tools and ffmpeg. It takes [6mm.frame3946.jpg](res/6mm.frame3946.jpg) image as input. The coordinates of the moving parts (left/top/width/height) used in the script were determined manually with gimp. The 3000fps animation was created with this command (scaled down from 1920 to 640 horizontally, animation framerate 2fps, 1500 times slower than real):
+
+	./6mm.frame3946.jpg.sh 640 2
+
+![res/6mm.frame3946.jpg.640.2.anim.gif](res/6mm.frame3946.jpg.640.2.anim.gif)
+
+Second tool [pointed.pellet.frame0360_undistorted.jpg.sh](res/pointed.pellet.frame0360_undistorted.jpg.sh) uses same technique. It takes (594x438) [pointed.pellet.frame0360_undistorted.jpg](res/pointed.pellet.frame0360_undistorted.jpg) image as input. The coordinates of the moving parts were determined as before with gimp. The 9000fps animation was created with this command (no scaling horizontally, animation framerate 3fps, 3000 times slower than real):
+
+	./pointed.pellet.frame0360_undistorted.jpg.sh 594 3
+
+The video does not look as nice as the previous one. Reason is that the tool simply filled the area of the moving object with black, which is no problem for the first video with its nearly black background. It will be beneficial for new kEPS multiple exposure frames to move out the 5000lm leds from camera FOV in order to get a nearly black background again: 
+
+![res/pointed.pellet.frame0360_undistorted.jpg.594.3.anim.gif](res/pointed.pellet.frame0360_undistorted.jpg.594.3.anim.gif)
+
 ## Hardware camera sync pulses
 
 Tool [shots](tools/shots) is not synced with camera frames. shots tool might split its strobe pulses onto more than one frame because of the missing synchronization with camera.
