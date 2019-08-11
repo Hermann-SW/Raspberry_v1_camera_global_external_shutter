@@ -13,6 +13,7 @@ This is the parent project of [ESP32-CAM ov2640 sensor global (external) shutter
 * [Multiple exposure](#multiple-exposure)
   * [shots tool](#shots-tool)
   * [PWM exposure](#pwm-exposure)
+  * [kFPS videos from kEPS multiple exposure frames](#kFPS-videos-from-kEPS-multiple-exposure-frames)
 * [Hardware camera sync pulses](#hardware-camera-sync-pulses)
 
 ## Introduction
