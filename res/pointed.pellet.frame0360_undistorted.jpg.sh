@@ -50,105 +50,27 @@ pnmarith -subtract - pad08.pnm | \
 pnmarith -subtract - pad09.pnm | \
 pnmarith -subtract - pad10.pnm > 00.pnm
 
-pnmarith -subtract $pnm pad02.pnm | \
-pnmarith -subtract - pad03.pnm | \
-pnmarith -subtract - pad04.pnm | \
-pnmarith -subtract - pad05.pnm | \
-pnmarith -subtract - pad06.pnm | \
-pnmarith -subtract - pad07.pnm | \
-pnmarith -subtract - pad08.pnm | \
-pnmarith -subtract - pad09.pnm | \
-pnmarith -subtract - pad10.pnm > 01.pnm
+if [ "$3" != "" ];
+then
+  h=$((438 - $3 - $4))
+  echo $h
+  pnmcut -left 0 -top $3 -width 594 -height $h $pnm > 01.pnm
+  pnmpad -left 0 -top $3 -right 0 -bottom $4 01.pnm > 02.pnm
+  pnmarith -subtract $pnm 02.pnm > 00.pnm
+  gif="$jpg.$width.$fps.$3.$4.anim.gif"
+fi
 
-pnmarith -subtract $pnm pad01.pnm | \
-pnmarith -subtract - pad03.pnm | \
-pnmarith -subtract - pad04.pnm | \
-pnmarith -subtract - pad05.pnm | \
-pnmarith -subtract - pad06.pnm | \
-pnmarith -subtract - pad07.pnm | \
-pnmarith -subtract - pad08.pnm | \
-pnmarith -subtract - pad09.pnm | \
-pnmarith -subtract - pad10.pnm > 02.pnm
+pnmarith -add 00.pnm pad01.pnm > 01.pnm
+pnmarith -add 00.pnm pad02.pnm > 02.pnm
+pnmarith -add 00.pnm pad03.pnm > 03.pnm
+pnmarith -add 00.pnm pad04.pnm > 04.pnm
+pnmarith -add 00.pnm pad05.pnm > 05.pnm
+pnmarith -add 00.pnm pad06.pnm > 06.pnm
+pnmarith -add 00.pnm pad07.pnm > 07.pnm
+pnmarith -add 00.pnm pad08.pnm > 08.pnm
+pnmarith -add 00.pnm pad09.pnm > 09.pnm
+pnmarith -add 00.pnm pad10.pnm > 10.pnm
 
-pnmarith -subtract $pnm pad01.pnm | \
-pnmarith -subtract - pad02.pnm | \
-pnmarith -subtract - pad04.pnm | \
-pnmarith -subtract - pad05.pnm | \
-pnmarith -subtract - pad06.pnm | \
-pnmarith -subtract - pad07.pnm | \
-pnmarith -subtract - pad08.pnm | \
-pnmarith -subtract - pad09.pnm | \
-pnmarith -subtract - pad10.pnm > 03.pnm
-
-pnmarith -subtract $pnm pad01.pnm | \
-pnmarith -subtract - pad02.pnm | \
-pnmarith -subtract - pad03.pnm | \
-pnmarith -subtract - pad05.pnm | \
-pnmarith -subtract - pad06.pnm | \
-pnmarith -subtract - pad07.pnm | \
-pnmarith -subtract - pad08.pnm | \
-pnmarith -subtract - pad09.pnm | \
-pnmarith -subtract - pad10.pnm > 04.pnm
-
-pnmarith -subtract $pnm pad01.pnm | \
-pnmarith -subtract - pad02.pnm | \
-pnmarith -subtract - pad03.pnm | \
-pnmarith -subtract - pad04.pnm | \
-pnmarith -subtract - pad06.pnm | \
-pnmarith -subtract - pad07.pnm | \
-pnmarith -subtract - pad08.pnm | \
-pnmarith -subtract - pad09.pnm | \
-pnmarith -subtract - pad10.pnm > 05.pnm
-
-pnmarith -subtract $pnm pad01.pnm | \
-pnmarith -subtract - pad02.pnm | \
-pnmarith -subtract - pad03.pnm | \
-pnmarith -subtract - pad04.pnm | \
-pnmarith -subtract - pad05.pnm | \
-pnmarith -subtract - pad07.pnm | \
-pnmarith -subtract - pad08.pnm | \
-pnmarith -subtract - pad09.pnm | \
-pnmarith -subtract - pad10.pnm > 06.pnm
-
-pnmarith -subtract $pnm pad01.pnm | \
-pnmarith -subtract - pad02.pnm | \
-pnmarith -subtract - pad03.pnm | \
-pnmarith -subtract - pad04.pnm | \
-pnmarith -subtract - pad05.pnm | \
-pnmarith -subtract - pad06.pnm | \
-pnmarith -subtract - pad08.pnm | \
-pnmarith -subtract - pad09.pnm | \
-pnmarith -subtract - pad10.pnm > 07.pnm
-
-pnmarith -subtract $pnm pad01.pnm | \
-pnmarith -subtract - pad02.pnm | \
-pnmarith -subtract - pad03.pnm | \
-pnmarith -subtract - pad04.pnm | \
-pnmarith -subtract - pad05.pnm | \
-pnmarith -subtract - pad06.pnm | \
-pnmarith -subtract - pad07.pnm | \
-pnmarith -subtract - pad09.pnm | \
-pnmarith -subtract - pad10.pnm > 08.pnm
-
-pnmarith -subtract $pnm pad01.pnm | \
-pnmarith -subtract - pad02.pnm | \
-pnmarith -subtract - pad03.pnm | \
-pnmarith -subtract - pad04.pnm | \
-pnmarith -subtract - pad05.pnm | \
-pnmarith -subtract - pad06.pnm | \
-pnmarith -subtract - pad07.pnm | \
-pnmarith -subtract - pad08.pnm | \
-pnmarith -subtract - pad10.pnm > 09.pnm
-
-pnmarith -subtract $pnm pad01.pnm | \
-pnmarith -subtract - pad02.pnm | \
-pnmarith -subtract - pad03.pnm | \
-pnmarith -subtract - pad04.pnm | \
-pnmarith -subtract - pad05.pnm | \
-pnmarith -subtract - pad06.pnm | \
-pnmarith -subtract - pad07.pnm | \
-pnmarith -subtract - pad08.pnm | \
-pnmarith -subtract - pad09.pnm > 10.pnm
 
 ffmpeg -framerate $fps -i %02d.pnm $avi
 

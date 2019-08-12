@@ -255,6 +255,12 @@ The video does not look as nice as the previous one. Reason is that the tool sim
 
 ![res/pointed.pellet.frame0360_undistorted.jpg.594.3.anim.gif](res/pointed.pellet.frame0360_undistorted.jpg.594.3.anim.gif)
 
+The sript is now modified so that it allows for optional 3rd and 4th argument. The numbers are the top/bottom lines to keep from the original image, the middle part will be filled black. This allows a slightly better animation although the original image background is too bright. Animation was created by this command:
+
+	./pointed.pellet.frame0360_undistorted.jpg.sh 594 3 70 20
+
+![res/pointed.pellet.frame0360_undistorted.jpg.594.3.70.20.anim.gif](res/pointed.pellet.frame0360_undistorted.jpg.594.3.70.20.anim.gif)
+
 ## Hardware camera sync pulses
 
 Tool [shots](tools/shots) is not synced with camera frames. shots tool might split its strobe pulses onto more than one frame because of the missing synchronization with camera.
