@@ -228,6 +228,9 @@ Small script [doit90](tools/doit90) was useful in automating what needs to be do
 <a name="9000epsundistorted"></a>The previous frame impressively shows that lens distortion plays a role. I used modified [OpenCV callibrate.py](https://github.com/opencv/opencv/blob/master/samples/python/calibrate.py) with 10 chessboard samples taken with the camera. The undistorted frame shows all pellet exposures on straight line:  
 ![airgun pellet frames_undistorted](res/pointed.pellet.frame0360_undistorted.jpg)
 
+On the left you can see 8mm long pointed pellet used from a smartphone photo. On the right is in-flight pellet copied out from a frame captured with color problems, but with 1:1 pixel size. It was captured with same FoV as the frame before (but 2MP frame). With camera closer to pellet trajectory and adjusted camera lens much more details could be captured:  
+![airgun pellet photo](res/pointed.pellet.photo.jpg) 
+![airgun pellet 1to1 capture](res/pointed.pellet.frame0104.part.jpg)
 
 Todos:
 Next step is to use ~air gun for higher muzzle speed, and finally~ a real rifle. A 375m/s pellet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).  
