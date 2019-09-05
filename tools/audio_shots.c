@@ -19,15 +19,14 @@
 #define gpioStrobe 13
 #define gpioDaudio 17
 
-int wave_id, N=1, done=0;
+int wave_id, N=1;
+volatile int done=0;
 
 gpioPulse_t *pulse;
 
 void alert(int gpio, int level, uint32_t tick)
 {
    if (level!=0)  return;
-
-   gpioWaveTxSend(wave_id, PI_WAVE_MODE_ONE_SHOT);
 
    done=1;
 }
@@ -73,7 +72,9 @@ int main(int argc, char *argv[])
    gpioSetAlertFunc(gpioDaudio, alert);
 
 
-   while (! done)  usleep(100000);
+   while (! done) { }
+
+   gpioWaveTxSend(wave_id, PI_WAVE_MODE_ONE_SHOT);
 
    usleep(N*(d+f)+1000000);
 
