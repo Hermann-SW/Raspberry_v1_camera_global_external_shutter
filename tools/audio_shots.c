@@ -24,13 +24,6 @@ volatile int done=0;
 
 gpioPulse_t *pulse;
 
-void alert(int gpio, int level, uint32_t tick)
-{
-   if (level!=0)  return;
-
-   done=1;
-}
-
 int main(int argc, char *argv[])
 {
    unsigned int d,f,o;
@@ -69,10 +62,9 @@ int main(int argc, char *argv[])
 
    assert((wave_id >= 0) || !"wave create failed\n");
 
-   gpioSetAlertFunc(gpioDaudio, alert);
+   gpioSetMode(gpioDaudio, PI_INPUT);
 
-
-   while (! done) { }
+   while (! gpioRead(gpioDaudio)) { }
 
    gpioWaveTxSend(wave_id, PI_WAVE_MODE_ONE_SHOT);
 
