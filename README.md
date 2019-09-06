@@ -264,6 +264,10 @@ The sript is now modified so that it allows for optional 3rd and 4th argument. T
 
 ![res/pointed.pellet.frame0360_undistorted.jpg.594.3.70.20.anim.gif](res/pointed.pellet.frame0360_undistorted.jpg.594.3.70.20.anim.gif)
 
+Tool [mak.640.5.sh](res/mak.640.5.sh) does not just fill the pellet exposures with black. Instead it takes a frame with pellet exposures [full.pnm](res/full.pnm) and a frame taken with same multiple exposures but without pellets captured [empty.pnm](res/empty.pnm). For the different frames of the animation a single full height rectangle is taken from full.pnm and overlayed onto empty.pnm, and these frames are converted to video and animated .gif as before. The 1920x1080 frames get scaled down to witdth 640. 5000eps frame full.pnm gets 5000fps video that way, the animation plays at 5fps, 1000 times slower than real:  
+
+![res/frame.640.5.anim.gif](res/frame.640.5.anim.gif)
+
 ## Hardware camera sync pulses
 
 Tool [shots](tools/shots) is not synced with camera frames. shots tool might split its strobe pulses onto more than one frame because of the missing synchronization with camera.
