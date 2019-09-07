@@ -64,3 +64,4 @@ filters="fps=$fps,scale=$width:-1:flags=lanczos"
 ffmpeg -v warning -i $avi -vf "$filters,palettegen" -y $palette
 ffmpeg -v warning -i $avi -i $palette -lavfi "$filters [x]; [x][1:v] paletteuse" -y $gif
 
+rm frame.avi p.0[0-7].pnm
