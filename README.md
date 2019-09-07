@@ -93,6 +93,7 @@ The captures done for airsoft pistol showed captured pellets with dark top becau
 * [5shots](tools/5shots) (sample for different strobe pulse length multiple exposure)  
 * [pwm_ges](tools/pwm_ges) (pwm exposure)
 * [doit90](tools/doit90) (script for [capturing pellets](#user-content-9000eps))
+* [audio_shots.c](tools/audio_shots.c) (used in [Sound trigger](#sound-trigger) section)
 *
 * [gpio_alert.c](tools/gpio_alert.c) (camera synced multiple exposure sample)
 *
