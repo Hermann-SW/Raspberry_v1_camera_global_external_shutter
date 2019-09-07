@@ -296,6 +296,10 @@ For the different frames of the animation a single full height rectangle is take
 
 ![res/frame.640.5.anim.gif](res/frame.640.5.anim.gif)
 
+<a name="camera_panning"></a>In [Sound trigger](#sound-trigger) section the pellet capture with blue dots on pellet north and south pole did show that pellet is spinning fast (5625rpm). Since an animation tells more than 1000 words, tool [mak.210.6.sh](res/mak.210.6.sh) creates a 6000fps animation for that 6000eps frame, this time with a very fast camera panning. The animation shows the spinnining with moving blue dot clearly; played at 6fps, 1000× slower than real:
+
+![res/frame.210.6.anim.gif](res/frame.210.6.anim.gif)
+
 ## Hardware camera sync pulses
 
 Tool [shots](tools/shots) is not synced with camera frames. shots tool might split its strobe pulses onto more than one frame because of the missing synchronization with camera.
