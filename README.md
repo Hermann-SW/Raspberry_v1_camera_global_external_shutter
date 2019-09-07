@@ -13,6 +13,7 @@ This is the parent project of [ESP32-CAM ov2640 sensor global (external) shutter
 * [Multiple exposure](#multiple-exposure)
   * [shots tool](#shots-tool)
   * [PWM exposure](#pwm-exposure)
+  * [Sound trigger](#sound-trigger)
   * [kFPS videos from kEPS multiple exposure frames](#kFPS-videos-from-kEPS-multiple-exposure-frames)
 * [Hardware camera sync pulses](#hardware-camera-sync-pulses)
 
@@ -236,7 +237,27 @@ Todos:
 Next step is to use ~air gun for higher muzzle speed, and finally~ a real rifle. A 375m/s pellet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).  
 After that, maybe capturing [.50 bmg](https://en.wikipedia.org/wiki/.50_BMG) with 900m/s(!) might be a challenge. A former colleague of me did shoot .50 bmg ...
 
+#### Sound trigger
 
+There is one disadvantage of PWM exposures:  
+A frame gets flash hits very often although the number of captured pellet exposures in a frame is much lower (eg. 100 flash hits for 9000eps pellet capture with 90fps video above, with only 10 pellet exposures in frame). Therefore background for PWM exposure is typically much brighter than needed.
+
+This section describes sound triggered multiple exposure capturing. I used cheap microphone sensor with digital and analog output as sound trigger, and used its digital output as trigger:  
+<img width=648 src="res/IMG_010919_223213.jpg"/>
+
+Tool [audio_shots.c](res/autio_shots.c) can be used for sound triggered multiple exposure. This command waits to be triggered from digital microphone sensor output, then waits for 2010µs offset, and then does 5 (9µs duration) flashes at frequency 6KHz:
+
+    sudo ./audio_shots 5 9 6000 2010
+
+One frame captured by a 36m/s airsoft pistol shot after the command started is this. Main difference to 6KHz PWM exposure is that pellet exposures on left and right side of frame are missing. Main advantage is that background is darker than with PWM exposure capturing:  
+![res/audio_shots.c.5_9_6000_2000.png](res/audio_shots.c.5_9_6000_2000.png)
+
+With 1st argument of audio_shots being "1", single shot capturing is possible. Frames like this can be captured (from [
+Ultra high-speed imaging, capturing matrix style bullet time.](https://www.raspberrypi.org/forums/viewtopic.php?t=240442)):  
+![res/giphy.gif.020.gif](res/giphy.gif.020.gif)
+
+One investigation done with audio_shots tool already was whether pellet flying with 36m/s speed spins during flight (it spins fast!). I added small blue dot with permanent marker to north and south pole of some pellets. One pole is visible at least, that allowed to "see" whether there is spin or not. This is a capture of a marked pellet, and in fact it rotates. From one exposure to next at 6KHz time increased by 166µs. Looking at the 9 full in view pellet exposures, time passed from left to right is 8*166µs. Lets say the dot does roughly 1/8 of a full rotation. Then a full rotation of the pellet takes 8\*8/6000Hz=0.01066s, rotation speed therefore is 93.75rps or 5625rpm!
+![res/pellet.rotation.png](res/pellet.rotation.png)
 
 #### kFPS videos from kEPS multiple exposure frames
 
@@ -264,7 +285,7 @@ The sript is now modified so that it allows for optional 3rd and 4th argument. T
 
 ![res/pointed.pellet.frame0360_undistorted.jpg.594.3.70.20.anim.gif](res/pointed.pellet.frame0360_undistorted.jpg.594.3.70.20.anim.gif)
 
-Tool [mak.640.5.sh](res/mak.640.5.sh) does not just fill the pellet exposures with black. Instead it takes a frame with pellet exposures [full.pnm](res/full.pnm) and a frame taken with same multiple exposures but without pellets captured [empty.pnm](res/empty.pnm). For the different frames of the animation a single full height rectangle is taken from full.pnm and overlayed onto empty.pnm, and these frames are converted to video and animated .gif as before. The 1920x1080 frames get scaled down to witdth 640. 5000eps frame full.pnm gets 5000fps video that way, the animation plays at 5fps, 1000 times slower than real:  
+Tool [mak.640.5.sh](res/mak.640.5.sh) does not just fill the pellet exposures with black. Instead it takes a frame with pellet exposures [full.pnm](res/full.pnm) and a frame taken with same multiple exposures but without pellets captured [empty.pnm](res/empty.pnm). For the different frames of the animation a single full height rectangle is taken from full.pnm and overlayed onto empty.pnm, and these frames are converted to video and animated .gif as before. The 1920x1080 frames get scaled down to width 640. 5000eps frame full.pnm gets 5000fps video that way; the animation plays at 5fps, 1000 times slower than real:  
 
 ![res/frame.640.5.anim.gif](res/frame.640.5.anim.gif)
 
