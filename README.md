@@ -79,6 +79,9 @@ The captures done for airsoft pistol showed captured pellets with dark top becau
 <a name="setup2leds"></a>This is complete setup with airgun clamped to desk. Some cables are now passed below living room desk in order to not show up in camera view. See [9000eps](#user-content-9000eps) airgun pellet capture done with this setup:
 ![setup w/ clamped airgun](res/IMG_160619_103844.jpg)
 
+<a name="blackBackground"></a>Most of the captures described on this repo were done without a black background. The dark background was achieved with long range of free space behind scene. That works fine because light intensity drops quadratic with distance. For [Sound trigger](#sound-trigger) work I wanted to have setup small and on my desk in reach. I created a black cardboard that I used as dark background, as can be seen on the left. This is not necessary in general if you have long free space after the scene. But if using black cardboard as background with 5000lm led flash, then it needs to be really black. I used "the blackest black" [Black 3.0](https://culturehustle.com/products/black-3-0-the-worlds-blackest-black-acrylic-paint-150ml) from kickstarter campain for that, it absorbs 98% of incoming light:
+![setup w/ black background](res/IMG_020919_214148.jpg)
+
 ## Tools
 
 * [raspivid_ges](tools/raspivid_ges) (if starting with default parameters, captures 2MP tst.h264 video at 1fps global external shutter mode)
@@ -242,7 +245,7 @@ After that, maybe capturing [.50 bmg](https://en.wikipedia.org/wiki/.50_BMG) wit
 There is one disadvantage of PWM exposures:  
 A frame gets flash hits very often although the number of captured pellet exposures in a frame is much lower (eg. 100 flash hits for 9000eps pellet capture with 90fps video above, with only 10 pellet exposures in frame). Therefore background for PWM exposure is typically much brighter than needed.
 
-This section describes sound triggered multiple exposure capturing. I used cheap 5V microphone sensor with digital and analog output as sound trigger. I connected GND/VCC/D0/A0 of microphone sensor to GND/3V3/GPIO17/- on the Pi. Althogh product description does not mention that this sensor works with 3.3V, it does:  
+This section describes sound triggered multiple exposure capturing. I used cheap 5V microphone sensor with digital and analog output as sound trigger. I connected GND/VCC/D0/A0 of microphone sensor to GND/3V3/GPIO17/- on the Pi. Although product description does not mention that this sensor works with 3.3V, it does:  
 <img width=648 src="res/IMG_010919_223213.jpg"/>
 
 Tool [audio_shots.c](res/autio_shots.c) can be used for sound triggered multiple exposure. This command waits to be triggered from digital microphone sensor output, then waits for 2010µs offset, and then does 5 (9µs duration) flashes at frequency 6KHz:
