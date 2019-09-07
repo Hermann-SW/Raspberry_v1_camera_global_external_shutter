@@ -247,7 +247,8 @@ This section describes sound triggered multiple exposure capturing. I used cheap
 
 Tool [audio_shots.c](res/autio_shots.c) can be used for sound triggered multiple exposure. This command waits to be triggered from digital microphone sensor output, then waits for 2010µs offset, and then does 5 (9µs duration) flashes at frequency 6KHz:
 
-    sudo ./audio_shots 5 9 6000 2010
+    $ sudo killall pigpiod
+    $ sudo ./audio_shots 5 9 6000 2010
 
 One frame captured by a 36m/s airsoft pistol shot after the command started is this. Main difference to 6KHz PWM exposure is that pellet exposures on left and right side of frame are missing. Main advantage is that background is darker than with PWM exposure capturing:  
 ![res/audio_shots.c.5_9_6000_2000.png](res/audio_shots.c.5_9_6000_2000.png)
