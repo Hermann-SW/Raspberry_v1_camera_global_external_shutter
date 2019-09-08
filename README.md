@@ -270,6 +270,14 @@ I enforced two different pellet speeds by making pellet collide with slightly sl
 
 ![res/audio_shots.20.9.4000.4010.png](res/audio_shots.20.9.4000.4010.png)
 
+Now combining spin and two speeds investigation, I did only put one blue dot onto three pellets. I filled the magazine with 2 normall pellets, then the three pellets with a single blue dot, and finally a normal pellet. After starting raspivid_ges in one console, I started this command in another console:
+
+    $ sudo killall pigpiod; while true; do sudo ./audio_shots 20 18 2500 2510; done
+
+I reduced frequency to 2500Hz and doubled exposure to 18µs (OK for "slowly moving" 36m/s pellet). In shooting position, I removed magzine first and did two empty shots, in order to retrieve two candidates for empty.png. Then I inserted magazine, aimed at the cross on lath, fired and immediately looked onto the HDMI monitor 1.5m distant. Because raspivid_ges recording is done with 1fps, I was able to verify that the first shot was good. Then I did three more shots the same way with the pellets with 1 single blue dot. Before shooting I had moved the camera view up a little. The bright area above black cardboard does not hurt, and the lath part with cross where the pellet hits was moved out of camera view. This resulted in frame where all pellet exposures happend against black background. On side left of the cross the blue dot shows "slow" rotation as seen before. Interesting is the part after hitting the lath, a completely different rotation of the blue dot. For details see corresponding fast camera panning animation in next section: 
+
+![res/audio_shots.20_18_2500_2510.png](res/audio_shots.20_18_2500_2510.png)
+
 #### kFPS videos from kEPS multiple exposure frames
 
 Now that we can create thousands of eps multiple exposure frames (kEPS), creating kFPS framerate videos from those frames seemed interesting. General purpose tools for that seem to be difficult to create at least (a frame with same view without the moving object would be helpful).
@@ -305,6 +313,10 @@ For the different frames of the animation a single full height rectangle is take
 <a name="camera_panning"></a>In [Sound trigger](#sound-trigger) section the pellet capture with blue dots on pellet north and south pole did show that pellet is spinning fast (5625rpm). Since an animation tells more than 1000 words, tool [mak.210.6.sh](res/mak.210.6.sh) creates a 6000fps animation for that 6000eps frame, this time with a very fast camera panning. The animation shows the spinnining with moving blue dot clearly; played at 6fps, 1000× slower than real:
 
 ![res/frame.210.6.anim.gif](res/frame.210.6.anim.gif)
+
+This is another very fast camera panning animation. It is done on frame with pellet exposures with 1 blue dot only, and where the pellet exposures after hitting a lath as described in Sound trigger section show a completely different kind of spin:
+
+![res/frame.180.5.anim.gif](res/frame.180.5.anim.gif)
 
 ## Hardware camera sync pulses
 
