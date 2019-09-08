@@ -264,6 +264,12 @@ Ultra high-speed imaging, capturing matrix style bullet time.](https://www.raspb
 One investigation done with audio_shots tool already was whether pellet flying with 36m/s speed spins during flight (it spins fast!). I added small blue dot with permanent marker to north and south pole of some pellets. One pole is visible at least, that allowed to "see" whether there is spin or not. This is a capture of a marked pellet, and in fact it rotates. From one exposure to next at 6KHz time increased by 166µs. Looking at the 9 full in view pellet exposures, time passed from left to right is 8*166µs. Lets say the dot does roughly 1/8 of a full rotation. Then a full rotation of the pellet takes 8\*8/6000Hz=0.01066s, rotation speed therefore is 93.75rps or 5625rpm!
 ![res/pellet.rotation.png](res/pellet.rotation.png)
 
+I enforced two different pellet speeds by making pellet collide with slightly slanted lath. You can see the distances between successive pellets being longer on left side before hitting the lath, than on the right side after. This multiple exposure capture was one captureed by several shots with this command (pellet on left side missing because offset 4010µs was slightly too big for this frame):
+
+    $ sudo killall pigpiod; while true; do sudo ./audio_shots 20 9 4000 4010; done
+
+![res/audio_shots.20.9.4000.4010.png](res/audio_shots.20.9.4000.4010.png)
+
 #### kFPS videos from kEPS multiple exposure frames
 
 Now that we can create thousands of eps multiple exposure frames (kEPS), creating kFPS framerate videos from those frames seemed interesting. General purpose tools for that seem to be difficult to create at least (a frame with same view without the moving object would be helpful).
