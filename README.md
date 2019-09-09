@@ -16,6 +16,7 @@ This is the parent project of [ESP32-CAM ov2640 sensor global (external) shutter
   * [Sound trigger](#sound-trigger)
   * [kFPS videos from kEPS multiple exposure frames](#kFPS-videos-from-kEPS-multiple-exposure-frames)
 * [Hardware camera sync pulses](#hardware-camera-sync-pulses)
+* [Daylight](#daylight)
 
 ## Introduction
 
@@ -40,6 +41,8 @@ These methods for total darkness work:
 - close room door and window shutter completely
 - cover complete setup (2nd "shots tool" section example) with moving box
 - cover only camera, bright light and eg. propeller with moving box 
+
+It turned out that darkness is not necessarily needed (although better frames can be captured with darkness). See [Daylight](#daylight) section for details.
 
 <a name="diycomparison"></a>There are commercially available highspeed flashes like the [Vela One](http://www.vela.io/vela-one-high-speed-flash). Compared to the 5000lm diy highspeed flash described in next section (that has proven to be able to capture with 4µs flash duration), the Vela One has advantages and disadvantages:
 - (+) allows for flash durations down to 0.5µs (diy will not provide enough light for that duration)
@@ -81,6 +84,9 @@ The captures done for airsoft pistol showed captured pellets with dark top becau
 
 <a name="blackBackground"></a>Most of the captures described on this repo were done without a black background. The dark background was achieved with long range of free space behind scene. That works fine because light intensity drops quadratic with distance. For [Sound trigger](#sound-trigger) work I wanted to have setup small and on my desk in reach. I created a black cardboard that I used as dark background, as can be seen on the left. This is not necessary in general if you have long free space after the scene. But if using black cardboard as background with 5000lm led flash, then it needs to be really black. I used "the blackest black" [Black 3.0](https://culturehustle.com/products/black-3-0-the-worlds-blackest-black-acrylic-paint-150ml) from kickstarter campain for that, it absorbs 98% of incoming light. In this setup I did make the 5000lm led with heatsink stand vertically, unlike lighting from bottom or top before. This allowed to use only a single of my two 5000lm leds (this type of lighting is more like the flashes of cameras, from direction of lens):
 ![setup w/ black background](res/IMG_020919_214148.jpg)
+
+<a name="daylightSetup"></a>TBD
+![res/IMG_090919_164318.jpg](res/IMG_090919_164318.jpg)
 
 ## Tools
 
@@ -354,4 +360,13 @@ This is one sample frame capture that way:
 
 This is another sample frame capture that way, which looks different because of small changes in propeller speed:
 ![HW camera synced multiple exposure](res/two.HWsync.3.jpg)
+
+
+## Daylight
+TBD
+![res/daylight.2.png](res/daylight.2.png)
+
+TBD
+![res/daylight.4.png](res/daylight.4.png)
+
 
