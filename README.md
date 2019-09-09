@@ -270,11 +270,11 @@ I enforced two different pellet speeds by making pellet collide with slightly sl
 
 ![res/audio_shots.20.9.4000.4010.png](res/audio_shots.20.9.4000.4010.png)
 
-Now combining spin and two speeds investigation, I did only put one blue dot onto three pellets. I filled the magazine with 2 normal pellets, then the three pellets with a single blue dot, and finally a normal pellet. After starting raspivid_ges in one console, I started this command in another console:
+<a name="sound_spin_speed"></a>Now combining spin and two speeds investigation, I did only put one blue dot onto three pellets. I filled the magazine with 2 normal pellets, then the three pellets with a single blue dot, and finally a normal pellet. After starting raspivid_ges in one console, I started this command in another console:
 
     $ sudo killall pigpiod; while true; do sudo ./audio_shots 20 18 2500 2510; done
 
-I reduced frequency to 2500Hz and doubled exposure to 18µs (OK for "slowly moving" 36m/s pellet). In shooting position, I removed magzine first and did two empty shots, in order to retrieve two candidates for empty.pnm. Then I inserted magazine, aimed at the cross on lath, fired and immediately looked onto the HDMI monitor 1.5m distant. Because raspivid_ges recording is done with 1fps, I was able to verify that the first shot was good. Then I did three more shots the same way with the pellets with 1 single blue dot. Before shooting I had moved the camera view up a little. The bright area above black cardboard does not hurt, and the lath part with cross where the pellet hits was moved out of camera view. This resulted in frame where all pellet exposures happened against black background. On side left of the cross the blue dot shows "slow" rotation as seen before. Interesting is the part after hitting the lath, a completely different rotation of the blue dot. For details see corresponding fast camera panning animation in next section: 
+I reduced frequency to 2500Hz and doubled exposure to 18µs (OK for "slowly moving" 36m/s pellet). In shooting position, I removed magzine first and did two empty shots, in order to retrieve two candidates for empty.pnm. Then I inserted magazine, aimed at the cross on lath, fired and immediately looked onto the HDMI monitor 1.5m distant. Because raspivid_ges recording is done with 1fps, I was able to verify that the first shot was good. Then I did three more shots the same way with the pellets with 1 single blue dot. Before shooting I had moved the camera view up a little. The bright area above black cardboard does not hurt, and the lath part with cross where the pellet hits was moved out of camera view. This resulted in frame where all pellet exposures happened against black background. On side left of the cross the blue dot shows "slow" rotation as seen before. Interesting is the part after hitting the lath, a completely different rotation of the blue dot. For details see [corresponding fast camera panning animation](#user-content-camera_panning_2) in next section: 
 
 ![res/audio_shots.20_18_2500_2510.png](res/audio_shots.20_18_2500_2510.png)
 
@@ -314,11 +314,12 @@ For the different frames of the animation a single full height rectangle is take
 
 ![res/frame.210.6.anim.gif](res/frame.210.6.anim.gif)
 
-This is another very fast camera panning animation. It is done on frame with pellet exposures with 1 blue dot only, and where the pellet exposures after hitting a lath as described in Sound trigger section show a completely different kind of spin:
+<a name="camera_panning_2"></a>This is another very fast camera panning animation. It is done on frame with pellet exposures with 1 blue dot only, and where the pellet exposures after hitting a lath [as described in Sound trigger section](#user-content-sound_spin_speed) show a completely different kind of spin:
 
 ![res/frame.180.5.anim.gif](res/frame.180.5.anim.gif)
 
-As can be seen in the animation, this time a rotation of the blue dot is complete in roughly 5 frames. With capturing frequency of 2500Hz that is 500rps or 30000rpm rotation speed.
+As can be seen in the animation, this time a rotation of the blue dot is complete in roughly 5 frames. With capturing frequency of 2500Hz that is 500rps or 30000rpm rotation speed. Pellet spin is a normal rotation, around line through center of the circle described by blue dots and pellet center.
+
 
 ## Hardware camera sync pulses
 
