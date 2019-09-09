@@ -314,7 +314,7 @@ For the different frames of the animation a single full height rectangle is take
 
 ![res/frame.210.6.anim.gif](res/frame.210.6.anim.gif)
 
-<a name="camera_panning_2"></a>This is another very fast camera panning animation. It is done on frame with pellet exposures with 1 blue dot only, and where the pellet exposures after hitting a lath [as described in Sound trigger section](#user-content-sound_spin_speed) show a completely different kind of spin:
+<a name="camera_panning_2"></a>This is another very fast camera panning animation. It is done on frame with pellet exposures with 1 blue dot only, for the fully visible pellet exposures after hitting a lath [as described in Sound trigger section](#user-content-sound_spin_speed) show a completely different kind of spin:
 
 ![res/frame.180.5.anim.gif](res/frame.180.5.anim.gif)
 
