@@ -85,8 +85,11 @@ The captures done for airsoft pistol showed captured pellets with dark top becau
 <a name="blackBackground"></a>Most of the captures described on this repo were done without a black background. The dark background was achieved with long range of free space behind scene. That works fine because light intensity drops quadratic with distance. For [Sound trigger](#sound-trigger) work I wanted to have setup small and on my desk in reach. I created a black cardboard that I used as dark background, as can be seen on the left. This is not necessary in general if you have long free space after the scene. But if using black cardboard as background with 5000lm led flash, then it needs to be really black. I used "the blackest black" [Black 3.0](https://culturehustle.com/products/black-3-0-the-worlds-blackest-black-acrylic-paint-150ml) from kickstarter campain for that, it absorbs 98% of incoming light. In this setup I did make the 5000lm led with heatsink stand vertically, unlike lighting from bottom or top before. This allowed to use only a single of my two 5000lm leds (this type of lighting is more like the flashes of cameras, from direction of lens):
 ![setup w/ black background](res/IMG_020919_214148.jpg)
 
-<a name="daylightSetup"></a>I used a fast rotating mini drone propeller for experiment in [Daylight](#daylight) section. I did cut a circular disk out of cardboard, did cut a small hole into the center, and then painted one side with black, two times. I used Black 3.0 which absorbs 98% of light, but any other dark black will probably do as well. Then I removed blade from mini drone propeller, did put minimal amount of superglue on the motor around motor shaft (avoiding superglue to reach motor shaft), and did put circular disk over motor shaft. Finally I did put the blade onto motor shaft again. On the left you can see the circular black disk superglued onto the motor, and on the right you can see v1 camera as well as 5000lm led nearby:
+<a name="daylightSetup"></a>I used a fast rotating mini drone propeller for [experiment in Daylight section](#user-content-daylightexperiment). I did cut a circular disk out of cardboard, did cut a small hole into the center, and then painted one side with black, two times. I used Black 3.0 which absorbs 98% of light, but any other dark black will probably do as well. Then I removed blade from mini drone propeller, did put minimal amount of superglue on the motor around motor shaft (avoiding superglue to reach motor shaft), and did put circular disk over motor shaft. Finally I did put the blade onto motor shaft again. On the left you can see the circular black disk superglued onto the motor, and on the right you can see v1 camera as well as 5000lm led nearby:
 ![res/IMG_090919_164318.jpg](res/IMG_090919_164318.jpg)
+
+<a name="blackBesidesBladeTip"></a>This setup is based on the previous setup. In addition to black cardboard disk, here the blade is painted black as well (besides just one blade tip). That way only the small area at blade tip seems to move, as you can see in left image. In right image you can see the structure (I used Black 3.0 again, absorbing 98% of light). This setup allows for [20000eps frame](#user-content-20000eps):
+![res/propeller_black30.png](res/propeller_black30.png)
 
 ## Tools
 
@@ -190,6 +193,9 @@ Same scene with slightly different lighting (you can see 5 blades with reflectiv
 
 "shots 2 9 900000" captures two 9µs strobe pulse widths, 0.9s apart. With raspivid_ges tool's "-fps 1" default setting most times the first flash happens on one tst.h264 frame captured, and the 2nd flash happens on the next frame. But after 15 attempts I was successful and captured both flashes on same frame, proving that it is possible. See section [Hardware camera sync pulses](#hardware-camera-sync-pulses) on how to get both flashes captured on a single frame guaranteed: 
 ![multiple exposure frameC](res/multiple-exposure.C.jpg)
+
+<a name="20000eps"></a>"shots 34 9 41" captures 34 (9µs long) strobe pulse widths, 41µs apart. You can find description of the setup [here](#user-content-blackBesidesBladeTip). This is a 1000000/(9+41)=20000eps frame. Rotational speed is 1000000/(33.5*40)=746rps or 44776rpm (33.5 because first and last exposure in left bottom of frame are a bit too close together, so 34 is too big). With 34mm blade diameter, speed of the visible dot is 0.034×π×746=79.7m/s or 287km/h:
+![res/20000eps.34.9.41.a.png](res/20000eps.34.9.41.a.png)
 
 #### PWM exposure
 
@@ -367,7 +373,7 @@ This is another sample frame capture that way, which looks different because of 
 This is capture of airsoft pistol pellet colliding with slightly slated lath, as described in [Sound trigger](#sound-trigger) section. The difference is, that room window shutter was not closed. So this is a real global shutter capture (not "global external shutter" anymore). The 5000lm is close to the scene, you can see it in left bottom. The pellet exposures before black cardboard looks nearly as good as those taken in dark room. What you can see in addition is, that the pellet just reflected from lath cannot be seen at all, because lath is too bright. What you can see as well is that the wooden side of chest of drawers shines through leftmost pellet exposure. While darkness is not necessary, it is beneficial to exposure quality in frame though:
 ![res/daylight.2.png](res/daylight.2.png)
 
-For below global shutter frame the setup used is described [here](#user-content-daylightSetup). In order to not get too bright frames, 2MP recording is done with 30fps framerate. The capture was done with this command in one console:
+<a name="daylightExperiment"></a>For below global shutter frame the setup used is described [here](#user-content-daylightSetup). In order to not get too bright frames, 2MP recording is done with 30fps framerate. The capture was done with this command in one console:
 
     ./raspivid_ges -md 1 -p 10,10,960,540 -fps 30 -awb flash -o tst.h264 -t 0
 
