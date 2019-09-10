@@ -373,7 +373,7 @@ This is another sample frame capture that way, which looks different because of 
 This is capture of airsoft pistol pellet colliding with slightly slated lath, as described in [Sound trigger](#sound-trigger) section. The difference is, that room window shutter was not closed. So this is a real global shutter capture (not "global external shutter" anymore). The 5000lm is close to the scene, you can see it in left bottom. The pellet exposures before black cardboard looks nearly as good as those taken in dark room. What you can see in addition is, that the pellet just reflected from lath cannot be seen at all, because lath is too bright. What you can see as well is that the wooden side of chest of drawers shines through leftmost pellet exposure. While darkness is not necessary, it is beneficial to exposure quality in frame though:
 ![res/daylight.2.png](res/daylight.2.png)
 
-<a name="daylightExperiment"></a>For below global shutter frame the setup used is described [here](#user-content-daylightSetup). In order to not get too bright frames, 2MP recording is done with 30fps framerate. The capture was done with this command in one console:
+<a name="daylightExperiment"></a>For below global shutter frame the setup used is described [here](#user-content-daylightsetup). In order to not get too bright frames, 2MP recording is done with 30fps framerate. The capture was done with this command in one console:
 
     ./raspivid_ges -md 1 -p 10,10,960,540 -fps 30 -awb flash -o tst.h264 -t 0
 
