@@ -85,7 +85,7 @@ The captures done for airsoft pistol showed captured pellets with dark top becau
 <a name="blackBackground"></a>Most of the captures described on this repo were done without a black background. The dark background was achieved with long range of free space behind scene. That works fine because light intensity drops quadratic with distance. For [Sound trigger](#sound-trigger) work I wanted to have setup small and on my desk in reach. I created a black cardboard that I used as dark background, as can be seen on the left. This is not necessary in general if you have long free space after the scene. But if using black cardboard as background with 5000lm led flash, then it needs to be really black. I used "the blackest black" [Black 3.0](https://culturehustle.com/products/black-3-0-the-worlds-blackest-black-acrylic-paint-150ml) from kickstarter campain for that, it absorbs 98% of incoming light. In this setup I did make the 5000lm led with heatsink stand vertically, unlike lighting from bottom or top before. This allowed to use only a single of my two 5000lm leds (this type of lighting is more like the flashes of cameras, from direction of lens):
 ![setup w/ black background](res/IMG_020919_214148.jpg)
 
-<a name="daylightSetup"></a>TBD
+<a name="daylightSetup"></a>I used a fast rotating mini drone propeller for experiment in [Daylight](#daylight) section. I did cut a circular disk out of cardboard, did cut a small hole into the center, and then painted one side with black, two times. I used Black 3.0 which absorbs 98% of light, but any other dark black will probably do as well. Then I removed blade from mini drone propeller, did put minimal amount of superglue on the motor around motor shaft (avoiding superglue to reach motor shaft), and did put circular disk over motor shaft. Finally I did put the blade onto motor shaft again. On the left you can see the circular black disk superglued onto the motor, and on the right you can see v1 camera as well as 5000lm led nearby:
 ![res/IMG_090919_164318.jpg](res/IMG_090919_164318.jpg)
 
 ## Tools
@@ -363,10 +363,17 @@ This is another sample frame capture that way, which looks different because of 
 
 
 ## Daylight
-TBD
+
+This is capture of airsoft pistol pellet colliding with slightly slated lath, as described in [Sound trigger](#sound-trigger) section. The difference is, that room window shutter was not closed. So this is a real global shutter capture (not "global external shutter" anymore). The 5000lm is close to the scene, you can see it in left bottom. The pellet exposures before black cardboard looks nearly as good as those taken in dark room. What you can see in addition is, that the pellet just reflected from lath cannot be seen at all, because lath is too bright. What you can see as well is that the wooden side of chest of drawers shines through leftmost pellet exposure. While darkness is not necessary, it is beneficial to exposure quality in frame though:
 ![res/daylight.2.png](res/daylight.2.png)
 
-TBD
+For below global shutter frame the setup used is described [here](#user-content-daylightSetup). In order to not get too bright frames, 2MP recording is done with 30fps framerate. The capture was done with this command in one console:
+
+    ./raspivid_ges -md 1 -p 10,10,960,540 -fps 30 -awb flash -o tst.h264 -t 0
+
+And this command in another console, executed a few times for being able to select best frame:
+
+    ./shots 5 9 116
+
+The frame has sharp blade exposures caught in 5 locations, daylight scene around circular disk, colors! From 1st to 5th blade exposure time passed is 4×(9µs+116µs)=500µs, and the covered part of black circular disk is roughly 1/3rd. The rotational speed of blade is therefore 2000/3=666.66rps or 40000rpm! Blade diameter is 34mm, so rotational speed at blade tip is 0.034×π×40000/60=71.2m/s or 256.3km/h:
 ![res/daylight.4.png](res/daylight.4.png)
-
-
