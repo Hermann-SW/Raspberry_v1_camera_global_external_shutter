@@ -42,7 +42,8 @@ These methods for total darkness work:
 - cover complete setup (2nd "shots tool" section example) with moving box
 - cover only camera, bright light and eg. propeller with moving box 
 
-It turned out that darkness is not necessarily needed (although better frames can be captured with darkness). See [Daylight](#daylight) section for details.
+It turned out that darkness is not necessarily needed (although better frames can be captured with darkness). See [Daylight](#daylight) section for details. Just as a teaser, this is multiple exposure frame captured at daylight:
+![res/daylight.4.png](res/daylight.4.png)
 
 <a name="diycomparison"></a>There are commercially available highspeed flashes like the [Vela One](http://www.vela.io/vela-one-high-speed-flash). Compared to the 5000lm diy highspeed flash described in next section (that has proven to be able to capture with 4µs flash duration), the Vela One has advantages and disadvantages:
 - (+) allows for flash durations down to 0.5µs (diy will not provide enough light for that duration)
