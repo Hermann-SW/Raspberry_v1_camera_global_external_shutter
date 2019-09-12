@@ -42,7 +42,7 @@ These methods for total darkness work:
 - cover complete setup (2nd "shots tool" section example) with moving box
 - cover only camera, bright light and eg. propeller with moving box 
 
-It turned out that complete darkness is not necessarily needed (although better frames can be captured with darkness), but only darkness behind fast moving parts. See [Daylight](#daylight) section for details. Just as a teaser, this is multiple exposure frame of fast rotating mini drone propeller captured at daylight:
+It turned out that complete darkness is not necessarily needed (although better frames can be captured that way), but only darkness behind fast moving parts. See [Daylight](#daylight) section for details. Just as a teaser, this is 5 exposures frame of fast rotating mini drone propeller captured at daylight:
 ![res/daylight.4.png](res/daylight.4.png)
 
 <a name="diycomparison"></a>There are commercially available highspeed flashes like the [Vela One](http://www.vela.io/vela-one-high-speed-flash). Compared to the 5000lm diy highspeed flash described in next section (that has proven to be able to capture with 4µs flash duration), the Vela One has advantages and disadvantages:
