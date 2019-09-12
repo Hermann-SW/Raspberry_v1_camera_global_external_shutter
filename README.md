@@ -195,7 +195,7 @@ Same scene with slightly different lighting (you can see 5 blades with reflectiv
 "shots 2 9 900000" captures two 9µs strobe pulse widths, 0.9s apart. With raspivid_ges tool's "-fps 1" default setting most times the first flash happens on one tst.h264 frame captured, and the 2nd flash happens on the next frame. But after 15 attempts I was successful and captured both flashes on same frame, proving that it is possible. See section [Hardware camera sync pulses](#hardware-camera-sync-pulses) on how to get both flashes captured on a single frame guaranteed: 
 ![multiple exposure frameC](res/multiple-exposure.C.jpg)
 
-<a name="20000eps"></a>"shots 34 9 41" captures 34 (9µs long) strobe pulse widths, 41µs apart. You can find description of the setup [here](#user-content-blackBesidesBladeTip). This is a 1000000/(9+41)=20000eps frame. Rotational speed is 1000000/(33.5*40)=746rps or 44776rpm (33.5 because first and last exposure in left bottom of circular disk are a bit too close together, so 34 is too big). With 34mm blade diameter, speed of the visible dot is 0.034×π×746=79.7m/s or 287km/h:
+<a name="20000eps"></a>"shots 34 9 41" captures 34 (9µs long) strobe pulse widths, 41µs apart. You can find description of the setup [here](#user-content-blackbesidesbladetip). This is a 1000000/(9+41)=20000eps frame. Rotational speed is 1000000/(33.5*40)=746rps or 44776rpm (33.5 because first and last exposure in left bottom of circular disk are a bit too close together, so 34 is too big). With 34mm blade diameter, speed of the visible dot is 0.034×π×746=79.7m/s or 287km/h:
 ![res/20000eps.34.9.41.a.png](res/20000eps.34.9.41.a.png)
 
 #### PWM exposure
