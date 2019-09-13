@@ -26,7 +26,7 @@ This repo describes how to build an external shutter for v1 camera and provides 
 
 So why do you may want global shutter videos?
 
-Mostly for fast moving scenes. The propeller of mini drone rotates with 26000rpm and has a blade diameter of 34mm. The radial speed at blade tips is quite high, 0.034m×pi×(26000/60)=46.3m/s(!) or 166.6km/h.
+Mostly for fast moving scenes. The propeller of mini drone rotates with 26000rpm and has a diameter of 34mm. The radial speed at blade tips is quite high, 0.034m×pi×(26000/60)=46.3m/s(!) or 166.6km/h.
 
 
 This is a frame you get with v1 camera normal [rolling shutter](https://en.wikipedia.org/wiki/Rolling_shutter) mode, total distortion:  
@@ -72,7 +72,7 @@ The 0-24V IRF520 mosfets are used in series to control 38V/1.5A from 50W led dri
 In above photo reflector sits on 5000lm led sits on top of aluminum heatsink. Here is another option for light direction vertically down, aluminum heatsink on top of 5000lm led on top of reflector on top of plexiglas above scene:  
 ![5000lm led on reflector](res/IMG_290319_182453.quarter.part.jpg)
 
-The smaller the distance from led to object, the more lumens from same 5000lm led. In case you can place the object you want to light directly above the led, it is better to not use the reflector at all. The Raspberry v1 camera captures from below led level slightly upwards. This increases brightness of captured frames over using the reflector:  
+The smaller the distance from led to object, the more lux from same 5000lm led hit the object (lux is inversely quadratric proportional to distance). In case you can place the object you want to light directly above the led, it is better to not use the reflector at all. The Raspberry v1 camera captures from below led level slightly upwards. This increases brightness of captured frames over using the reflector:  
 ![setup w/o reflector](res/setup.wo.reflector.png)
 
 See [airshot pistol shot just above 5000lm led without reflector](#user-content-bottom_led) for another example.
@@ -80,7 +80,7 @@ See [airshot pistol shot just above 5000lm led without reflector](#user-content-
 The captures done for airsoft pistol showed captured pellets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led (both connected in parallel) lighting from top resolved this issue, see for [airgun shot](#user-content-bottom_plus_top_led) captured with that setup:  
 ![setup w/ two leds](res/IMG_060619_182038.jpg)
 
-<a name="setup2leds"></a>This is complete setup with airgun clamped to desk. Some cables are now passed below living room desk in order to not show up in camera view. See [9000eps](#user-content-9000eps) airgun pellet capture done with this setup:
+<a name="setup2leds"></a>This is complete setup with airgun clamped to desk. Some cables are now passed below living room desk in order to not show up in camera view. Lower right cardboard box filled with many thick newspapers acts as pellet catcher. See [9000eps](#user-content-9000eps) airgun pellet capture done with this setup:
 ![setup w/ clamped airgun](res/IMG_160619_103844.jpg)
 
 <a name="blackBackground"></a>Most of the captures described on this repo were done without a black background. The dark background was achieved with long range of free space behind scene. That works fine because light intensity drops quadratic with distance. For [Sound trigger](#sound-trigger) work I wanted to have setup small and on my desk in reach. I created a black cardboard that I used as dark background, as can be seen on the left. This is not necessary in general if you have long free space after the scene. But if using black cardboard as background with 5000lm led flash, then it needs to be really black. I used "the blackest black" [Black 3.0](https://culturehustle.com/products/black-3-0-the-worlds-blackest-black-acrylic-paint-150ml) from kickstarter campain for that, it absorbs 98% of incoming light. In this setup I did make the 5000lm led with heatsink stand vertically, unlike lighting from bottom or top before. This allowed to use only a single of my two 5000lm leds (this type of lighting is more like the flashes of cameras, from direction of lens):
@@ -162,7 +162,7 @@ In this scenario more than one strobe flash happens per frame captured. Since by
 
 #### shots tool
 
-Tool [shots](tools/shots) allows to send multiple strobe pulses (by default five 9µs pulses 241µs apart on GPIO13):
+Tool [shots](tools/shots) allows to send multiple strobe pulses (by default five 9µs duration pulses, 241µs apart on GPIO13):
 
 	$ shots
 	$
@@ -182,7 +182,7 @@ This is a "8000 eps frame" (1000000/(9+116)):
 ![multiple exposure frame6](res/multiple-exposure.6.jpg)
 
 
-Tool [5shots](tools/5shots) does 5 exposures with different strobe pulse widths (1/3/5/7/9µs pulse widths):
+Tool [5shots](tools/5shots) does 5 exposures with different strobe pulse widths (1/3/5/7/9µs):
 
 	$ 5shots
 	$
@@ -192,10 +192,10 @@ Tool [5shots](tools/5shots) does 5 exposures with different strobe pulse widths 
 Same scene with slightly different lighting (you can see 5 blades with reflective tape at bottom):
 ![multiple exposure frameB](res/multiple-exposure.B.jpg)
 
-"shots 2 9 900000" captures two 9µs strobe pulse widths, 0.9s apart. With raspivid_ges tool's "-fps 1" default setting most times the first flash happens on one tst.h264 frame captured, and the 2nd flash happens on the next frame. But after 15 attempts I was successful and captured both flashes on same frame, proving that it is possible. See section [Hardware camera sync pulses](#hardware-camera-sync-pulses) on how to get both flashes captured on a single frame guaranteed: 
+"shots 2 9 900000" captures two 9µs duration strobe pulses, 0.9s apart. With raspivid_ges tool's "-fps 1" default setting most times the first flash happens on one tst.h264 frame captured, and the 2nd flash happens on the next frame. But after 15 attempts I was successful and captured both flashes on same frame, proving that it is possible. See section [Hardware camera sync pulses](#hardware-camera-sync-pulses) on how to get both flashes captured on a single frame guaranteed: 
 ![multiple exposure frameC](res/multiple-exposure.C.jpg)
 
-<a name="20000eps"></a>"shots 34 9 41" captures 34 (9µs long) strobe pulse widths, 41µs apart. You can find description of the setup [here](#user-content-blackbesidesbladetip). This is a 1000000/(9+41)=20000eps frame. Rotational speed is 1000000/(33.5*40)=746rps or 44776rpm (33.5 because first and last exposure in left bottom of circular disk are a bit too close together, so 34 is too big). With 34mm blade diameter, speed of the visible dot is 0.034×π×746=79.7m/s or 287km/h:
+<a name="20000eps"></a>"shots 34 9 41" captures 34 (9µs long) strobe pulses, 41µs apart. You can find description of the setup [here](#user-content-blackbesidesbladetip). This is a 1000000/(9+41)=20000eps frame. Rotational speed is 1000000/(33.5*50)=597rps or 35820rpm (33.5 because first and last exposure in left bottom of circular disk are a bit too close together, so 34 is too big). With 34mm propeller diameter, speed of the visible dot is 0.034×π×597=63.8m/s or 230km/h:
 ![res/20000eps.34.9.41.a.png](res/20000eps.34.9.41.a.png)
 
 #### PWM exposure
@@ -382,5 +382,5 @@ And this command in another console, executed a few times for being able to sele
 
     ./shots 5 9 116
 
-The frame has sharp blade exposures caught in 5 locations, daylight scene around circular disk, colors! From 1st to 5th blade exposure time passed is 4×(9µs+116µs)=500µs, and the covered part of black circular disk is roughly 1/3rd. The rotational speed of blade is therefore 2000/3=666.66rps or 40000rpm! Blade diameter is 34mm, so rotational speed at blade tip is 0.034×π×40000/60=71.2m/s or 256.3km/h:
+The frame has sharp blade exposures caught in 5 locations, daylight scene around circular disk, colors! From 1st to 5th blade exposure time passed is 4×(9µs+116µs)=500µs, and the covered part of black circular disk is roughly 1/3rd. The rotational speed of blade is therefore 2000/3=666.66rps or 40000rpm! Propeller diameter is 34mm, so rotational speed at blade tip is 0.034×π×40000/60=71.2m/s or 256.3km/h:
 ![res/daylight.4.png](res/daylight.4.png)
