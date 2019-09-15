@@ -97,7 +97,7 @@ The captures done for airsoft pistol showed captured pellets with dark top becau
 <a name="blackBesidesBladeTip"></a>This setup is based on the previous setup. In addition to black cardboard disk, here the blade is painted black as well (besides just one blade tip). That way only the small area at blade tip seems to move, as you can see in left image. In right image you can see the structure (I used Black 3.0 again, absorbing 98% of light). This setup allows for [20000eps frame](#user-content-20000eps):  
 ![res/propeller_black30.png](res/propeller_black30.png)
 
-<a name="blackBesidesWhite"></a>I just painted another (this time white) propeller black, and made the small area at blade tip narrow in order to be able to place much more markers on frame without overlap than with previous propeller. This setup allows for [20000eps frame](#user-content-20000eps) as well:  
+<a name="blackBesidesWhite"></a>I just painted another (this time white) propeller black, and made the small area at blade tip narrow in order to be able to place much more markers on frame without overlap than with previous propeller. This setup allows for another [20000eps frame](#user-content-20000epswhite) as well:  
 ![res/propeller_black30.2nd.png](res/propeller_black30.2nd.png)
 
 ## Tools
