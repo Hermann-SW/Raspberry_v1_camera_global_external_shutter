@@ -15,6 +15,11 @@ This is the parent project of [ESP32-CAM ov2640 sensor global (external) shutter
   * [PWM exposure](#pwm-exposure)
   * [Sound trigger](#sound-trigger)
   * [kFPS videos from kEPS multiple exposure frames](#kFPS-videos-from-kEPS-multiple-exposure-frames)
+    * [simple technique](#simple-technique)
+    * [full and empty frame](#full-and-empty-frame)
+    * [camera software panning](#camera-software-panning)
+    * [empty frame via heal selection](#empty-frame-via-heal-selection)
+    * [circle tool](#circle-tool)
 * [Hardware camera sync pulses](#hardware-camera-sync-pulses)
 * [Daylight](#daylight)
 
@@ -91,6 +96,9 @@ The captures done for airsoft pistol showed captured pellets with dark top becau
 
 <a name="blackBesidesBladeTip"></a>This setup is based on the previous setup. In addition to black cardboard disk, here the blade is painted black as well (besides just one blade tip). That way only the small area at blade tip seems to move, as you can see in left image. In right image you can see the structure (I used Black 3.0 again, absorbing 98% of light). This setup allows for [20000eps frame](#user-content-20000eps):
 ![res/propeller_black30.png](res/propeller_black30.png)
+
+<a name="blackBesidesWhite"></a>I just painted another (this time white) propeller black, and made the small area at blade tip narrow in order to be able to place much more markers on frame without overlap than with previous propeller. This setup allows for [20000eps frame](#user-content-20000eps) as well:
+![res/propeller_black30.2nd.png](res/propeller_black30.2nd.png)
 
 ## Tools
 
@@ -198,6 +206,11 @@ Same scene with slightly different lighting (you can see 5 blades with reflectiv
 <a name="20000eps"></a>"shots 34 9 41" captures 34 (9µs long) strobe pulses, 41µs apart. You can find description of the setup [here](#user-content-blackbesidesbladetip). This is a 1000000/(9+41)=20000eps frame. Rotational speed is 1000000/(33.5*50)=597rps or 35820rpm (33.5 because first and last exposure in left bottom of circular disk are a bit too close together, so 34 is too big). With 34mm propeller diameter, speed of the visible dot is 0.034×π×597=63.8m/s or 230km/h:
 ![res/20000eps.34.9.41.a.png](res/20000eps.34.9.41.a.png)
 
+<a name="20000epsWhite"></a>"shots 43 7 43" captures 43 strobe pulses. I reduced strobe duration to 7µs in order to reduce overall brightness of scene. You can find description of the setup [here](#user-content-blackbesideswhite). This is a 1000000/(7+43)=20000eps frame as well. Rotational speed is 1000000/(43*50)=465rps or 27907rpm. Reason for slower speed was that motor was powered with 3.3V this time, but with 4.3V previously. With 34mm propeller diameter, speed of the visible white marker is 0.034×π×465=49.7m/s or 179km/h:
+![res/20000eps.43.7.43.a.png](res/20000eps.43.7.43.a.png)
+
+How 20000fps videos were created from both 20000eps frames is described [here](#empty-frame-via-heal-selection).
+
 #### PWM exposure
 
 Above captures were all radial, this one is linear. The frame captured 6mm diameter airsoft pistol pellet in flight. A fixed length pigpio waveform (as in shots) would need synchronization between triggering shot and triggering waveform (accoustic, laser light barrier or 665/1007fps high framerate video detection).  The simpler approach taken here is to use 3kHz PWM signal on GPIO13 with duty cycle 2.5% (8.33µs). Each 1fps frame gets 3000 flashes. This cannot be done inside moving box because all you would get is a white frame. Tool pwm_ges called without arguments uses exactly those settings as defaults. The command generates 6000 strobe pulses in order to not confuse raspivid AWB:
@@ -297,6 +310,8 @@ Now that we can create thousands of eps multiple exposure frames (kEPS), creatin
 
 Fastest framerates for raspivid (640x480) videos are 90fps for v1 camera and 200fps for v2 camera. Fastest framerates for raspiraw videos are 665fps for v1 camera (640x64) and 1007fps for v2 camera (640x75). Creating kFPS framerate videos from kEPS multiple exposure frames is the only way for Raspberry v1 camera (not possible with v2 camera) to create this kind of super high framerate videos. And these vidoes can be of quite big frame size like the 2MP airsoft pistol multiple exposure frame.
 
+#### simple technique
+
 [6mm.frame3946.jpg.sh](res/6mm.frame3946.jpg.sh) is a simple tool based on netpbm image tools and ffmpeg. It takes [6mm.frame3946.jpg](res/6mm.frame3946.jpg) image as input. The coordinates of the moving parts (left/top/width/height) used in the script were determined manually with gimp. The 3000fps animation was created with this command (scaled down from 1920 to 640 horizontally, animation framerate 2fps, 1500 times slower than real):
 
 	./6mm.frame3946.jpg.sh 640 2
@@ -317,11 +332,15 @@ The sript is now modified so that it allows for optional 3rd and 4th argument. T
 
 ![res/pointed.pellet.frame0360_undistorted.jpg.594.3.70.20.anim.gif](res/pointed.pellet.frame0360_undistorted.jpg.594.3.70.20.anim.gif)
 
+#### full and empty frame
+
 <a name="empty_full"></a>Tool [mak.640.5.sh](res/mak.640.5.sh) does not just fill the pellet exposures with black. Instead it takes two 2MP frames, one frame with pellet exposures [full.pnm](res/full.pnm) and another frame taken with same multiple exposures but without pellets captured [empty.pnm](res/empty.pnm):  
 ![res/pellets.empty-full.png](res/pellets.empty-full.png)  
 For the different frames of the animation a single full height rectangle is taken from full.pnm and overlayed onto empty.pnm, and these frames are converted to video and animated .gif as before. The 1920x1080 frames get scaled down to width 640. 5000eps frame full.pnm gets 5000fps video that way; the animation plays at 5fps, 1000 times slower than real:  
 
 ![res/frame.640.5.anim.gif](res/frame.640.5.anim.gif)
+
+#### camera software panning
 
 <a name="camera_panning"></a>In [Sound trigger](#sound-trigger) section the pellet capture with blue dots on pellet north and south pole did show that pellet is spinning fast (5625rpm). Since an animation tells more than 1000 words, tool [mak.210.6.sh](res/mak.210.6.sh) creates a 6000fps animation for that 6000eps frame, this time with a very fast camera panning. The animation shows the spinnining with moving blue dot clearly; played at 6fps, 1000× slower than real:
 
@@ -333,6 +352,33 @@ For the different frames of the animation a single full height rectangle is take
 
 As can be seen in the animation, this time a rotation of the blue dot is complete in roughly 5 frames. With capturing frequency of 2500Hz that is 500rps or 30000rpm rotation speed. Pellet spin is a normal rotation, around line through center of the circle described by blue dots and pellet center.
 
+#### empty frame via heal selection
+
+For the [20000eps frames](#user-content-20000eps) it is difficult to get an empty frame. Touching the propeller is likely to result in a different FoV captured.
+
+I learned that gimp's "Filters->Enhance->Heal selection" allows to let objects disappear from an image. After installing gimp-resynthesizer package that function (among many others) became available. I just created a selection of some markers and did heal the selection. After done with all markers, I selected some strange artefacts created by healing and healed them away as well. Right frame is healed left frame and acts as empty frame:  
+<img width=480 src="res/20000eps.43.7.43.a.png"> <img width=480 src="res/20000eps.43.7.43.a.empty.png">  
+
+#### circle tool
+
+I did not want to determine the coordinates of the white narrow markers manually using gimp. So I wrote tool [circle.c](res/circle.c) that has two modes. In first mode it overlays fixed diameter white circles over the full frame allowing to see what the programs parameters result in. Looking at the generated overlay image with an image viewer that automaticlly updates on file change (I used "eog"), the display gets updates for each command run with changed parameters. A single run of "circle.c" could suffice to cover all markers. But the full frame is no perfect circle, it is an ellipse instead due to perspective. This command covers top right quarter of the markers:
+
+    $ ./circle 1340 495 350 93 8.7 11 20000eps.43.7.43.a 45x45 >y.pnm 2>>/dev/null 
+
+Shell script 20000eps.43.7.43.a.sh contains 4 circle commands covering all markers:  
+![res/20000eps.circle.anim.gif](res/20000eps.circle.anim.gif)
+
+The shell script uses "circle.c" in second mode, where for the determined coordinates netpbm commands get created. Instead of 45x45.pgm used before, in this mode 45x45.full.pgm gets used, which is a filled circle with diameter 45 pixels. For a given coordinate the full circle gets overlayed onto a fully black 1920x1080 frame, and then this temporary portable grey map is used to cut out one marker from full frame and overlay it on empty frame. After having created the single frames needed this way, gstreamer and ffmpeg are used (in [pngs2anim](res/pngs2anim) tool) as before to create animated .gif from those frames. Executing the shell script generates the first 20000fps video, played at 20fps, 1000× slower than real:
+
+    $ 20000eps.43.7.43.a.sh
+
+![res/20000eps.43.7.43.a.anim.gif](res/20000eps.43.7.43.a.anim.gif)
+
+Having this technique, creating shell script for the other 20000eps frame was easy (played at 20fps, 1000× slower than real):
+
+    $ 20000eps.34.9.41.a.sh
+
+![res/20000eps.34.9.41.a.anim.gif](res/20000eps.34.9.41.a.anim.gif)
 
 ## Hardware camera sync pulses
 
