@@ -357,7 +357,7 @@ As can be seen in the animation, this time a rotation of the blue dot is complet
 For the [20000eps frames](#user-content-20000eps) it is difficult to get an empty frame. Touching the propeller is likely to result in a different FoV captured.
 
 I learned that gimp's "Filters->Enhance->Heal selection" allows to let objects disappear from an image. After installing gimp-resynthesizer package that function (among many others) became available. I just created a selection of some markers and did heal the selection. After done with all markers, I selected some strange artefacts created by healing and healed them away as well. Right frame is healed left frame and acts as empty frame:  
-<img width=480 src="res/20000eps.43.7.43.a.png"> <img width=480 src="res/20000eps.43.7.43.a.empty.png">  
+<nobr><img width=480 src="res/20000eps.43.7.43.a.png"> <img width=480 src="res/20000eps.43.7.43.a.empty.png"></nobr>
 
 #### circle tool
 
