@@ -115,7 +115,7 @@ Unlike Raspberry v1 camera that needs dark scene for taking global external shut
 ![daylight_shots_ov2640](res/ov2640.global_shutter_done.shots.no_box.png)
 
 This is no difference anymore, Raspberry v1 camera can do global shutter frames at daylight as well. Dark background is preferable behind fast moving object:  
-![daylight.4.png](../../../res/daylight.4.png)
+![daylight.4.png](../../../raw/master/res/daylight.4.png)
 
 #### Mixed mode rolling+global shutter frames
 
