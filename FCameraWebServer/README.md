@@ -132,10 +132,11 @@ In another posting of associated thread this fully mixed rolling+global shutter 
 * Raspberry v2 camera Sony imx219 sensor is different; does it allow for implicit global shutter capturing as well?
 
 
-Positive answer to second question might allow to [capture in flight pellet as in below 9000eps (Exposures Per Second) frame](../../../#user-content-9000eps) (96.9m/s / 9000Hz = 1.077cm between exposures) with Raspberry v1 camera at daylight ...  
-![airgun pellet frames](../res/pointed.pellet.frame0360.jpg)
-   
-   
+Positive answer to second question might allow to capture inflight pellet with Raspberry v1 camera at daylight ...  
+
+This is no question anymore, without answering second question capturing pellet inflight at daylight with v1 camera is possible:  
+![daylight.2.png](../../../raw/master/res/daylight.2.png)
+
    
    
    
