@@ -5,7 +5,13 @@ Associated [Raspberry forum thread](https://www.raspberrypi.org/forums/viewtopic
 This is the parent project of [ESP32-CAM ov2640 sensor global (external) shutter](../../tree/master/FCameraWebServer).
 
 * [Introduction](#introduction)
+  * [So why do you may want global shutter videos?](#so-why-do-you-may-want-global-shutter-videos)
+  * [Comparison of commercially available and diy highspeed flashes](#comparison-of-commercially-available-and-diy-highspeed-flashes)
 * [Setup for global external shutter](#setup-for-global-external-shutter)
+  * [basic diy highspeed flash capturing](#basic-diy-highspeed-flash-capturing)
+  * [two LEDs](#two-leds)
+  * [black background](#black-background)
+  * [black propeller on black background](#black-propeller-on-black-background)
 * [Tools](#tools)
 * [Requirements](#requirements)
 * [Capturing](#capturing)
@@ -29,7 +35,7 @@ Raspberry v1 camera (or clone, v1 camera was sold last 2016 by Raspberry Pi Foun
 
 This repo describes how to build an external shutter for v1 camera and provides tools allowing for taking Raspberry v1 camera global external shutter videos.
 
-So why do you may want global shutter videos?
+#### So why do you may want global shutter videos?
 
 Mostly for fast moving scenes. The propeller of mini drone rotates with 26000rpm and has a diameter of 34mm. The radial speed at blade tips is quite high, 0.034m×pi×(26000/60)=46.3m/s(!) or 166.6km/h.
 
@@ -50,6 +56,8 @@ These methods for total darkness work:
 It turned out that complete darkness is not necessarily needed (although better frames can be captured that way), but only darkness behind fast moving parts. See [Daylight](#daylight) section for details. Just as a teaser, this is 5 exposures frame of fast rotating mini drone propeller captured at daylight:
 ![res/daylight.4.png](res/daylight.4.png)
 
+#### Comparison of commercially available and diy highspeed flashes
+
 <a name="diycomparison"></a>There are commercially available highspeed flashes like the [Vela One](http://www.vela.io/vela-one-high-speed-flash). Compared to the 5000lm diy highspeed flash described in next section (that has proven to be able to capture with 4µs flash duration), the Vela One has advantages and disadvantages:
 - (+) allows for flash durations down to 0.5µs (diy will not provide enough light for that duration)
 - (+) provides 1 million lumens compared to 5000lm
@@ -59,6 +67,8 @@ It turned out that complete darkness is not necessarily needed (although better 
 The first point can be mitigated a bit for diy highspeed flash. What really counts is lux, not lumens. For given lumen, lux is inversely quadratric proportional to distance (reducing distance by factor x increases lux by factor x²). The airsoft pellet trajectories just above [5000lm led (without COB reflector) shown below](#user-content-9000eps) provided an immense increase of lux hitting the flying pellet.
 
 ## Setup for global external shutter
+
+#### basic diy highspeed flash capturing
 
 This is the setup:
 ![Setup for global external shutter](res/IMG_270519_182616.jpg)
@@ -82,17 +92,23 @@ The smaller the distance from led to object, the more lux from same 5000lm led h
 
 See [airshot pistol shot just above 5000lm led without reflector](#user-content-bottom_led) for another example.
 
+#### two LEDs
+
 The captures done for airsoft pistol showed captured pellets with dark top because of led light from bottom only. Adding a 2nd 50W led driver and 2nd 5000 lm led (both connected in parallel) lighting from top resolved this issue, see for [airgun shot](#user-content-bottom_plus_top_led) captured with that setup:  
 ![setup w/ two leds](res/IMG_060619_182038.jpg)
 
 <a name="setup2leds"></a>This is complete setup with airgun clamped to desk. Some cables are now passed below living room desk in order to not show up in camera view. Lower right cardboard box filled with many thick newspapers acts as pellet catcher. See [9000eps](#user-content-9000eps) airgun pellet capture done with this setup:  
 ![setup w/ clamped airgun](res/IMG_160619_103844.jpg)
 
+#### black background
+
 <a name="blackBackground"></a>Most of the captures described on this repo were done without a black background. The dark background was achieved with long range of free space behind scene. That works fine because light intensity drops quadratic with distance. For [Sound trigger](#sound-trigger) work I wanted to have setup small and on my desk in reach. I created a black cardboard that I used as dark background, as can be seen on the left. This is not necessary in general if you have long free space after the scene. But if using black cardboard as background with 5000lm led flash, then it needs to be really black. I used "the blackest black" [Black 3.0](https://culturehustle.com/products/black-3-0-the-worlds-blackest-black-acrylic-paint-150ml) from kickstarter campain for that, it absorbs 98% of incoming light. In this setup I did make the 5000lm led with heatsink stand vertically, unlike lighting from bottom or top before. This allowed to use only a single of my two 5000lm leds (this type of lighting is more like the flashes of cameras, from direction of lens):  
 ![setup w/ black background](res/IMG_020919_214148.jpg)
 
 <a name="daylightSetup"></a>I used a fast rotating mini drone propeller for [experiment in Daylight section](#user-content-daylightexperiment). I did cut a circular disk out of cardboard, did cut a small hole into the center, and then painted one side with black, two times. I used Black 3.0 which absorbs 98% of light, but any other dark black will probably do as well. Then I removed blade from mini drone propeller, did put minimal amount of superglue on the motor around motor shaft (avoiding superglue to reach motor shaft), and did put circular disk over motor shaft. Finally I did put the blade onto motor shaft again. On the left you can see the circular black disk superglued onto the motor, and on the right you can see v1 camera as well as 5000lm led nearby:  
 ![res/IMG_090919_164318.jpg](res/IMG_090919_164318.jpg)
+
+#### black propeller on black background
 
 <a name="blackBesidesBladeTip"></a>This setup is based on the previous setup. In addition to black cardboard disk, here the blade is painted black as well (besides just one blade tip). That way only the small area at blade tip seems to move, as you can see in left image. In right image you can see the structure (I used Black 3.0 again, absorbing 98% of light). This setup allows for [20000eps frame](#user-content-20000eps):  
 ![res/propeller_black30.png](res/propeller_black30.png)
@@ -136,7 +152,7 @@ Hardware PWM is available on GPIO(12|18) and GPIO(13|19) only (pigpio [software 
 
 ## Capturing
 
-Just calling "raspivid_ges" starts raspivid with default parameters (mode 1 capture at 1fps, 960x540 preview window, flash AWB, output to tst.h264, in background, endless runtime), triggers 2s continuous strobe just before starting raspivid for getting correct settings by AWB, injects I2C commands to bring v1 camera into global external shutter mode and waits for raspivid to end. With default parameter endless runtime you can simply end raspivid_ges by pressing CTRL-C. In case you provide different set of parameters and do some "-t ..." setting, raspivid_ges ends after raspivid completed.
+Just calling "raspivid_ges" starts raspivid with default parameters (mode 1 capture at 1fps, 960x540 preview window, flash AWB, output to tst.h264, in background, endless runtime), triggers 2s continuous strobe in parallel to starting raspivid for getting correct settings by AWB, injects I2C commands to bring v1 camera into global external shutter mode and waits for raspivid to end. With default parameter endless runtime you can simply end raspivid_ges by pressing CTRL-C. In case you provide different set of parameters and do some "-t ..." setting, raspivid_ges ends after raspivid completed.
 
 If you want one terminal only (text mode/X11 or ssh session), you can start raspivid_ges in background as well, otherwise you can execute the tools shot/shots/5shots/pwm_ges from a second terminal. You can repeat executing those tools while raspivid_ges is running. In case HDMI monitor is connected, you can directly see the effects on calling such a tool (with a <1s delay) on HDMI monitor preview. One property of global external shutter technique is, that you can look at the rotating propeller directly without HDMI monitor, and see the same global shutter effects directly with just your eyes.
 
@@ -152,7 +168,7 @@ So a session for capturing a single "shot" tool frame example is this:
 	$ logout
 	$ rm -f frame????.jpg; scp pi@yourpi:frame????.jpg .; eog frame????.jpg
 
-You will step through the extracted 2MP frames from captured tst.h264 with eog tool to find the one frame with the captured flash.
+You will step through the extracted 2MP frames from captured tst.h264 with eog tool to find the one frame with the captured flash. Alternatively you can sort the frames by size with "ls -lS frame????.jpg | head" and find the captured flash among the biggest frames.
 
 ## Single exposure
 
@@ -310,7 +326,7 @@ Now that we can create thousands of eps multiple exposure frames (kEPS), creatin
 
 Fastest framerates for raspivid (640x480) videos are 90fps for v1 camera and 200fps for v2 camera. Fastest framerates for raspiraw videos are 665fps for v1 camera (640x64) and 1007fps for v2 camera (640x75). Creating kFPS framerate videos from kEPS multiple exposure frames is the only way for Raspberry v1 camera (not possible with v2 camera) to create this kind of super high framerate videos. And these vidoes can be of quite big frame size like the 2MP airsoft pistol multiple exposure frame.
 
-#### simple technique
+###### simple technique
 
 [6mm.frame3946.jpg.sh](res/6mm.frame3946.jpg.sh) is a simple tool based on netpbm image tools and ffmpeg. It takes [6mm.frame3946.jpg](res/6mm.frame3946.jpg) image as input. The coordinates of the moving parts (left/top/width/height) used in the script were determined manually with gimp. The 3000fps animation was created with this command (scaled down from 1920 to 640 horizontally, animation framerate 2fps, 1500 times slower than real):
 
@@ -332,7 +348,7 @@ The sript is now modified so that it allows for optional 3rd and 4th argument. T
 
 ![res/pointed.pellet.frame0360_undistorted.jpg.594.3.70.20.anim.gif](res/pointed.pellet.frame0360_undistorted.jpg.594.3.70.20.anim.gif)
 
-#### full and empty frame
+###### full and empty frame
 
 <a name="empty_full"></a>Tool [mak.640.5.sh](res/mak.640.5.sh) does not just fill the pellet exposures with black. Instead it takes two 2MP frames, one frame with pellet exposures [full.pnm](res/full.pnm) and another frame taken with same multiple exposures but without pellets captured [empty.pnm](res/empty.pnm):  
 ![res/pellets.empty-full.png](res/pellets.empty-full.png)  
@@ -340,7 +356,7 @@ For the different frames of the animation a single full height rectangle is take
 
 ![res/frame.640.5.anim.gif](res/frame.640.5.anim.gif)
 
-#### camera software panning
+###### camera software panning
 
 <a name="camera_panning"></a>In [Sound trigger](#sound-trigger) section the pellet capture with blue dots on pellet north and south pole did show that pellet is spinning fast (5625rpm). Since an animation tells more than 1000 words, tool [mak.210.6.sh](res/mak.210.6.sh) creates a 6000fps animation for that 6000eps frame, this time with a very fast camera panning. The animation shows the spinnining with moving blue dot clearly; played at 6fps, 1000× slower than real:
 
@@ -352,14 +368,14 @@ For the different frames of the animation a single full height rectangle is take
 
 As can be seen in the animation, this time a rotation of the blue dot is complete in roughly 5 frames. With capturing frequency of 2500Hz that is 500rps or 30000rpm rotation speed. Pellet spin is a normal rotation, around line through center of the circle described by blue dots and pellet center.
 
-#### empty frame via heal selection
+###### empty frame via heal selection
 
 For the [20000eps frames](#user-content-20000eps) it is difficult to get an empty frame. Touching the propeller is likely to result in a different FoV captured.
 
 I learned that gimp's "Filters->Enhance->Heal selection" allows to let objects disappear from an image. After installing gimp-resynthesizer package that function (among many others) became available. I just created a selection of some markers and did heal the selection. After done with all markers, I selected some strange artefacts created by healing and healed them away as well. Right frame is healed left frame and acts as empty frame:  
 <nobr><img width=384 src="res/20000eps.43.7.43.a.png"> <img width=384 src="res/20000eps.43.7.43.a.empty.png"></nobr>
 
-#### circle tool
+###### circle tool
 
 I did not want to determine the coordinates of the white narrow markers manually using gimp. So I wrote tool [circle.c](res/circle.c) that has two modes. In first mode it overlays fixed diameter white circles over the full frame allowing to see what the programs parameters result in. Looking at the generated overlay image with an image viewer that automaticlly updates on file change (I used "eog"), the display gets updates for each command run with changed parameters. A single run of "circle.c" could suffice to cover all markers. But the full frame is no perfect circle, it is an ellipse instead due to perspective. This command covers top right quarter of the markers:
 
