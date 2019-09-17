@@ -1,0 +1,11 @@
+digraph D {
+  rankdir=LR
+  size="6,6"
+  node [shape="box"]
+  { node [shape="ellipse"] rank="same" gcc netpbm gstreamer ffmpeg }
+  "res/mak.210.6.sh\nres/mak.640.5.sh\nres/6mm.frame3946.jpg.sh\nres/pointed.pellet.frame0360_undistorted.jpg.sh" -> { netpbm "res/pngs2anim" }
+  "res/mak.210.6.sh\nres/mak.640.5.sh\nres/6mm.frame3946.jpg.sh\nres/pointed.pellet.frame0360_undistorted.jpg.sh" -> "res/20000eps.34.9.41.a.sh\nres/20000eps.43.7.43.a.sh" [style="invisible" dir="none"]
+  "res/20000eps.34.9.41.a.sh\nres/20000eps.43.7.43.a.sh" -> { "res/circle.c" "res/pngs2anim" gcc netpbm }
+  "res/pngs2anim" -> { gstreamer ffmpeg } 
+  "tools/toFrames" -> ffmpeg
+}

@@ -14,6 +14,8 @@ This is the parent project of [ESP32-CAM ov2640 sensor global (external) shutter
   * [black propeller on black background](#black-propeller-on-black-background)
 * [Tools](#tools)
 * [Requirements](#requirements)
+  * [capturing](#capturing)
+  * [post processing](#post-processing)
 * [Capturing](#capturing)
 * [Single exposure](#single-exposure)
 * [Multiple exposure](#multiple-exposure)
@@ -135,20 +137,18 @@ The captures done for airsoft pistol showed captured pellets with dark top becau
 
 ## Requirements
 
-pigpio library can be found here: [http://abyz.me.uk/rpi/pigpio/download.html](http://abyz.me.uk/rpi/pigpio/download.html).
+#### capturing
 
-Hardware PWM is available on GPIO(12|18) and GPIO(13|19) only (pigpio [software PWM frequencies](http://abyz.me.uk/rpi/pigpio/pigs.html#PFS) are too restricted). 
+All capturing commands (raspivid_ges/raspividyuv_ges/shot/shots/5shots/pwm_ges/audio_shots.c/gpio_alert.c) require pigpio library, which can be found here: [http://abyz.me.uk/rpi/pigpio/download.html](http://abyz.me.uk/rpi/pigpio/download.html).
 
-|               |HW PWM|any GPIO| |pigpio|ffmpeg| |I2C|camera|
-|--------------:|:----:|:------:|-|:----:|:----:|-|:-:|:----:|
-|   raspivid_ges|      |   ×    | |   ×  |      | | × |   ×  |
-|raspividyuv_ges|      |   ×    | |   ×  |      | | × |   ×  |
-|           shot|      |   ×    | |   ×  |      | |   |      |
-|          shots|      |   ×    | |   ×  |      | |   |      |
-|         5shots|      |   ×    | |   ×  |      | |   |      |
-|        pwm_ges|  ×   |        | |   ×  |      | |   |      |
-|     gpio_alert|      |   ×    | |   ×  |      | |   |      |
-|       toFrames|      |        | |      |   ×  | |   |      |
+raspivid_ges and raspividyuv_ges require I2C and Camera features being enabled via raspi-config.
+
+All capturing commands besides pwm_ges can be run on any GPIO pin. pwm_ges requires Hardware PWM, which is available on GPIO(12|18) and GPIO(13|19) only (pigpio [software PWM frequencies](http://abyz.me.uk/rpi/pigpio/pigs.html#PFS) are too restricted). 
+
+#### post processing
+
+[Post processing tools](https://stamm-wilbrandt.de/GraphvizFiddle/?1568759435137#digraph%20D%20%7B%0A%20%20rankdir%3DLR%0A%20%20size%3D%228%2C6%22%0A%20%20node%20%5Bshape%3D%22box%22%5D%0A%20%20%7B%20node%20%5Bshape%3D%22ellipse%22%5D%20rank%3D%22same%22%20gcc%20netpbm%20gstreamer%20ffmpeg%20%7D%0A%20%20%22res%2Fmak.210.6.sh%5Cnres%2Fmak.640.5.sh%5Cnres%2F6mm.frame3946.jpg.sh%5Cnres%2Fpointed.pellet.frame0360_undistorted.jpg.sh%22%20-%3E%20%7B%20netpbm%20%22res%2Fpngs2anim%22%20%7D%0A%20%20%22res%2Fmak.210.6.sh%5Cnres%2Fmak.640.5.sh%5Cnres%2F6mm.frame3946.jpg.sh%5Cnres%2Fpointed.pellet.frame0360_undistorted.jpg.sh%22%20-%3E%20%22res%2F20000eps.34.9.41.a.sh%5Cnres%2F20000eps.43.7.43.a.sh%22%20%5Bstyle%3D%22invisible%22%20dir%3D%22none%22%5D%0A%20%20%22res%2F20000eps.34.9.41.a.sh%5Cnres%2F20000eps.43.7.43.a.sh%22%20-%3E%20%7B%20%22res%2Fcircle.c%22%20%22res%2Fpngs2anim%22%20gcc%20netpbm%20%7D%0A%20%20%22res%2Fpngs2anim%22%20-%3E%20%7B%20gstreamer%20ffmpeg%20%7D%20%0A%20%20%22tools%2FtoFrames%22%20-%3E%20ffmpeg%0A%7D) (in boxes) require use of netpbm, gcc, ffmpeg and gstreamer as displayed in this SVG:
+![res/req.svg](res/req.svg)
 
 ## Capturing
 
