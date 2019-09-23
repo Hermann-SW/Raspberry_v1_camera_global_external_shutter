@@ -4,7 +4,7 @@ S=9  # trigger length in microseconds
 if [ "$2" != "" ]; then T=$2; fi
 if [ "$1" != "" ]; then S=$1; fi
 
-if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod; sleep 0.5; fi
+if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod -s 1; sleep 0.5; fi
 
 N=/dev/null
 

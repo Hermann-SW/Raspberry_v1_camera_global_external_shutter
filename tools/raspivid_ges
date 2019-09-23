@@ -8,7 +8,7 @@ if [ "$*" != "" ]; then args=$*; fi
 cmd=raspivid
 if [ "$0" = "raspividyuv_gs" ]; then cmd=raspividyuv; fi
 
-if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod; sleep 0.5; fi
+if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod -s 1; sleep 0.5; fi
 
 ( pigs m $T w; pigs w $T 1; sleep $t; pigs w $T 0 ) &
 

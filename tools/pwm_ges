@@ -8,6 +8,6 @@ if [ "$3" != "" ]; then t=$3; fi
 if [ "$2" != "" ]; then D=$2; fi
 if [ "$1" != "" ]; then F=$1; fi
 
-if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod; sleep 0.5; fi
+if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod -s 1; sleep 0.5; fi
 
 pigs hp $T $F $D; sleep $t; pigs hp $T 0 0
