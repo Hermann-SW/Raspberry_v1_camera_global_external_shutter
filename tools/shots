@@ -11,7 +11,7 @@ if [ "$3" != "" ]; then O=$3; fi
 if [ "$2" != "" ]; then S=$2; fi
 if [ "$1" != "" ]; then R=$1; fi
 
-if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod; sleep 0.5; fi
+if [ ! -f /var/run/pigpio.pid ]; then sudo pigpiod -s 1; sleep 0.5; fi
 
 N=/dev/null
 
