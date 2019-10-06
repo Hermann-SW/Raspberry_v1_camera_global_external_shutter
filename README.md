@@ -279,6 +279,9 @@ On the left you can see 8mm long pointed pellet used from a smartphone photo. On
 ![airgun pellet photo](res/pointed.pellet.photo.jpg) 
 ![airgun pellet 1to1 capture](res/pointed.pellet.frame0104.part.jpg)
 
+<a name="3pellets"></a>Sometimes it is not needed to increase PWM flash frequency, but to reduce it in order to get non-overlapping exposures. The frame shows 3 pellets shot together by airsoft pistol. Only 300Hz frequency with 9µs long flashes was used (0.27%/300Hz=9µs, command executed was "$ ./pwm_ges 300 2700 3"). The left 3 pellets belong to one exposure, and the right three pellets to the next exposure. A red pellet is slightly heavier than the yellow pellet. Both red pellets keep the common trajectory in this frame. Only yellow pellet falls off the trajectory. Yellow pellet speed 16.4m/s or 59km/h is significantly slower than 36m/s, but here three pellets had to be accelerated and not only one:
+![three pellets inflight](res/good.0485.png) 
+
 Todos:
 Next step is to use ~air gun for higher muzzle speed, and finally~ a real rifle. A 375m/s pellet does move 0.375mm/µs. If a frame every 3cm is wanted, exposures have to be taken every 30/0.375=80µs. The result will be a 12500 eps(!) frame (1000000/80).  
 After that, maybe capturing [.50 bmg](https://en.wikipedia.org/wiki/.50_BMG) with 900m/s(!) might be a challenge. A former colleague of me did shoot .50 bmg ...
