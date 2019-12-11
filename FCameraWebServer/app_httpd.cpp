@@ -20,7 +20,7 @@
 
 #include "fb_gfx.h"
 #include "fd_forward.h"
-#include "dl_lib.h"
+// #include "dl_lib.h"
 #include "fr_forward.h"
 
 #define ENROLL_CONFIRM_TIMES 5
