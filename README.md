@@ -294,7 +294,7 @@ A frame gets flash hits very often although the number of captured pellet exposu
 This section describes sound triggered multiple exposure capturing. I used cheap 5V microphone sensor with digital and analog output as sound trigger. I connected GND/VCC/D0/A0 of microphone sensor to GND/3V3/GPIO17/- on the Pi. Although product description does not mention that this sensor works with 3.3V, it does:  
 <img width=648 src="res/IMG_010919_223213.jpg"/>
 
-Tool [audio_shots.c](tools/autio_shots.c) can be used for sound triggered multiple exposure. This command waits to be triggered from digital microphone sensor output, then waits for 2010µs offset, and then does 5 (9µs duration) flashes at frequency 6KHz:
+Tool [audio_shots.c](tools/audio_shots.c) can be used for sound triggered multiple exposure. This command waits to be triggered from digital microphone sensor output, then waits for 2010µs offset, and then does 5 (9µs duration) flashes at frequency 6KHz:
 
     $ sudo killall pigpiod
     $ sudo ./audio_shots 5 9 6000 2010
