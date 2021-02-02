@@ -30,6 +30,7 @@ This is the parent project of [ESP32-CAM ov2640 sensor global (external) shutter
     * [circle tool](#circle-tool)
 * [Hardware camera sync pulses](#hardware-camera-sync-pulses)
 * [Daylight](#daylight)
+* [Update wrt rolling shutter camera capturing airgun bullet inflight](#update-wrt-rolling-shutter-camera-capturing-airgun-bullet-inflight)
 
 ## Introduction
 
@@ -449,3 +450,10 @@ And this command in another console, executed a few times for being able to sele
 
 The frame has sharp blade exposures caught in 5 locations, daylight scene around circular disk, colors! From 1st to 5th blade exposure time passed is 4×(9µs+116µs)=500µs, and the covered part of black circular disk is roughly 1/3rd. The rotational speed of blade is therefore 2000/3=666.66rps or 40000rpm! Propeller diameter is 34mm, so rotational speed at blade tip is 0.034×π×40000/60=71.2m/s or 256.3km/h:
 ![res/daylight.4.png](res/daylight.4.png)
+
+
+## Update wrt. rolling shutter camera capturing airgun bullet inflight
+
+13 months have passed, and it turned out that global shutter is not needed for capturing airgun bullets inflight. Raspberry HQ (rolling shutter) camera was able to capture multiple exposures, even at daylight, and still show the bullet nicely because of single digit microsecond bright flash duration:  
+[https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=288886](https://www.raspberrypi.org/forums/viewtopic.php?f=43&t=288886)  
+![res/frame.0137.png.jpg](res/frame.0137.png.jpg)
